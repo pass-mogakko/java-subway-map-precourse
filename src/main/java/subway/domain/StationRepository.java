@@ -9,6 +9,17 @@ public class StationRepository {
 
     private static final List<Station> stations = new ArrayList<>();
 
+    public StationRepository() {
+        List<String> allStationNameDummy = StationNameDummy.findAllStationNameDummy();
+        allStationNameDummy.forEach(StationRepository::addStation);
+    }
+
+    private static void addStation(String stationName) {
+        Station station = new Station(stationName);
+        addStation(station);
+    }
+
+
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
     }
