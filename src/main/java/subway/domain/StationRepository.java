@@ -1,14 +1,8 @@
 package subway.domain;
 
-import java.util.List;
-
-public class StationRepository {
+public class StationRepository extends Stations {
 
     private static Stations stations = new Stations();
-
-    public List<Station> stations() {
-        return stations.stations();
-    }
 
     //    private void addStation(String stationName) {
     //        Station station = new Station(stationName);

@@ -10,7 +10,15 @@ public class Section {
         this.stations = stations;
     }
 
+    public boolean isSameLineName(String lineName) {
+        return line.isSameName(lineName);
+    }
+
     public Line getLine() {
         return line;
+    }
+
+    public Stations getStations() {
+        return stations;
     }
 }

@@ -1,14 +1,9 @@
 package subway.domain;
 
-import java.util.List;
-
-public class LineRepository {
+public class LineRepository extends Lines {
 
     private static final Lines lines = new Lines();
 
-    public List<Line> lines() {
-        return lines.lines();
-    }
     //
     //    public boolean deleteLineByName(String name) {
     //        return lines.removeIf(line -> Objects.equals(line.getName(), name));

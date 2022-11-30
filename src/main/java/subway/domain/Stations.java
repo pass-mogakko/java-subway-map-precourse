@@ -3,6 +3,7 @@ package subway.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import subway.constant.ErrorMessage;
 
 public class Stations {
 
@@ -24,4 +25,12 @@ public class Stations {
     public List<Station> stations() {
         return Collections.unmodifiableList(stations);
     }
+
+    public Station findStationByStationName(String stationName) {
+        return stations.stream()
+                .filter(station -> station.isSameName(stationName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_STATION));
+    }
+
 }
