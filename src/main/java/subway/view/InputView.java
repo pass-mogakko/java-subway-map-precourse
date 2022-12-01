@@ -2,8 +2,8 @@ package subway.view;
 
 import java.util.Arrays;
 import java.util.Scanner;
-import subway.constant.MainScreenSelection;
 import subway.constant.Message;
+import subway.domain.mainscreen.MainScreenSelection;
 
 public class InputView {
 
@@ -15,6 +15,7 @@ public class InputView {
         Arrays.stream(MainScreenSelection.values())
                 .forEach(this::printMainScreenSelectionSentence);
         String selection = scanner.nextLine();
+        MainScreenSelection.validate(selection);
         return selection;
     }
 
@@ -24,4 +25,5 @@ public class InputView {
         String selectionSentence = String.format(Message.SELECTION_MESSAGE_FROM, selection, content);
         System.out.println(selectionSentence);
     }
+
 }

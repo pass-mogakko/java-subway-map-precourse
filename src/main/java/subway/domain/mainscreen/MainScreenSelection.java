@@ -1,4 +1,7 @@
-package subway.constant;
+package subway.domain.mainscreen;
+
+import java.util.Arrays;
+import subway.constant.ErrorMessage;
 
 public enum MainScreenSelection {
     ONE("1", "역 관리"),
@@ -13,6 +16,14 @@ public enum MainScreenSelection {
     MainScreenSelection(String selection, String content) {
         this.selection = selection;
         this.content = content;
+    }
+
+    public static void validate(String selection) {
+        boolean isAnyMatch = Arrays.stream(MainScreenSelection.values())
+                .anyMatch(mainScreenSelection -> mainScreenSelection.selection.equals(selection));
+        if (!isAnyMatch) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_SELECTION);
+        }
     }
 
     public String getSelection() {
