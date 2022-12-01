@@ -3,11 +3,11 @@ package subway.domain;
 public class Section {
 
     private final Line line;
-    private final Stations stations;
+    private final StationGroup stationGroup;
 
-    public Section(Line line, Stations stations) {
+    public Section(Line line, StationGroup stationGroup) {
         this.line = line;
-        this.stations = stations;
+        this.stationGroup = stationGroup;
     }
 
     public boolean isSameLineName(String lineName) {
@@ -18,7 +18,7 @@ public class Section {
         return line;
     }
 
-    public Stations getStations() {
-        return stations;
+    public StationGroup getStations() {
+        return stationGroup;
     }
 }

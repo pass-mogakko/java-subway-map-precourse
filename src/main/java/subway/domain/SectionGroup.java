@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import subway.constant.ErrorMessage;
 
-public class Sections {
+public class SectionGroup {
 
     private final List<Section> sections;
 
-    public Sections() {
+    public SectionGroup() {
         sections = initDummyData();
     }
 
@@ -23,8 +23,8 @@ public class Sections {
         String lineName = dummyData.getLineName();
         Line line = new Line(lineName);
         List<String> stationsName = dummyData.findStationsName();
-        Stations stations = new Stations(stationsName);
-        return new Section(line, stations);
+        StationGroup stationGroup = new StationGroup(stationsName);
+        return new Section(line, stationGroup);
     }
 
     public Section findSectionByLineName(String lineName) {

@@ -2,10 +2,10 @@ package subway.domain;
 
 public class StationRepository {
 
-    private static Stations stations = new Stations();
+    private static StationGroup stationGroup = new StationGroup();
 
     public static Station findStationByName(String stationName) {
-        return stations.findStationByName(stationName);
+        return stationGroup.findStationByName(stationName);
     }
 
     //    private void addStation(String stationName) {
@@ -14,16 +14,16 @@ public class StationRepository {
     //    }
     //
     //    public void addStation(Station station) {
-    //        stations.add(station);
+    //        stationGroup.add(station);
     //
     //    }
     //
-    //    public void addStations(List<Station> stations) {
-    //        stations.forEach(stations::add);
+    //    public void addStations(List<Station> stationGroup) {
+    //        stationGroup.forEach(stationGroup::add);
     //    }
     //
     //
     //    public boolean deleteStation(String name) {
-    //        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    //        return stationGroup.removeIf(station -> Objects.equals(station.getName(), name));
     //    }
 }

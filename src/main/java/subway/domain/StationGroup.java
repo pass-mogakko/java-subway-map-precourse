@@ -4,17 +4,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 import subway.constant.ErrorMessage;
 
-public class Stations {
+public class StationGroup {
 
     private final List<Station> stations;
 
-    public Stations(List<String> stationsName) {
+    public StationGroup(List<String> stationsName) {
         stations = stationsName.stream()
                 .map(Station::new)
                 .collect(Collectors.toList());
     }
 
-    public Stations() {
+    public StationGroup() {
         stations = initDummyData();
     }
 

@@ -2,14 +2,14 @@ package subway.domain;
 
 public class LineRepository {
 
-    private static final Lines lines = new Lines();
+    private static final LineGroup lineGroup = new LineGroup();
 
     public static Line findLineByName(String name) {
-        return lines.findLineByName(name);
+        return lineGroup.findLineByName(name);
     }
 
     //
     //    public boolean deleteLineByName(String name) {
-    //        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    //        return lineGroup.removeIf(line -> Objects.equals(line.getName(), name));
     //    }
 }

@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import subway.constant.ErrorMessage;
 
-public class Lines {
+public class LineGroup {
 
     private final List<Line> lines;
 
-    public Lines() {
+    public LineGroup() {
         lines = initDummyData();
     }
 
