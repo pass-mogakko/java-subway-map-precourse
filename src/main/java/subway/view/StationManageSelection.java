@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.Arrays;
 import subway.constant.ErrorMessage;
+import subway.constant.Message;
 
 public enum StationManageSelection {
     ONE("1", "역 등록"),
@@ -25,11 +26,12 @@ public enum StationManageSelection {
         }
     }
 
-    public String getSelection() {
-        return selection;
+    @Override
+    public String toString() {
+        return String.format(Message.SELECTION_MESSAGE_FROM, selection, content);
     }
 
-    public String getContent() {
-        return content;
+    public String getSelection() {
+        return selection;
     }
 }
