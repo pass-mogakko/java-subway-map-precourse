@@ -8,21 +8,43 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public String requestMainScreenSelection() {
-        System.out.printf(Message.TITLE_MESSAGE_FORM, Message.MAIN_SCREEN);
+    public static String requestMainScreenSelection() {
+        System.out.println();
+        System.out.printf(Message.IMPORTANT_MESSAGE_FORM, Message.MAIN_SCREEN);
         System.out.println();
         Arrays.stream(MainScreenSelection.values())
-                .forEach(this::printMainScreenSelectionSentence);
+                .forEach(InputView::printMainScreenSelectionSentence);
+        System.out.println();
+        System.out.printf(Message.IMPORTANT_MESSAGE_FORM, Message.SELECT_FUNCTION);
+        System.out.println();
         String selection = scanner.nextLine();
         MainScreenSelection.validate(selection);
         return selection;
     }
 
-    private void printMainScreenSelectionSentence(MainScreenSelection mainScreenSelection) {
+    private static void printMainScreenSelectionSentence(MainScreenSelection mainScreenSelection) {
         String selection = mainScreenSelection.getSelection();
         String content = mainScreenSelection.getContent();
         String selectionSentence = String.format(Message.SELECTION_MESSAGE_FROM, selection, content);
         System.out.println(selectionSentence);
     }
 
+    public static String requestStationManageSelection() {
+        System.out.println();
+        System.out.printf(Message.IMPORTANT_MESSAGE_FORM, Message.STATION_MANAGE_SCREEN);
+        System.out.println();
+        Arrays.stream(StationManageSelection.values())
+                .forEach(InputView::printStationManageSelectionSentence);
+        System.out.println();
+        System.out.printf(Message.IMPORTANT_MESSAGE_FORM, Message.SELECT_FUNCTION);
+        System.out.println();
+        return null;
+    }
+
+    private static void printStationManageSelectionSentence(StationManageSelection stationManageSelection) {
+        String selection = stationManageSelection.getSelection();
+        String content = stationManageSelection.getContent();
+        String selectionSentence = String.format(Message.SELECTION_MESSAGE_FROM, selection, content);
+        System.out.println(selectionSentence);
+    }
 }
