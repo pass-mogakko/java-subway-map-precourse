@@ -9,7 +9,11 @@ public class Lines {
     private final List<Line> lines;
 
     public Lines() {
-        lines = DummyData.findAllLinesName()
+        lines = initDummyData();
+    }
+
+    private List<Line> initDummyData() {
+        return DummyData.findAllLinesName()
                 .stream()
                 .map(Line::new)
                 .collect(Collectors.toList());

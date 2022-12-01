@@ -15,7 +15,11 @@ public class Stations {
     }
 
     public Stations() {
-        stations = DummyData.findAllStationsName()
+        stations = initDummyData();
+    }
+
+    private List<Station> initDummyData() {
+        return DummyData.findAllStationsName()
                 .stream()
                 .map(Station::new)
                 .collect(Collectors.toList());
