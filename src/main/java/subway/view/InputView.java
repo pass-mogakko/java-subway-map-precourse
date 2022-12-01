@@ -24,6 +24,7 @@ public class InputView {
                 .forEach(System.out::println);
         printSelectFunction();
         String selection = scanner.nextLine();
+        StationManageSelection.validate(selection);
         return selection;
     }
 
