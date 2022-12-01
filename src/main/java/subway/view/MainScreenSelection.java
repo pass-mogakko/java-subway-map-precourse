@@ -1,4 +1,4 @@
-package subway.domain.mainscreen;
+package subway.view;
 
 import java.util.Arrays;
 import subway.constant.ErrorMessage;

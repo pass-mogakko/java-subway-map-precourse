@@ -3,7 +3,6 @@ package subway.view;
 import java.util.Arrays;
 import java.util.Scanner;
 import subway.constant.Message;
-import subway.domain.mainscreen.MainScreenSelection;
 
 public class InputView {
 
