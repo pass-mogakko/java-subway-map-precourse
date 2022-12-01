@@ -18,5 +18,6 @@ public class StationManageController {
 
     private void registerStation() {
         String registerStation = InputView.requestRegisterStation();
+        stationManageService.registerStation(registerStation);
     }
 }

@@ -8,6 +8,11 @@ public class StationRepository {
         return stationGroup.findStationByName(stationName);
     }
 
+    public static void addStation(String registerStation) {
+        Station station = new Station(registerStation);
+        stationGroup.addStation(station);
+    }
+
     //    private void addStation(String stationName) {
     //        Station station = new Station(stationName);
     //        addStation(station);

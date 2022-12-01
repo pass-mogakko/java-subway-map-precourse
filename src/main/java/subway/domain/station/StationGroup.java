@@ -33,4 +33,8 @@ public class StationGroup {
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_STATION));
     }
 
+    public void addStation(Station station) {
+        stations.add(station);
+    }
+
 }
