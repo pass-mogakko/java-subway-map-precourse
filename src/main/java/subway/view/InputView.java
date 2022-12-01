@@ -14,7 +14,8 @@ public class InputView {
         System.out.println();
         Arrays.stream(MainScreenSelection.values())
                 .forEach(this::printMainScreenSelectionSentence);
-        return null;
+        String selection = scanner.nextLine();
+        return selection;
     }
 
     private void printMainScreenSelectionSentence(MainScreenSelection mainScreenSelection) {
