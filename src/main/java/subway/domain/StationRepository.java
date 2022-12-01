@@ -1,8 +1,12 @@
 package subway.domain;
 
-public class StationRepository extends Stations {
+public class StationRepository {
 
     private static Stations stations = new Stations();
+
+    public static Station findStationByName(String stationName) {
+        return stations.findStationByName(stationName);
+    }
 
     //    private void addStation(String stationName) {
     //        Station station = new Station(stationName);

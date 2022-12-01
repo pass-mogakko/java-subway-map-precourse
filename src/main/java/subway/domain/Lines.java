@@ -1,8 +1,8 @@
 package subway.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import subway.constant.ErrorMessage;
 
 public class Lines {
 
@@ -15,7 +15,10 @@ public class Lines {
                 .collect(Collectors.toList());
     }
 
-    public List<Line> lines() {
-        return Collections.unmodifiableList(lines);
+    public Line findLineByName(String name) {
+        return lines.stream()
+                .filter(line -> line.isSameName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_LINE));
     }
 }

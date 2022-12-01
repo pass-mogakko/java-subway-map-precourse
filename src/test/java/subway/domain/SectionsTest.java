@@ -1,6 +1,7 @@
 package subway.domain;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThatCode;
+
 import org.junit.jupiter.api.Test;
 
 class SectionsTest {
@@ -11,12 +12,9 @@ class SectionsTest {
         Section twoLineSection = sectionRepository.findSectionByLineName("2호선");
         Stations twoStations = twoLineSection.getStations();
 
-        Assertions.assertThatCode(() -> twoStations.findStationByStationName("교대역"))
-                .doesNotThrowAnyException();
-        Assertions.assertThatCode(() -> twoStations.findStationByStationName("강남역"))
-                .doesNotThrowAnyException();
-        Assertions.assertThatCode(() -> twoStations.findStationByStationName("역삼역"))
-                .doesNotThrowAnyException();
+        assertThatCode(() -> twoStations.findStationByName("교대역")).doesNotThrowAnyException();
+        assertThatCode(() -> twoStations.findStationByName("강남역")).doesNotThrowAnyException();
+        assertThatCode(() -> twoStations.findStationByName("역삼역")).doesNotThrowAnyException();
     }
 
     @Test
@@ -25,14 +23,10 @@ class SectionsTest {
         Section threeLineSection = sectionRepository.findSectionByLineName("3호선");
         Stations threeStations = threeLineSection.getStations();
 
-        Assertions.assertThatCode(() -> threeStations.findStationByStationName("교대역"))
-                .doesNotThrowAnyException();
-        Assertions.assertThatCode(() -> threeStations.findStationByStationName("남부터미널역"))
-                .doesNotThrowAnyException();
-        Assertions.assertThatCode(() -> threeStations.findStationByStationName("양재역"))
-                .doesNotThrowAnyException();
-        Assertions.assertThatCode(() -> threeStations.findStationByStationName("매봉역"))
-                .doesNotThrowAnyException();
+        assertThatCode(() -> threeStations.findStationByName("교대역")).doesNotThrowAnyException();
+        assertThatCode(() -> threeStations.findStationByName("남부터미널역")).doesNotThrowAnyException();
+        assertThatCode(() -> threeStations.findStationByName("양재역")).doesNotThrowAnyException();
+        assertThatCode(() -> threeStations.findStationByName("매봉역")).doesNotThrowAnyException();
 
     }
 
@@ -42,12 +36,9 @@ class SectionsTest {
         Section sinBunDangLineSection = sectionRepository.findSectionByLineName("신분당선");
         Stations sinBunDangStations = sinBunDangLineSection.getStations();
 
-        Assertions.assertThatCode(() -> sinBunDangStations.findStationByStationName("강남역"))
-                .doesNotThrowAnyException();
-        Assertions.assertThatCode(() -> sinBunDangStations.findStationByStationName("양재역"))
-                .doesNotThrowAnyException();
-        Assertions.assertThatCode(() -> sinBunDangStations.findStationByStationName("양재시민의숲역"))
-                .doesNotThrowAnyException();
+        assertThatCode(() -> sinBunDangStations.findStationByName("강남역")).doesNotThrowAnyException();
+        assertThatCode(() -> sinBunDangStations.findStationByName("양재역")).doesNotThrowAnyException();
+        assertThatCode(() -> sinBunDangStations.findStationByName("양재시민의숲역")).doesNotThrowAnyException();
 
 
     }

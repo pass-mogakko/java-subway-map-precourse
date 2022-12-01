@@ -1,6 +1,5 @@
 package subway.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import subway.constant.ErrorMessage;
@@ -22,11 +21,7 @@ public class Stations {
                 .collect(Collectors.toList());
     }
 
-    public List<Station> stations() {
-        return Collections.unmodifiableList(stations);
-    }
-
-    public Station findStationByStationName(String stationName) {
+    public Station findStationByName(String stationName) {
         return stations.stream()
                 .filter(station -> station.isSameName(stationName))
                 .findFirst()
