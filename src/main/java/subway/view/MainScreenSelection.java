@@ -35,4 +35,5 @@ public enum MainScreenSelection {
     public String getSelection() {
         return selection;
     }
+
 }

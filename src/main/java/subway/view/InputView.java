@@ -2,6 +2,7 @@ package subway.view;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.function.Consumer;
 import subway.constant.Message;
 
 public class InputView {
@@ -14,7 +15,10 @@ public class InputView {
                 .forEach(System.out::println);
         printSelectFunction();
         String selection = scanner.nextLine();
-        MainScreenSelection.validate(selection);
+        boolean isThrowError = isThrowError(MainScreenSelection::validate, selection);
+        if (isThrowError) {
+            return requestMainScreenSelection();
+        }
         return selection;
     }
 
@@ -24,7 +28,10 @@ public class InputView {
                 .forEach(System.out::println);
         printSelectFunction();
         String selection = scanner.nextLine();
-        StationManageSelection.validate(selection);
+        boolean isThrowError = isThrowError(StationManageSelection::validate, selection);
+        if (isThrowError) {
+            return requestStationManageSelection();
+        }
         return selection;
     }
 
@@ -40,4 +47,19 @@ public class InputView {
         System.out.println();
     }
 
+    public static String requestRegisterStation() {
+        printSelectionTitle(Message.REQUEST_REGISTER_STATION);
+        String registerStation = scanner.nextLine();
+        return registerStation;
+    }
+
+    private static boolean isThrowError(Consumer<String> validateFunction, String input) {
+        try {
+            validateFunction.accept(input);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return true;
+        }
+        return false;
+    }
 }
