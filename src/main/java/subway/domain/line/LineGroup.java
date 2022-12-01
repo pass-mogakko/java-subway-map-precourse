@@ -1,8 +1,9 @@
-package subway.domain;
+package subway.domain.line;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import subway.constant.ErrorMessage;
+import subway.domain.DummyData;
 
 public class LineGroup {
 

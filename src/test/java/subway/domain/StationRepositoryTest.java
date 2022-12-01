@@ -4,6 +4,7 @@ package subway.domain;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import org.junit.jupiter.api.Test;
+import subway.domain.station.StationRepository;
 
 class StationRepositoryTest {
 

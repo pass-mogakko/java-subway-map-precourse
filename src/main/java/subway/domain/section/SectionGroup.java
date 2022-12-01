@@ -1,9 +1,12 @@
-package subway.domain;
+package subway.domain.section;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import subway.constant.ErrorMessage;
+import subway.domain.DummyData;
+import subway.domain.line.Line;
+import subway.domain.station.StationGroup;
 
 public class SectionGroup {
 
