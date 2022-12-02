@@ -24,6 +24,9 @@ public class LineManageController {
     public void run() {
         try {
             String lineManageSelection = InputView.requestLineManageSelection();
+            if (lineManageSelection.equals(LineManageSelection.BACK.getSelection())) {
+                return;
+            }
             Runnable nextAction = selectionNavigator.get(lineManageSelection);
             nextAction.run();
         } catch (IllegalArgumentException e) {

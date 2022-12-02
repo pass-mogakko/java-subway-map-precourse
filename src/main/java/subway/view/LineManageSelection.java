@@ -8,7 +8,7 @@ public enum LineManageSelection {
     ONE("1", "노선 등록"),
     TWO("2", "노선 삭제"),
     THREE("3", "노선 조회"),
-    FOUR("B", "돌아가기");
+    BACK("B", "돌아가기");
 
     private final String selection;
     private final String content;

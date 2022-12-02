@@ -27,6 +27,9 @@ public class SubwayController {
     public void run() {
         try {
             String mainScreenSelection = InputView.requestMainScreenSelection();
+            if (mainScreenSelection.equals(MainScreenSelection.QUIT.getSelection())) {
+                return;
+            }
             Runnable nextAction = selectionNavigator.get(mainScreenSelection);
             nextAction.run();
         } catch (IllegalArgumentException e) {

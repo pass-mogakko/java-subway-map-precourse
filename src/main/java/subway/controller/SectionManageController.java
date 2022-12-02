@@ -6,6 +6,7 @@ import subway.service.LineManageService;
 import subway.service.SectionManageService;
 import subway.service.StationManageService;
 import subway.view.InputView;
+import subway.view.LineManageSelection;
 import subway.view.OutputView;
 import subway.view.SectionManageSelection;
 
@@ -23,8 +24,11 @@ public class SectionManageController {
 
     public void run() {
         try {
-            String lineManageSelection = InputView.requestSectionManageSelection();
-            Runnable nextAction = selectionNavigator.get(lineManageSelection);
+            String sectionManageSelection = InputView.requestSectionManageSelection();
+            if (sectionManageSelection.equals(LineManageSelection.BACK.getSelection())) {
+                return;
+            }
+            Runnable nextAction = selectionNavigator.get(sectionManageSelection);
             nextAction.run();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
