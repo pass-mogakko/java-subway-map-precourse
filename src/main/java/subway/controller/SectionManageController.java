@@ -33,7 +33,7 @@ public class SectionManageController {
 
     private void registerSection() {
         String line = requestLine();
-        String station = requestStation();
+        String station = requestStation(line);
         int order = requestOrder(line);
     }
 
@@ -48,14 +48,15 @@ public class SectionManageController {
         }
     }
 
-    private String requestStation() {
+    private String requestStation(String lineName) {
         try {
-            String station = InputView.requestStation();
-            stationManageService.validateIsRegisterStation(station);
-            return station;
+            String stationName = InputView.requestStation();
+            stationManageService.validateIsRegisterStation(stationName);
+            sectionManageService.validateIsAlreadySection(lineName, stationName);
+            return stationName;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return requestStation();
+            return requestStation(lineName);
         }
     }
 

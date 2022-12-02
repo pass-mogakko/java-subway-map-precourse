@@ -28,4 +28,9 @@ public class Section {
     public int size() {
         return stationGroup.size();
     }
+
+    public boolean contains(String stationName) {
+        return stationGroup.isExistStation(stationName);
+    }
+
 }
