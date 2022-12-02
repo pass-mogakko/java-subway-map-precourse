@@ -65,6 +65,10 @@ public class InputView {
                 .forEach(System.out::println);
         printSelectFunction();
         String selection = scanner.nextLine();
+        boolean isThrowError = isThrowError(LineManageSelection::validate, selection);
+        if (isThrowError) {
+            return requestLineManageSelection();
+        }
         return selection;
     }
 
