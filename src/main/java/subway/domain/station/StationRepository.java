@@ -1,5 +1,7 @@
 package subway.domain.station;
 
+import java.util.List;
+
 public class StationRepository {
 
     private static StationGroup stationGroup = new StationGroup();
@@ -14,5 +16,9 @@ public class StationRepository {
 
     public static void deleteStation(String deleteStation) {
         stationGroup.deleteStationByName(deleteStation);
+    }
+
+    public static List<String> findAllStationNames() {
+        return stationGroup.findAllStationNames();
     }
 }

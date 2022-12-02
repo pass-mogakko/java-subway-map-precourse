@@ -28,7 +28,7 @@ public enum StationManageSelection {
 
     @Override
     public String toString() {
-        return String.format(Message.SELECTION_MESSAGE_FROM, selection, content);
+        return String.format(Message.SELECTION_MESSAGE_FORM, selection, content);
     }
 
     public String getSelection() {

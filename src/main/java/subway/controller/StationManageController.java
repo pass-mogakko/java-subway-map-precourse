@@ -1,9 +1,11 @@
 package subway.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import subway.service.StationManageService;
 import subway.view.InputView;
+import subway.view.OutputView;
 import subway.view.StationManageSelection;
 
 public class StationManageController {
@@ -14,6 +16,7 @@ public class StationManageController {
     public StationManageController() {
         selectionNavigator.put(StationManageSelection.ONE.getSelection(), this::registerStation);
         selectionNavigator.put(StationManageSelection.TWO.getSelection(), this::deleteStation);
+        selectionNavigator.put(StationManageSelection.THREE.getSelection(), this::lookupStation);
     }
 
     public void run() {
@@ -31,6 +34,11 @@ public class StationManageController {
     private void deleteStation() {
         String deleteStation = InputView.requestDeleteStation();
         stationManageService.deleteStation(deleteStation);
+    }
+
+    private void lookupStation() {
+        List<String> allStation = stationManageService.lookupStation();
+        OutputView.printAllStation(allStation);
     }
 
 }

@@ -43,4 +43,11 @@ public class StationGroup {
         Station station = new Station(registerStation);
         stations.add(station);
     }
+
+    public List<String> findAllStationNames() {
+        return stations.stream()
+                .map(station -> station.getName())
+                .distinct()
+                .collect(Collectors.toList());
+    }
 }
