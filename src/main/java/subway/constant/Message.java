@@ -18,4 +18,5 @@ public class Message {
     public static final String REQUEST_DELETE_LINE = "삭제할 노선 이름을 입력하세요.";
     public static final String LINE_LIST = "노선 목록";
     public static final String SECTION_MANAGE_SCREEN = "구간 관리 화면";
+    public static final String REQUEST_LINE = "노선을 입력하세요.";
 }

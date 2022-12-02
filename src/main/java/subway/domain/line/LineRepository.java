@@ -11,10 +11,8 @@ public class LineRepository {
         return lineGroup.findLineByName(name);
     }
 
-    public static void validateIsUnregisterLine(String lineName) {
-        if (lineGroup.isExistLine(lineName)) {
-            throw new IllegalArgumentException(ErrorMessage.ALREADY_EXIST_LINE);
-        }
+    public static boolean isRegisterLine(String lineName) {
+        return lineGroup.isExistLine(lineName);
     }
 
     public static void addLine(String registerLine) {
@@ -28,4 +26,5 @@ public class LineRepository {
     public static List<String> findAllLineNames() {
         return lineGroup.findAllLineNames();
     }
+
 }

@@ -115,4 +115,10 @@ public class InputView {
         SectionManageSelection.validate(sectionManageSelection);
         return sectionManageSelection;
     }
+
+    public static String requestLine() {
+        printSelectionTitle(Message.REQUEST_LINE);
+        String line = scanner.nextLine();
+        return line;
+    }
 }

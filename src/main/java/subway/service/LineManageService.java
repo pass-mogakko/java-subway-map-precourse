@@ -1,6 +1,7 @@
 package subway.service;
 
 import java.util.List;
+import subway.constant.ErrorMessage;
 import subway.domain.line.LineRepository;
 import subway.domain.section.SectionRepository;
 
@@ -12,7 +13,17 @@ public class LineManageService {
     }
 
     public void validateIsUnregisterLine(String lineName) {
-        LineRepository.validateIsUnregisterLine(lineName);
+        boolean isRegisterLine = LineRepository.isRegisterLine(lineName);
+        if (isRegisterLine) {
+            throw new IllegalArgumentException(ErrorMessage.ALREADY_EXIST_LINE);
+        }
+    }
+
+    public void validateIsRegisterLine(String lineName) {
+        boolean isRegisterLine = LineRepository.isRegisterLine(lineName);
+        if (!isRegisterLine) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_LINE);
+        }
     }
 
     public void deleteLine(String lineName) {
@@ -22,4 +33,5 @@ public class LineManageService {
     public List<String> lookupLine() {
         return LineRepository.findAllLineNames();
     }
+
 }
