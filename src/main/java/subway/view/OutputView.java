@@ -72,7 +72,7 @@ public class OutputView {
 
     public static void printSubwayMap(List<SectionDto> sectionDtos) {
         printTitleMessage(Message.SUBWAY_MAP);
-        sectionDtos.forEach(sectionDto -> printSubwayMap(sectionDto));
+        sectionDtos.forEach(OutputView::printSubwayMap);
     }
 
     private static void printSubwayMap(SectionDto sectionDto) {

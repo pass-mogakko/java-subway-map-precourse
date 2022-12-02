@@ -12,12 +12,12 @@ import subway.view.OutputView;
 public class SubwayController {
 
     private final Map<String, Runnable> selectionNavigator = new HashMap<>();
-    private final StationManageController stationManageController = new StationManageController();
-    private final LineManageController lineManageController = new LineManageController();
-    private final SectionManageController sectionManageController = new SectionManageController();
     private final SectionManageService sectionManageService = new SectionManageService();
 
     public SubwayController() {
+        StationManageController stationManageController = new StationManageController();
+        LineManageController lineManageController = new LineManageController();
+        SectionManageController sectionManageController = new SectionManageController();
         selectionNavigator.put(MainScreenSelection.ONE.getSelection(), stationManageController::run);
         selectionNavigator.put(MainScreenSelection.TWO.getSelection(), lineManageController::run);
         selectionNavigator.put(MainScreenSelection.THREE.getSelection(), sectionManageController::run);

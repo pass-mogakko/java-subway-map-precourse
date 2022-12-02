@@ -46,7 +46,7 @@ public class LineGroup {
 
     public List<String> findAllLineNames() {
         return lines.stream()
-                .map(line -> line.getName())
+                .map(Line::getName)
                 .distinct()
                 .collect(Collectors.toList());
     }

@@ -53,10 +53,6 @@ public class SectionGroup {
         section.addStation(station, order);
     }
 
-    public List<Section> get() {
-        return sections;
-    }
-
     public List<SectionDto> findAllSectionDtos() {
         return sections.stream()
                 .map(section -> section.toDto())

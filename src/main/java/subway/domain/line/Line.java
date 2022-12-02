@@ -2,7 +2,7 @@ package subway.domain.line;
 
 public class Line {
 
-    private String name;
+    private final String name;
 
     public Line(String name) {
         this.name = name;

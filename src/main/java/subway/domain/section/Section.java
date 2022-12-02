@@ -20,10 +20,6 @@ public class Section {
         return line.isSameName(lineName);
     }
 
-    public Line getLine() {
-        return line;
-    }
-
     public StationGroup getStations() {
         return stationGroup;
     }

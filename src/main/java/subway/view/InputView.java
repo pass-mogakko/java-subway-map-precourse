@@ -57,8 +57,7 @@ public class InputView {
 
     public static String requestDeleteStation() {
         printSelectionTitle(Message.REQUEST_DELETE_STATION);
-        String deleteStation = scanner.nextLine();
-        return deleteStation;
+        return scanner.nextLine();
     }
 
     public static String requestLineManageSelection() {
@@ -86,8 +85,7 @@ public class InputView {
 
     public static String requestRegisterLineFirstStation() {
         printSelectionTitle(Message.REQUEST_LINE_FIRST_STATION);
-        String firstStation = scanner.nextLine();
-        return firstStation;
+        return scanner.nextLine();
     }
 
     public static String requestRegisterLineLastStation(String firstStation) {
@@ -101,8 +99,7 @@ public class InputView {
 
     public static String requestDeleteLine() {
         printSelectionTitle(Message.REQUEST_DELETE_LINE);
-        String deleteLine = scanner.nextLine();
-        return deleteLine;
+        return scanner.nextLine();
     }
 
     public static String requestSectionManageSelection() {
@@ -117,14 +114,12 @@ public class InputView {
 
     public static String requestLineOfRegisterSection() {
         printSelectionTitle(Message.REQUEST_LINE_OF_REGISTER_SECTION);
-        String line = scanner.nextLine();
-        return line;
+        return scanner.nextLine();
     }
 
     public static String requestStationOfRegisterSection() {
         printSelectionTitle(Message.REQUEST_STATION_OF_REGISTER_SECTION);
-        String line = scanner.nextLine();
-        return line;
+        return scanner.nextLine();
     }
 
     public static int requestOrderOfRegisterSection() {
@@ -136,13 +131,11 @@ public class InputView {
 
     public static String requestLineOfDeleteSection() {
         printSelectionTitle(Message.REQUEST_LINE_OF_DELETE_SECTION);
-        String line = scanner.nextLine();
-        return line;
+        return scanner.nextLine();
     }
 
     public static String requestStationOfDeleteSection() {
         printSelectionTitle(Message.REQUEST_STATION_OF_DELETE_SECTION);
-        String station = scanner.nextLine();
-        return station;
+        return scanner.nextLine();
     }
 }
