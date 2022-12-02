@@ -8,6 +8,7 @@ import subway.domain.DummyData;
 import subway.domain.line.Line;
 import subway.domain.station.Station;
 import subway.domain.station.StationGroup;
+import subway.dto.SectionDto;
 
 public class SectionGroup {
 
@@ -50,5 +51,15 @@ public class SectionGroup {
         Station station = new Station(stationName);
         Section section = findSectionByLineName(lineName);
         section.addStation(station, order);
+    }
+
+    public List<Section> get() {
+        return sections;
+    }
+
+    public List<SectionDto> findAllSectionDtos() {
+        return sections.stream()
+                .map(section -> section.toDto())
+                .collect(Collectors.toList());
     }
 }

@@ -29,4 +29,6 @@ public class Message {
     public static final String REQUEST_LINE_OF_DELETE_SECTION = "삭제할 구간의 노선을 입력하세요.";
     public static final String REQUEST_STATION_OF_DELETE_SECTION = "삭제할 구간의 역을 입력하세요.";
     public static final String DELETE_SECTION = "구간이 삭제되었습니다.";
+    public static final String SUBWAY_MAP = "지하철 노선도";
+    public static final String DIVISION_LINE = "---";
 }

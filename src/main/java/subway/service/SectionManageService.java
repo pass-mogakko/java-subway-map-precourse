@@ -1,9 +1,11 @@
 package subway.service;
 
+import java.util.List;
 import subway.constant.Constant;
 import subway.constant.ErrorMessage;
 import subway.domain.section.Section;
 import subway.domain.section.SectionRepository;
+import subway.dto.SectionDto;
 
 public class SectionManageService {
 
@@ -50,4 +52,7 @@ public class SectionManageService {
         }
     }
 
+    public List<SectionDto> findAllSectionDtos() {
+        return SectionRepository.findAllSectionDtos();
+    }
 }

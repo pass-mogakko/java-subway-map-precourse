@@ -1,8 +1,10 @@
 package subway.domain.section;
 
+import java.util.List;
 import subway.domain.line.Line;
 import subway.domain.station.Station;
 import subway.domain.station.StationGroup;
+import subway.dto.SectionDto;
 
 public class Section {
 
@@ -40,5 +42,11 @@ public class Section {
 
     public void deleteStationByName(String stationName) {
         stationGroup.deleteStationByName(stationName);
+    }
+
+    public SectionDto toDto() {
+        String lineName = line.getName();
+        List<String> allStationNames = stationGroup.findAllStationNames();
+        return new SectionDto(lineName, allStationNames);
     }
 }

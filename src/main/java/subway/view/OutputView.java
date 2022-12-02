@@ -3,6 +3,7 @@ package subway.view;
 import java.util.List;
 import subway.constant.ErrorMessage;
 import subway.constant.Message;
+import subway.dto.SectionDto;
 
 public class OutputView {
 
@@ -13,10 +14,14 @@ public class OutputView {
     }
 
     public static void printAllStations(List<String> allStations) {
-        System.out.println();
-        System.out.printf(Message.TITLE_MESSAGE_FORM, Message.STATION_LIST);
-        System.out.println();
+        printTitleMessage(Message.STATION_LIST);
         allStations.forEach(OutputView::printInfoMessage);
+    }
+
+    public static void printTitleMessage(String message) {
+        System.out.println();
+        System.out.printf(Message.TITLE_MESSAGE_FORM, message);
+        System.out.println();
     }
 
     private static void printInfoMessage(String message) {
@@ -63,5 +68,20 @@ public class OutputView {
     public static void printDeleteSection() {
         System.out.println();
         printInfoMessage(Message.DELETE_SECTION);
+    }
+
+    public static void printSubwayMap(List<SectionDto> sectionDtos) {
+        printTitleMessage(Message.SUBWAY_MAP);
+        sectionDtos.forEach(sectionDto -> printSubwayMap(sectionDto));
+    }
+
+    private static void printSubwayMap(SectionDto sectionDto) {
+        String lineName = sectionDto.getLineName();
+        List<String> stationNames = sectionDto.getStationName();
+
+        printInfoMessage(lineName);
+        printInfoMessage(Message.DIVISION_LINE);
+        stationNames.forEach(OutputView::printInfoMessage);
+        System.out.println();
     }
 }
