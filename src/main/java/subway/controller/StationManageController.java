@@ -27,6 +27,7 @@ public class StationManageController {
 
     private void deleteStation() {
         String deleteStation = InputView.requestDeleteStation();
+        stationManageService.deleteStation(deleteStation);
     }
 
 }

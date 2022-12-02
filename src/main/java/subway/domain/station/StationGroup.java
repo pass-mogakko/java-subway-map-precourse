@@ -7,7 +7,7 @@ import subway.domain.DummyData;
 
 public class StationGroup {
 
-    private final List<Station> stations;
+    private List<Station> stations;
 
     public StationGroup(List<String> stationsName) {
         stations = stationsName.stream()
@@ -33,8 +33,14 @@ public class StationGroup {
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_STATION));
     }
 
-    public void addStation(Station station) {
-        stations.add(station);
+    public void deleteStationByName(String deleteStation) {
+        stations = stations.stream()
+                .filter(station -> !station.isSameName(deleteStation))
+                .collect(Collectors.toList());
     }
 
+    public void addStationByName(String registerStation) {
+        Station station = new Station(registerStation);
+        stations.add(station);
+    }
 }
