@@ -14,10 +14,19 @@ public class StationManageController {
         if (stationManageSelection.equals(StationManageSelection.ONE.getSelection())) {
             registerStation();
         }
+        if (stationManageSelection.equals(StationManageSelection.TWO.getSelection())) {
+            deleteStation();
+        }
     }
+
 
     private void registerStation() {
         String registerStation = InputView.requestRegisterStation();
         stationManageService.registerStation(registerStation);
     }
+
+    private void deleteStation() {
+        String deleteStation = InputView.requestDeleteStation();
+    }
+
 }

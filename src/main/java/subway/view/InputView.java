@@ -77,4 +77,10 @@ public class InputView {
         }
         return false;
     }
+
+    public static String requestDeleteStation() {
+        printSelectionTitle(Message.REQUEST_DELETE_STATION);
+        String deleteStation = scanner.nextLine();
+        return deleteStation;
+    }
 }

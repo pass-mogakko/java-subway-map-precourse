@@ -2,11 +2,13 @@ package subway.constant;
 
 public class Message {
 
-    public static String TITLE_MESSAGE_FORM = "## %s";
-    public static String SELECTION_MESSAGE_FROM = "%s. %s";
-    public static String MAIN_SCREEN = "메인 화면";
-    public static String STATION_MANAGE_SCREEN = "역 관리 화면";
-    public static String SELECT_FUNCTION = "원하는 기능을 선택하세요.";
-    public static String REQUEST_REGISTER_STATION = "등록할 역 이름을 입력하세요.";
+    public static final String TITLE_MESSAGE_FORM = "## %s";
+    public static final String SELECTION_MESSAGE_FROM = "%s. %s";
+    public static final String MAIN_SCREEN = "메인 화면";
+    public static final String STATION_MANAGE_SCREEN = "역 관리 화면";
+    public static final String SELECT_FUNCTION = "원하는 기능을 선택하세요.";
+    public static final String REQUEST_REGISTER_STATION = "등록할 역 이름을 입력하세요.";
+    public static final String REQUEST_DELETE_STATION = "삭제할 역 이름을 입력하세요.";
+
 
 }
