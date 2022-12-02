@@ -106,4 +106,13 @@ public class InputView {
         System.out.println();
     }
 
+    public static String requestSectionManageSelection() {
+        printSelectionTitle(Message.SECTION_MANAGE_SCREEN);
+        Arrays.stream(SectionManageSelection.values())
+                .forEach(System.out::println);
+        printSelectFunction();
+        String sectionManageSelection = scanner.nextLine();
+        SectionManageSelection.validate(sectionManageSelection);
+        return sectionManageSelection;
+    }
 }
