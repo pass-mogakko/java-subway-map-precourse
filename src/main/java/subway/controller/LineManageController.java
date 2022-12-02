@@ -34,6 +34,7 @@ public class LineManageController {
         String registerLine = requestRegisterLine();
         String firstStation = requestRegisterLineFirstStation();
         String lastStation = requestRegisterLineLastStation(firstStation);
+        LineManageService.registerLine(registerLine, firstStation, lastStation);
     }
 
     private String requestRegisterLine() {

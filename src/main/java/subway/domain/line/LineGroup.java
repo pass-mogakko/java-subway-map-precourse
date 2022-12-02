@@ -31,4 +31,9 @@ public class LineGroup {
         return lines.stream()
                 .anyMatch(line -> line.isSameName(lineName));
     }
+
+    public void addLineByName(String registerLine) {
+        Line line = new Line(registerLine);
+        lines.add(line);
+    }
 }

@@ -9,4 +9,7 @@ public class SectionRepository {
     }
 
 
+    public static void registerSection(String registerLine, String firstStation, String lastStation) {
+        sections.registerSection(registerLine, firstStation, lastStation);
+    }
 }

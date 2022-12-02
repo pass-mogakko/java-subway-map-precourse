@@ -37,4 +37,11 @@ public class SectionGroup {
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_LINE));
     }
 
+    public void registerSection(String registerLine, String firstStation, String lastStation) {
+        Line line = new Line(registerLine);
+        List<String> stationsName = Arrays.asList(firstStation, lastStation);
+        StationGroup stationGroup = new StationGroup(stationsName);
+        Section section = new Section(line, stationGroup);
+        sections.add(section);
+    }
 }

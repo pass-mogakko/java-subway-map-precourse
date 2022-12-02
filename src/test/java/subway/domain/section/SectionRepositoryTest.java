@@ -1,6 +1,7 @@
 package subway.domain.section;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 import subway.domain.station.StationGroup;
@@ -40,5 +41,16 @@ class SectionRepositoryTest {
         assertThatCode(() -> sinBunDangStationGroup.findStationByName("강남역")).doesNotThrowAnyException();
         assertThatCode(() -> sinBunDangStationGroup.findStationByName("양재역")).doesNotThrowAnyException();
         assertThatCode(() -> sinBunDangStationGroup.findStationByName("양재시민의숲역")).doesNotThrowAnyException();
+    }
+
+    @Test
+    void 구간_등록하기() {
+        assertThatThrownBy(() -> SectionRepository.findSectionByLineName("4호선")).isInstanceOf(IllegalArgumentException.class);
+        SectionRepository.registerSection("4호선", "첫번째역", "마지막역");
+        assertThatCode(() -> SectionRepository.findSectionByLineName("4호선")).doesNotThrowAnyException();
+        Section fourLineSection = SectionRepository.findSectionByLineName("4호선");
+        StationGroup fourLineSectionStations = fourLineSection.getStations();
+        assertThatCode(() -> fourLineSectionStations.findStationByName("첫번째역")).doesNotThrowAnyException();
+        assertThatCode(() -> fourLineSectionStations.findStationByName("마지막역")).doesNotThrowAnyException();
     }
 }

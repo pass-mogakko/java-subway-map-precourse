@@ -15,4 +15,8 @@ public class LineRepository {
             throw new IllegalArgumentException(ErrorMessage.ALREADY_EXIST_LINE);
         }
     }
+
+    public static void addLine(String registerLine) {
+        lineGroup.addLineByName(registerLine);
+    }
 }
