@@ -12,15 +12,27 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printAllStation(List<String> allStation) {
+    public static void printAllStations(List<String> allStations) {
         System.out.println();
         System.out.printf(Message.TITLE_MESSAGE_FORM, Message.STATION_LIST);
         System.out.println();
-        allStation.forEach(OutputView::printStation);
+        allStations.forEach(OutputView::printStation);
     }
 
     private static void printStation(String stationName) {
         System.out.printf(Message.INFO_MESSAGE_FORM, stationName);
+        System.out.println();
+    }
+
+    public static void printAllLines(List<String> allLines) {
+        System.out.println();
+        System.out.printf(Message.TITLE_MESSAGE_FORM, Message.LINE_LIST);
+        System.out.println();
+        allLines.forEach(OutputView::printLine);
+    }
+
+    private static void printLine(String lineName) {
+        System.out.printf(Message.INFO_MESSAGE_FORM, lineName);
         System.out.println();
     }
 }

@@ -51,7 +51,7 @@ public class StationManageController {
     }
 
     private void lookupStation() {
-        List<String> allStation = stationManageService.lookupStation();
-        OutputView.printAllStation(allStation);
+        List<String> allStations = stationManageService.lookupStation();
+        OutputView.printAllStations(allStations);
     }
 }

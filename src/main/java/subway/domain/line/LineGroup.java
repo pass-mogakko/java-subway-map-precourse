@@ -43,4 +43,11 @@ public class LineGroup {
         }
         lines.removeIf(line -> line.isSameName(lineName));
     }
+
+    public List<String> findAllLineNames() {
+        return lines.stream()
+                .map(line -> line.getName())
+                .distinct()
+                .collect(Collectors.toList());
+    }
 }

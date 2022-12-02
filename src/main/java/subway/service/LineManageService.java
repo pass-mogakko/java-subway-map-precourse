@@ -1,5 +1,6 @@
 package subway.service;
 
+import java.util.List;
 import subway.domain.line.LineRepository;
 import subway.domain.section.SectionRepository;
 
@@ -16,5 +17,9 @@ public class LineManageService {
 
     public void deleteLine(String lineName) {
         LineRepository.deleteLineByName(lineName);
+    }
+
+    public List<String> lookupLine() {
+        return LineRepository.findAllLineNames();
     }
 }

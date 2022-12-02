@@ -1,5 +1,6 @@
 package subway.domain.line;
 
+import java.util.List;
 import subway.constant.ErrorMessage;
 
 public class LineRepository {
@@ -22,5 +23,9 @@ public class LineRepository {
 
     public static void deleteLineByName(String lineName) {
         lineGroup.deleteLineByName(lineName);
+    }
+
+    public static List<String> findAllLineNames() {
+        return lineGroup.findAllLineNames();
     }
 }

@@ -16,4 +16,5 @@ public class Message {
     public static final String REQUEST_LINE_FIRST_STATION = "등록할 노선의 상행 종점역 이름을 입력하세요.";
     public static final String REQUEST_LINE_LAST_STATION = "등록할 노선의 하행 종점역 이름을 입력하세요.";
     public static final String REQUEST_DELETE_LINE = "삭제할 노선 이름을 입력하세요.";
+    public static final String LINE_LIST = "노선 목록";
 }

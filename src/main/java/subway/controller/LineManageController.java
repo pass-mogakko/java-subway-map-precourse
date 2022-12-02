@@ -1,6 +1,7 @@
 package subway.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import subway.service.LineManageService;
 import subway.service.StationManageService;
@@ -17,6 +18,7 @@ public class LineManageController {
     public LineManageController() {
         selectionNavigator.put(LineManageSelection.ONE.getSelection(), this::registerLine);
         selectionNavigator.put(LineManageSelection.TWO.getSelection(), this::deleteLine);
+        selectionNavigator.put(LineManageSelection.THREE.getSelection(), this::lookupLine);
     }
 
     public void run() {
@@ -78,5 +80,10 @@ public class LineManageController {
             OutputView.printErrorMessage(e.getMessage());
             deleteLine();
         }
+    }
+
+    private void lookupLine() {
+        List<String> allLines = lineManageService.lookupLine();
+        OutputView.printAllLines(allLines);
     }
 }
