@@ -9,4 +9,5 @@ public class ErrorMessage {
     public static final String WRONG_STATION_NAME_SIZE = "역 이름은 2글자 이상이어야 합니다.";
     public static final String WRONG_LINE_NAME_SIZE = "노선 이름은 2글자 이상이어야 합니다.";
     public static final String ALREADY_EXIST_STATION = "이미 존재하는 역입니다";
+    public static final String ALREADY_EXIST_LINE = "이미 존재하는 노선입니다";
 }

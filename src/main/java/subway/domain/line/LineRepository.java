@@ -1,5 +1,7 @@
 package subway.domain.line;
 
+import subway.constant.ErrorMessage;
+
 public class LineRepository {
 
     private static final LineGroup lineGroup = new LineGroup();
@@ -8,8 +10,9 @@ public class LineRepository {
         return lineGroup.findLineByName(name);
     }
 
-    //
-    //    public boolean deleteLineByName(String name) {
-    //        return lineGroup.removeIf(line -> Objects.equals(line.getName(), name));
-    //    }
+    public static void validateIsExistLine(String lineName) {
+        if (lineGroup.isExistLine(lineName)) {
+            throw new IllegalArgumentException(ErrorMessage.ALREADY_EXIST_LINE);
+        }
+    }
 }

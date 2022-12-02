@@ -29,11 +29,17 @@ public class LineManageController {
     }
 
     private void registerLine() {
+        String registerLine = requestRegisterLine();
+    }
+
+    private String requestRegisterLine() {
         try {
             String registerLine = InputView.requestRegisterLine();
+            LineManageService.validateIsExistLine(registerLine);
+            return registerLine;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            registerLine();
+            return requestRegisterLine();
         }
     }
 }

@@ -26,4 +26,9 @@ public class LineGroup {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_LINE));
     }
+
+    public boolean isExistLine(String lineName) {
+        return lines.stream()
+                .anyMatch(line -> line.isSameName(lineName));
+    }
 }
