@@ -13,4 +13,6 @@ public class Message {
     public static final String STATION_LIST = "역 목록";
     public static final String LINE_MANAGE_SCREEN = "노선 관리 화면";
     public static final String REQUEST_REGISTER_LINE = "등록할 노선 이름을 입력하세요.";
+    public static final String REQUEST_LINE_FIRST_STATION = "등록할 노선의 상행 종점역 이름을 입력하세요.";
+    public static final String REQUEST_LINE_LAST_STATION = "등록할 노선의 하행 종점역 이름을 입력하세요.";
 }

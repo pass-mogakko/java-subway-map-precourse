@@ -72,6 +72,11 @@ public class InputView {
         }
     }
 
+    public static String requestRegisterLineFirstStation() {
+        printSelectionTitle(Message.REQUEST_LINE_FIRST_STATION);
+        String firstStation = scanner.nextLine();
+        return firstStation;
+    }
 
     private static void printSelectionTitle(String selectionTitle) {
         System.out.println();
@@ -84,4 +89,5 @@ public class InputView {
         System.out.printf(Message.TITLE_MESSAGE_FORM, Message.SELECT_FUNCTION);
         System.out.println();
     }
+
 }
