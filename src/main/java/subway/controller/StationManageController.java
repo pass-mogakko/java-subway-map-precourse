@@ -1,5 +1,7 @@
 package subway.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import subway.service.StationManageService;
 import subway.view.InputView;
 import subway.view.StationManageSelection;
@@ -7,16 +9,17 @@ import subway.view.StationManageSelection;
 public class StationManageController {
 
     private final StationManageService stationManageService = new StationManageService();
+    private final Map<String, Runnable> selectionNavigator = new HashMap<>();
+
+    public StationManageController() {
+        selectionNavigator.put(StationManageSelection.ONE.getSelection(), this::registerStation);
+        selectionNavigator.put(StationManageSelection.TWO.getSelection(), this::deleteStation);
+    }
 
     public void run() {
         String stationManageSelection = InputView.requestStationManageSelection();
-
-        if (stationManageSelection.equals(StationManageSelection.ONE.getSelection())) {
-            registerStation();
-        }
-        if (stationManageSelection.equals(StationManageSelection.TWO.getSelection())) {
-            deleteStation();
-        }
+        selectionNavigator.get(stationManageSelection)
+                .run();
     }
 
 

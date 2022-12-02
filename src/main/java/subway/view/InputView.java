@@ -17,7 +17,6 @@ public class InputView {
                 .forEach(System.out::println);
         printSelectFunction();
         String selection = scanner.nextLine();
-        MainScreenSelection.validate(selection);
         boolean isThrowError = isThrowError(MainScreenSelection::validate, selection);
         if (isThrowError) {
             return requestMainScreenSelection();
@@ -31,7 +30,6 @@ public class InputView {
                 .forEach(System.out::println);
         printSelectFunction();
         String selection = scanner.nextLine();
-        StationManageSelection.validate(selection);
         boolean isThrowError = isThrowError(StationManageSelection::validate, selection);
         if (isThrowError) {
             return requestStationManageSelection();
@@ -54,7 +52,6 @@ public class InputView {
     public static String requestRegisterStation() {
         printSelectionTitle(Message.REQUEST_REGISTER_STATION);
         String registerStation = scanner.nextLine();
-        validateRegisterStation(registerStation);
         boolean isThrowError = isThrowError(InputView::validateRegisterStation, registerStation);
         if (isThrowError) {
             return requestRegisterStation();
@@ -68,6 +65,16 @@ public class InputView {
         }
     }
 
+    public static String requestDeleteStation() {
+        printSelectionTitle(Message.REQUEST_DELETE_STATION);
+        String deleteStation = scanner.nextLine();
+        return deleteStation;
+    }
+
+
+
+
+
     private static boolean isThrowError(Consumer<String> validateFunction, String input) {
         try {
             validateFunction.accept(input);
@@ -76,11 +83,5 @@ public class InputView {
             return true;
         }
         return false;
-    }
-
-    public static String requestDeleteStation() {
-        printSelectionTitle(Message.REQUEST_DELETE_STATION);
-        String deleteStation = scanner.nextLine();
-        return deleteStation;
     }
 }
