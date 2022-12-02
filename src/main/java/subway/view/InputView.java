@@ -20,6 +20,18 @@ public class InputView {
         return mainScreenSelection;
     }
 
+    private static void printSelectionTitle(String selectionTitle) {
+        System.out.println();
+        System.out.printf(Message.TITLE_MESSAGE_FORM, selectionTitle);
+        System.out.println();
+    }
+
+    private static void printSelectFunction() {
+        System.out.println();
+        System.out.printf(Message.TITLE_MESSAGE_FORM, Message.SELECT_FUNCTION);
+        System.out.println();
+    }
+
     public static String requestStationManageSelection() {
         printSelectionTitle(Message.STATION_MANAGE_SCREEN);
         Arrays.stream(StationManageSelection.values())
@@ -93,19 +105,6 @@ public class InputView {
         return deleteLine;
     }
 
-
-    private static void printSelectionTitle(String selectionTitle) {
-        System.out.println();
-        System.out.printf(Message.TITLE_MESSAGE_FORM, selectionTitle);
-        System.out.println();
-    }
-
-    private static void printSelectFunction() {
-        System.out.println();
-        System.out.printf(Message.TITLE_MESSAGE_FORM, Message.SELECT_FUNCTION);
-        System.out.println();
-    }
-
     public static String requestSectionManageSelection() {
         printSelectionTitle(Message.SECTION_MANAGE_SCREEN);
         Arrays.stream(SectionManageSelection.values())
@@ -126,5 +125,11 @@ public class InputView {
         printSelectionTitle(Message.REQUEST_STATION);
         String line = scanner.nextLine();
         return line;
+    }
+
+    public static int requestOrder() {
+        printSelectionTitle(Message.REQUEST_ORDER);
+        int order = scanner.nextInt();
+        return order;
     }
 }

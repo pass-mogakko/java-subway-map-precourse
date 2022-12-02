@@ -55,4 +55,8 @@ public class StationGroup {
                 .distinct()
                 .collect(Collectors.toList());
     }
+
+    public int size() {
+        return stations.size();
+    }
 }

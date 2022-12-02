@@ -24,4 +24,8 @@ public class Section {
     public StationGroup getStations() {
         return stationGroup;
     }
+
+    public int size() {
+        return stationGroup.size();
+    }
 }

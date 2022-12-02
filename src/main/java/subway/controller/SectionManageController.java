@@ -3,6 +3,7 @@ package subway.controller;
 import java.util.HashMap;
 import java.util.Map;
 import subway.service.LineManageService;
+import subway.service.SectionManageService;
 import subway.service.StationManageService;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -13,6 +14,7 @@ public class SectionManageController {
     private final Map<String, Runnable> selectionNavigator = new HashMap<>();
     private final StationManageService stationManageService = new StationManageService();
     private final LineManageService lineManageService = new LineManageService();
+    private final SectionManageService sectionManageService = new SectionManageService();
 
     public SectionManageController() {
         selectionNavigator.put(SectionManageSelection.ONE.getSelection(), this::registerSection);
@@ -32,6 +34,7 @@ public class SectionManageController {
     private void registerSection() {
         String line = requestLine();
         String station = requestStation();
+        int order = requestOrder(line);
     }
 
     private String requestLine() {
@@ -53,6 +56,17 @@ public class SectionManageController {
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return requestStation();
+        }
+    }
+
+    private int requestOrder(String lineName) {
+        try {
+            int order = InputView.requestOrder();
+            sectionManageService.validateIsPossibleOrder(lineName, order);
+            return order;
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return requestOrder(lineName);
         }
     }
 }
