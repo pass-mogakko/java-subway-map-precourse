@@ -32,9 +32,11 @@ public class SectionManageController {
     }
 
     private void registerSection() {
-        String line = requestLine();
-        String station = requestStation(line);
-        int order = requestOrder(line);
+        String lineName = requestLine();
+        String stationName = requestStation(lineName);
+        int order = requestOrder(lineName);
+        sectionManageService.registerSection(lineName, stationName, order);
+        OutputView.printRegisterSection();
     }
 
     private String requestLine() {

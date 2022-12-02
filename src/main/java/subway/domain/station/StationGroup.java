@@ -59,4 +59,8 @@ public class StationGroup {
     public int size() {
         return stations.size();
     }
+
+    public void addStation(Station station, int order) {
+        stations.add(order - 1, station);
+    }
 }

@@ -37,6 +37,7 @@ public class LineManageController {
         String firstStation = requestRegisterLineFirstStation();
         String lastStation = requestRegisterLineLastStation(firstStation);
         LineManageService.registerLine(registerLine, firstStation, lastStation);
+        OutputView.printRegisterLine();
     }
 
     private String requestRegisterLine() {
@@ -80,6 +81,7 @@ public class LineManageController {
             OutputView.printErrorMessage(e.getMessage());
             deleteLine();
         }
+        OutputView.printDeleteLine();
     }
 
     private void lookupLine() {

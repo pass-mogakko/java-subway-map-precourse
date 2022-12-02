@@ -39,6 +39,7 @@ public class StationManageController {
             OutputView.printErrorMessage(e.getMessage());
             registerStation();
         }
+        OutputView.printRegisterStation();
     }
 
     private void deleteStation() {
@@ -49,6 +50,7 @@ public class StationManageController {
             OutputView.printErrorMessage(e.getMessage());
             deleteStation();
         }
+        OutputView.printDeleteStation();
     }
 
     private void lookupStation() {

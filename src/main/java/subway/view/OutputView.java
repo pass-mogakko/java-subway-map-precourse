@@ -16,11 +16,11 @@ public class OutputView {
         System.out.println();
         System.out.printf(Message.TITLE_MESSAGE_FORM, Message.STATION_LIST);
         System.out.println();
-        allStations.forEach(OutputView::printStation);
+        allStations.forEach(OutputView::printInfoMessage);
     }
 
-    private static void printStation(String stationName) {
-        System.out.printf(Message.INFO_MESSAGE_FORM, stationName);
+    private static void printInfoMessage(String message) {
+        System.out.printf(Message.INFO_MESSAGE_FORM, message);
         System.out.println();
     }
 
@@ -32,7 +32,31 @@ public class OutputView {
     }
 
     private static void printLine(String lineName) {
-        System.out.printf(Message.INFO_MESSAGE_FORM, lineName);
+        printInfoMessage(lineName);
+    }
+
+    public static void printRegisterSection() {
         System.out.println();
+        printInfoMessage(Message.REGISTER_SECTION);
+    }
+
+    public static void printRegisterStation() {
+        System.out.println();
+        printInfoMessage(Message.REGISTER_STATION);
+    }
+
+    public static void printDeleteStation() {
+        System.out.println();
+        printInfoMessage(Message.DELETE_STATION);
+    }
+
+    public static void printRegisterLine() {
+        System.out.println();
+        printInfoMessage(Message.REGISTER_LINE);
+    }
+
+    public static void printDeleteLine() {
+        System.out.println();
+        printInfoMessage(Message.DELETE_LINE);
     }
 }

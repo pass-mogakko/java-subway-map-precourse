@@ -21,4 +21,9 @@ public class Message {
     public static final String REQUEST_LINE = "노선을 입력하세요.";
     public static final String REQUEST_STATION = "역이름을 입력하세요.";
     public static final String REQUEST_ORDER = "순서를 입력하세요.";
+    public static final String REGISTER_SECTION = "구간이 등록되었습니다.";
+    public static final String REGISTER_STATION = "지하철 역이 등록되었습니다.";
+    public static final String DELETE_STATION = "지하철 역이 삭제되었습니다.";
+    public static final String REGISTER_LINE = "지하철 노선이 등록되었습니다.";
+    public static final String DELETE_LINE = "지하철 노선이 삭제되었습니다.";
 }

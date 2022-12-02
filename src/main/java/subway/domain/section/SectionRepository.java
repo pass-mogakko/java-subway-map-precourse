@@ -17,4 +17,8 @@ public class SectionRepository {
         Section section = findSectionByLineName(lineName);
         return section.size();
     }
+
+    public static void registerSection(String lineName, String stationName, int order) {
+        sections.registerSection(lineName, stationName, order);
+    }
 }

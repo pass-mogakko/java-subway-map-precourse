@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import subway.constant.ErrorMessage;
 import subway.domain.DummyData;
 import subway.domain.line.Line;
+import subway.domain.station.Station;
 import subway.domain.station.StationGroup;
 
 public class SectionGroup {
@@ -43,5 +44,11 @@ public class SectionGroup {
         StationGroup stationGroup = new StationGroup(stationsName);
         Section section = new Section(line, stationGroup);
         sections.add(section);
+    }
+
+    public void registerSection(String lineName, String stationName, int order) {
+        Station station = new Station(stationName);
+        Section section = findSectionByLineName(lineName);
+        section.addStation(station, order);
     }
 }

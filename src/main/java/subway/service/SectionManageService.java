@@ -8,9 +8,13 @@ public class SectionManageService {
 
     public void validateIsPossibleOrder(String lineName, int order) {
         int sectionSize = SectionRepository.findSectionSizeByLineName(lineName);
-        if (sectionSize + 1 < order) {
+        if (isInvalidOrder(sectionSize, order)) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_SECTION_ORDER);
         }
+    }
+
+    private boolean isInvalidOrder(int sectionSize, int order) {
+        return sectionSize + 1 < order || order < 1;
     }
 
     public void validateIsAlreadySection(String lineName, String stationName) {
@@ -19,5 +23,9 @@ public class SectionManageService {
         if (isContain) {
             throw new IllegalArgumentException(ErrorMessage.ALREADY_SECTION);
         }
+    }
+
+    public void registerSection(String lineName, String stationName, int order) {
+        SectionRepository.registerSection(lineName, stationName, order);
     }
 }

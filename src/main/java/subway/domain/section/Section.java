@@ -1,6 +1,7 @@
 package subway.domain.section;
 
 import subway.domain.line.Line;
+import subway.domain.station.Station;
 import subway.domain.station.StationGroup;
 
 public class Section {
@@ -33,4 +34,7 @@ public class Section {
         return stationGroup.isExistStation(stationName);
     }
 
+    public void addStation(Station station, int order) {
+        stationGroup.addStation(station, order);
+    }
 }
