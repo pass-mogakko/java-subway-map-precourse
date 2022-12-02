@@ -87,6 +87,12 @@ public class InputView {
         return lastStation;
     }
 
+    public static String requestDeleteLine() {
+        printSelectionTitle(Message.REQUEST_DELETE_LINE);
+        String deleteLine = scanner.nextLine();
+        return deleteLine;
+    }
+
 
     private static void printSelectionTitle(String selectionTitle) {
         System.out.println();

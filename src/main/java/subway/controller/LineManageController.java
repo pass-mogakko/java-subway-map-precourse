@@ -16,18 +16,18 @@ public class LineManageController {
 
     public LineManageController() {
         selectionNavigator.put(LineManageSelection.ONE.getSelection(), this::registerLine);
+        selectionNavigator.put(LineManageSelection.TWO.getSelection(), this::deleteLine);
     }
 
     public void run() {
         try {
             String lineManageSelection = InputView.requestLineManageSelection();
-            selectionNavigator.get(lineManageSelection)
-                    .run();
+            Runnable nextAction = selectionNavigator.get(lineManageSelection);
+            nextAction.run();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             run();
         }
-
     }
 
     private void registerLine() {
@@ -68,5 +68,9 @@ public class LineManageController {
             OutputView.printErrorMessage(e.getMessage());
             return requestRegisterLineLastStation(firstStation);
         }
+    }
+
+    private void deleteLine() {
+        String deleteLine = InputView.requestDeleteLine();
     }
 }

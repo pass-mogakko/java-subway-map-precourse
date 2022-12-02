@@ -22,8 +22,8 @@ public class StationManageController {
     public void run() {
         try {
             String stationManageSelection = InputView.requestStationManageSelection();
-            selectionNavigator.get(stationManageSelection)
-                    .run();
+            Runnable nextAction = selectionNavigator.get(stationManageSelection);
+            nextAction.run();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             run();
