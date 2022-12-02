@@ -94,4 +94,20 @@ public class InputView {
         System.out.printf(Message.TITLE_MESSAGE_FORM, Message.SELECT_FUNCTION);
         System.out.println();
     }
+
+    public static String requestRegisterLine() {
+        printSelectionTitle(Message.REQUEST_REGISTER_LINE);
+        String registerLine = scanner.nextLine();
+        boolean isThrowError = isThrowError(InputView::validateRegisterLine, registerLine);
+        if (isThrowError) {
+            return requestRegisterLine();
+        }
+        return registerLine;
+    }
+
+    private static void validateRegisterLine(String registerLine) {
+        if (registerLine.length() < Constant.LINE_NAME_SIZE_MIN) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_LINE_NAME_SIZE);
+        }
+    }
 }

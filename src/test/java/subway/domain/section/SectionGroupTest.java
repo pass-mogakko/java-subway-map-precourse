@@ -1,10 +1,8 @@
-package subway.domain;
+package subway.domain.section;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import org.junit.jupiter.api.Test;
-import subway.domain.section.Section;
-import subway.domain.section.SectionRepository;
 import subway.domain.station.StationGroup;
 
 class SectionGroupTest {

@@ -1,10 +1,9 @@
-package subway.domain;
+package subway.domain.line;
 
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import org.junit.jupiter.api.Test;
-import subway.domain.line.LineRepository;
 
 class LineRepositoryTest {
 
