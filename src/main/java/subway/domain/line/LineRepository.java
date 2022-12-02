@@ -19,4 +19,8 @@ public class LineRepository {
     public static void addLine(String registerLine) {
         lineGroup.addLineByName(registerLine);
     }
+
+    public static void deleteLineByName(String lineName) {
+        lineGroup.deleteLineByName(lineName);
+    }
 }

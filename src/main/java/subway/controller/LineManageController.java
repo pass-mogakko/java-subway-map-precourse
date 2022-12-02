@@ -71,6 +71,12 @@ public class LineManageController {
     }
 
     private void deleteLine() {
-        String deleteLine = InputView.requestDeleteLine();
+        try {
+            String deleteLine = InputView.requestDeleteLine();
+            lineManageService.deleteLine(deleteLine);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            deleteLine();
+        }
     }
 }

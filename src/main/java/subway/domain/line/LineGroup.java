@@ -36,4 +36,11 @@ public class LineGroup {
         Line line = new Line(registerLine);
         lines.add(line);
     }
+
+    public void deleteLineByName(String lineName) {
+        if (!isExistLine(lineName)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_LINE);
+        }
+        lines.removeIf(line -> line.isSameName(lineName));
+    }
 }

@@ -13,4 +13,8 @@ public class LineManageService {
     public void validateIsUnregisterLine(String lineName) {
         LineRepository.validateIsUnregisterLine(lineName);
     }
+
+    public void deleteLine(String lineName) {
+        LineRepository.deleteLineByName(lineName);
+    }
 }

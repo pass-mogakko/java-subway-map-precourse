@@ -22,4 +22,9 @@ class LineRepositoryTest {
         assertThatCode(() -> LineRepository.findLineByName("4호선")).doesNotThrowAnyException();
     }
 
+    @Test
+    void 노선_삭제하기() {
+        assertThatCode(() -> LineRepository.deleteLineByName("2호선")).doesNotThrowAnyException();
+        assertThatThrownBy(() -> LineRepository.deleteLineByName("2호선")).isInstanceOf(IllegalArgumentException.class);
+    }
 }
