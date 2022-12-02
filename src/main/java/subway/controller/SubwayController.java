@@ -1,18 +1,25 @@
 package subway.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import subway.view.InputView;
 import subway.view.MainScreenSelection;
 
 public class SubwayController {
 
     private final StationManageController stationManageController = new StationManageController();
+    private final LineManageController lineManageController = new LineManageController();
+    private final Map<String, Runnable> selectionNavigator = new HashMap<>();
 
+    public SubwayController() {
+        selectionNavigator.put(MainScreenSelection.ONE.getSelection(), stationManageController::run);
+        selectionNavigator.put(MainScreenSelection.TWO.getSelection(), lineManageController::run);
+    }
 
     public void run() {
         String mainScreenSelection = InputView.requestMainScreenSelection();
-
-        if (mainScreenSelection.equals(MainScreenSelection.ONE.getSelection())) {
-            stationManageController.run();
-        }
+        selectionNavigator.get(mainScreenSelection)
+                .run();
+        run();
     }
 }

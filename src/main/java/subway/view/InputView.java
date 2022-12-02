@@ -37,18 +37,6 @@ public class InputView {
         return selection;
     }
 
-    private static void printSelectionTitle(String selectionTitle) {
-        System.out.println();
-        System.out.printf(Message.TITLE_MESSAGE_FORM, selectionTitle);
-        System.out.println();
-    }
-
-    private static void printSelectFunction() {
-        System.out.println();
-        System.out.printf(Message.TITLE_MESSAGE_FORM, Message.SELECT_FUNCTION);
-        System.out.println();
-    }
-
     public static String requestRegisterStation() {
         printSelectionTitle(Message.REQUEST_REGISTER_STATION);
         String registerStation = scanner.nextLine();
@@ -71,8 +59,14 @@ public class InputView {
         return deleteStation;
     }
 
-
-
+    public static String requestLineManageSelection() {
+        printSelectionTitle(Message.LINE_MANAGE_SCREEN);
+        Arrays.stream(LineManageSelection.values())
+                .forEach(System.out::println);
+        printSelectFunction();
+        String selection = scanner.nextLine();
+        return selection;
+    }
 
 
     private static boolean isThrowError(Consumer<String> validateFunction, String input) {
@@ -83,5 +77,17 @@ public class InputView {
             return true;
         }
         return false;
+    }
+
+    private static void printSelectionTitle(String selectionTitle) {
+        System.out.println();
+        System.out.printf(Message.TITLE_MESSAGE_FORM, selectionTitle);
+        System.out.println();
+    }
+
+    private static void printSelectFunction() {
+        System.out.println();
+        System.out.printf(Message.TITLE_MESSAGE_FORM, Message.SELECT_FUNCTION);
+        System.out.println();
     }
 }

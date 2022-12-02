@@ -25,7 +25,6 @@ public class StationManageController {
                 .run();
     }
 
-
     private void registerStation() {
         String registerStation = InputView.requestRegisterStation();
         stationManageService.registerStation(registerStation);
@@ -40,5 +39,4 @@ public class StationManageController {
         List<String> allStation = stationManageService.lookupStation();
         OutputView.printAllStation(allStation);
     }
-
 }
