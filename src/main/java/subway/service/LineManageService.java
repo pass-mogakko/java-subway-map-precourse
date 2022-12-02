@@ -4,7 +4,7 @@ import subway.domain.line.LineRepository;
 
 public class LineManageService {
 
-    public static void validateIsExistLine(String lineName) {
-        LineRepository.validateIsExistLine(lineName);
+    public void validateIsUnregisterLine(String lineName) {
+        LineRepository.validateIsUnregisterLine(lineName);
     }
 }

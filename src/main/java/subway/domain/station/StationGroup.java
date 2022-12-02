@@ -47,7 +47,7 @@ public class StationGroup {
         stations.add(station);
     }
 
-    private boolean isExistStation(String stationName) {
+    public boolean isExistStation(String stationName) {
         return stations.stream()
                 .anyMatch(station -> station.isSameName(stationName));
     }

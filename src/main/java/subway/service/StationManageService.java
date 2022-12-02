@@ -16,4 +16,9 @@ public class StationManageService {
     public List<String> lookupStation() {
         return StationRepository.findAllStationNames();
     }
+
+    public void validateIsRegisterStation(String station) {
+        StationRepository.validateIsRegisterStation(station);
+    }
+
 }

@@ -10,7 +10,7 @@ public class LineRepository {
         return lineGroup.findLineByName(name);
     }
 
-    public static void validateIsExistLine(String lineName) {
+    public static void validateIsUnregisterLine(String lineName) {
         if (lineGroup.isExistLine(lineName)) {
             throw new IllegalArgumentException(ErrorMessage.ALREADY_EXIST_LINE);
         }
