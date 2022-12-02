@@ -33,6 +33,7 @@ public class LineManageController {
     private void registerLine() {
         String registerLine = requestRegisterLine();
         String firstStation = requestRegisterLineFirstStation();
+        String lastStation = requestRegisterLineLastStation();
     }
 
     private String requestRegisterLine() {
@@ -54,6 +55,17 @@ public class LineManageController {
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return requestRegisterLineFirstStation();
+        }
+    }
+
+    private String requestRegisterLineLastStation() {
+        try {
+            String lastStation = InputView.requestRegisterLineLastStation();
+            stationManageService.validateIsRegisterStation(lastStation);
+            return lastStation;
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return requestRegisterLineLastStation();
         }
     }
 }

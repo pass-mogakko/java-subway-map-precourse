@@ -78,6 +78,13 @@ public class InputView {
         return firstStation;
     }
 
+    public static String requestRegisterLineLastStation() {
+        printSelectionTitle(Message.REQUEST_LINE_LAST_STATION);
+        String lastStation = scanner.nextLine();
+        return lastStation;
+    }
+
+
     private static void printSelectionTitle(String selectionTitle) {
         System.out.println();
         System.out.printf(Message.TITLE_MESSAGE_FORM, selectionTitle);
