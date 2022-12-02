@@ -1,5 +1,6 @@
 package subway.service;
 
+import subway.constant.Constant;
 import subway.constant.ErrorMessage;
 import subway.domain.section.Section;
 import subway.domain.section.SectionRepository;
@@ -17,15 +18,36 @@ public class SectionManageService {
         return sectionSize + 1 < order || order < 1;
     }
 
-    public void validateIsAlreadySection(String lineName, String stationName) {
+    public void validateIsRegisterSection(String lineName, String stationName) {
         Section section = SectionRepository.findSectionByLineName(lineName);
         boolean isContain = section.contains(stationName);
         if (isContain) {
-            throw new IllegalArgumentException(ErrorMessage.ALREADY_SECTION);
+            throw new IllegalArgumentException(ErrorMessage.ALREADY_EXIST_SECTION);
         }
     }
 
     public void registerSection(String lineName, String stationName, int order) {
         SectionRepository.registerSection(lineName, stationName, order);
     }
+
+    public void validateIsUnregisterSection(String lineName, String stationName) {
+        Section section = SectionRepository.findSectionByLineName(lineName);
+        boolean isContain = section.contains(stationName);
+        if (!isContain) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_SECTION);
+        }
+    }
+
+    public void deleteSection(String lineName, String stationName) {
+        Section section = SectionRepository.findSectionByLineName(lineName);
+        section.deleteStationByName(stationName);
+    }
+
+    public void validateIsPossibleDelete(String lineName) {
+        Section section = SectionRepository.findSectionByLineName(lineName);
+        if (section.size() <= Constant.SECTION_SIZE_MIN) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_SECTION_SIZE);
+        }
+    }
+
 }

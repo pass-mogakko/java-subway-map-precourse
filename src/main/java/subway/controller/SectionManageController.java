@@ -18,6 +18,7 @@ public class SectionManageController {
 
     public SectionManageController() {
         selectionNavigator.put(SectionManageSelection.ONE.getSelection(), this::registerSection);
+        selectionNavigator.put(SectionManageSelection.TWO.getSelection(), this::deleteSection);
     }
 
     public void run() {
@@ -32,44 +33,75 @@ public class SectionManageController {
     }
 
     private void registerSection() {
-        String lineName = requestLine();
-        String stationName = requestStation(lineName);
-        int order = requestOrder(lineName);
+        String lineName = requestLineOfRegisterSection();
+        String stationName = requestStationOfRegisterSection(lineName);
+        int order = requestOrderOfRegisterSection(lineName);
         sectionManageService.registerSection(lineName, stationName, order);
         OutputView.printRegisterSection();
     }
 
-    private String requestLine() {
+    private String requestLineOfRegisterSection() {
         try {
-            String line = InputView.requestLine();
+            String line = InputView.requestLineOfRegisterSection();
             lineManageService.validateIsRegisterLine(line);
             return line;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return requestLine();
+            return requestLineOfRegisterSection();
         }
     }
 
-    private String requestStation(String lineName) {
+    private String requestStationOfRegisterSection(String lineName) {
         try {
-            String stationName = InputView.requestStation();
+            String stationName = InputView.requestStationOfRegisterSection();
             stationManageService.validateIsRegisterStation(stationName);
-            sectionManageService.validateIsAlreadySection(lineName, stationName);
+            sectionManageService.validateIsRegisterSection(lineName, stationName);
             return stationName;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return requestStation(lineName);
+            return requestStationOfRegisterSection(lineName);
         }
     }
 
-    private int requestOrder(String lineName) {
+    private int requestOrderOfRegisterSection(String lineName) {
         try {
-            int order = InputView.requestOrder();
+            int order = InputView.requestOrderOfRegisterSection();
             sectionManageService.validateIsPossibleOrder(lineName, order);
             return order;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return requestOrder(lineName);
+            return requestOrderOfRegisterSection(lineName);
+        }
+    }
+
+    private void deleteSection() {
+        String lineName = requestLineOfDeleteSection();
+        String stationName = requestStationOfDeleteSection(lineName);
+        sectionManageService.deleteSection(lineName, stationName);
+        OutputView.printDeleteSection();
+    }
+
+    private String requestLineOfDeleteSection() {
+        try {
+            String lineName = InputView.requestLineOfDeleteSection();
+            lineManageService.validateIsRegisterLine(lineName);
+            sectionManageService.validateIsPossibleDelete(lineName);
+            return lineName;
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return requestLineOfDeleteSection();
+        }
+    }
+
+    private String requestStationOfDeleteSection(String lineName) {
+        try {
+            String stationName = InputView.requestStationOfDeleteSection();
+            stationManageService.validateIsRegisterStation(stationName);
+            sectionManageService.validateIsUnregisterSection(lineName, stationName);
+            return stationName;
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return requestStationOfDeleteSection(lineName);
         }
     }
 }

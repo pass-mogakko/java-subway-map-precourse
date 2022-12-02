@@ -6,4 +6,5 @@ public class Constant {
 
     public static final int STATION_NAME_SIZE_MIN = 2;
     public static final int LINE_NAME_SIZE_MIN = 2;
+    public static final int SECTION_SIZE_MIN = 2;
 }

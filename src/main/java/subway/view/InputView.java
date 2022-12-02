@@ -115,21 +115,34 @@ public class InputView {
         return sectionManageSelection;
     }
 
-    public static String requestLine() {
-        printSelectionTitle(Message.REQUEST_LINE);
+    public static String requestLineOfRegisterSection() {
+        printSelectionTitle(Message.REQUEST_LINE_OF_REGISTER_SECTION);
         String line = scanner.nextLine();
         return line;
     }
 
-    public static String requestStation() {
-        printSelectionTitle(Message.REQUEST_STATION);
+    public static String requestStationOfRegisterSection() {
+        printSelectionTitle(Message.REQUEST_STATION_OF_REGISTER_SECTION);
         String line = scanner.nextLine();
         return line;
     }
 
-    public static int requestOrder() {
-        printSelectionTitle(Message.REQUEST_ORDER);
+    public static int requestOrderOfRegisterSection() {
+        printSelectionTitle(Message.REQUEST_ORDER_OF_REGISTER_SECTION);
         int order = scanner.nextInt();
+        scanner.nextLine();
         return order;
+    }
+
+    public static String requestLineOfDeleteSection() {
+        printSelectionTitle(Message.REQUEST_LINE_OF_DELETE_SECTION);
+        String line = scanner.nextLine();
+        return line;
+    }
+
+    public static String requestStationOfDeleteSection() {
+        printSelectionTitle(Message.REQUEST_STATION_OF_DELETE_SECTION);
+        String station = scanner.nextLine();
+        return station;
     }
 }

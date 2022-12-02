@@ -37,4 +37,8 @@ public class Section {
     public void addStation(Station station, int order) {
         stationGroup.addStation(station, order);
     }
+
+    public void deleteStationByName(String stationName) {
+        stationGroup.deleteStationByName(stationName);
+    }
 }

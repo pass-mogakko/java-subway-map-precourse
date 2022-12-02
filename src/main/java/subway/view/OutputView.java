@@ -59,4 +59,9 @@ public class OutputView {
         System.out.println();
         printInfoMessage(Message.DELETE_LINE);
     }
+
+    public static void printDeleteSection() {
+        System.out.println();
+        printInfoMessage(Message.DELETE_SECTION);
+    }
 }

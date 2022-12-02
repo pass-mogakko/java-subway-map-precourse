@@ -18,12 +18,15 @@ public class Message {
     public static final String REQUEST_DELETE_LINE = "삭제할 노선 이름을 입력하세요.";
     public static final String LINE_LIST = "노선 목록";
     public static final String SECTION_MANAGE_SCREEN = "구간 관리 화면";
-    public static final String REQUEST_LINE = "노선을 입력하세요.";
-    public static final String REQUEST_STATION = "역이름을 입력하세요.";
-    public static final String REQUEST_ORDER = "순서를 입력하세요.";
+    public static final String REQUEST_LINE_OF_REGISTER_SECTION = "노선을 입력하세요.";
+    public static final String REQUEST_STATION_OF_REGISTER_SECTION = "역이름을 입력하세요.";
+    public static final String REQUEST_ORDER_OF_REGISTER_SECTION = "순서를 입력하세요.";
     public static final String REGISTER_SECTION = "구간이 등록되었습니다.";
     public static final String REGISTER_STATION = "지하철 역이 등록되었습니다.";
     public static final String DELETE_STATION = "지하철 역이 삭제되었습니다.";
     public static final String REGISTER_LINE = "지하철 노선이 등록되었습니다.";
     public static final String DELETE_LINE = "지하철 노선이 삭제되었습니다.";
+    public static final String REQUEST_LINE_OF_DELETE_SECTION = "삭제할 구간의 노선을 입력하세요.";
+    public static final String REQUEST_STATION_OF_DELETE_SECTION = "삭제할 구간의 역을 입력하세요.";
+    public static final String DELETE_SECTION = "구간이 삭제되었습니다.";
 }

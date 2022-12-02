@@ -12,5 +12,7 @@ public class ErrorMessage {
     public static final String ALREADY_EXIST_LINE = "이미 존재하는 노선입니다";
     public static final String WRONG_REGISTER_LINE_LAST_STATION = "상행 종점역과 하행 종점역은 달라야 합니다.";
     public static final String WRONG_SECTION_ORDER = "불가능한 구간 순서 입니다.";
-    public static final String ALREADY_SECTION = "해당 역은 이미 구간에 포함되어 있습니다.";
+    public static final String ALREADY_EXIST_SECTION = "해당 역은 이미 구간에 포함되어 있습니다.";
+    public static final String NOT_EXIST_SECTION = "해당 역은 해당 노선의 구간에 포함되어 있지 않습니다.";
+    public static final String WRONG_SECTION_SIZE = "노선에 포함된 역이 두개 이하일 때는 역을 제거할 수 없습니다.";
 }
