@@ -41,8 +41,13 @@ public class StationManageController {
     }
 
     private void deleteStation() {
-        String deleteStation = InputView.requestDeleteStation();
-        stationManageService.deleteStation(deleteStation);
+        try {
+            String deleteStation = InputView.requestDeleteStation();
+            stationManageService.deleteStation(deleteStation);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            deleteStation();
+        }
     }
 
     private void lookupStation() {

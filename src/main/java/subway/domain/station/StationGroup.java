@@ -34,9 +34,8 @@ public class StationGroup {
     }
 
     public void deleteStationByName(String deleteStation) {
-        stations = stations.stream()
-                .filter(station -> !station.isSameName(deleteStation))
-                .collect(Collectors.toList());
+        Station station = findStationByName(deleteStation);
+        stations.remove(station);
     }
 
 

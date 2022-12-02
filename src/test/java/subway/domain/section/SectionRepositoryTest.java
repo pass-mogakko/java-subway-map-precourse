@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import org.junit.jupiter.api.Test;
 import subway.domain.station.StationGroup;
 
-class SectionGroupTest {
+class SectionRepositoryTest {
 
     @Test
     void 지하철_구간_2호선_초기_데이터_설정() {
