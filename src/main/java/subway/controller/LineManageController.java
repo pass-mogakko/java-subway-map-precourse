@@ -33,7 +33,7 @@ public class LineManageController {
     private void registerLine() {
         String registerLine = requestRegisterLine();
         String firstStation = requestRegisterLineFirstStation();
-        String lastStation = requestRegisterLineLastStation();
+        String lastStation = requestRegisterLineLastStation(firstStation);
     }
 
     private String requestRegisterLine() {
@@ -58,14 +58,14 @@ public class LineManageController {
         }
     }
 
-    private String requestRegisterLineLastStation() {
+    private String requestRegisterLineLastStation(String firstStation) {
         try {
-            String lastStation = InputView.requestRegisterLineLastStation();
+            String lastStation = InputView.requestRegisterLineLastStation(firstStation);
             stationManageService.validateIsRegisterStation(lastStation);
             return lastStation;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return requestRegisterLineLastStation();
+            return requestRegisterLineLastStation(firstStation);
         }
     }
 }

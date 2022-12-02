@@ -78,9 +78,12 @@ public class InputView {
         return firstStation;
     }
 
-    public static String requestRegisterLineLastStation() {
+    public static String requestRegisterLineLastStation(String firstStation) {
         printSelectionTitle(Message.REQUEST_LINE_LAST_STATION);
         String lastStation = scanner.nextLine();
+        if (firstStation.equals(lastStation)) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_REGISTER_LINE_LAST_STATION);
+        }
         return lastStation;
     }
 
