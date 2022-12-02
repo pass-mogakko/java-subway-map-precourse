@@ -1,7 +1,6 @@
 package subway.domain.line;
 
 import java.util.List;
-import subway.constant.ErrorMessage;
 
 public class LineRepository {
 

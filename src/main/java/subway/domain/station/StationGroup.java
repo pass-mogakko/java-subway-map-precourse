@@ -40,9 +40,6 @@ public class StationGroup {
 
 
     public void addStationByName(String registerStation) {
-        if (isExistStation(registerStation)) {
-            throw new IllegalArgumentException(ErrorMessage.ALREADY_EXIST_STATION);
-        }
         Station station = new Station(registerStation);
         stations.add(station);
     }

@@ -33,6 +33,7 @@ public class StationManageController {
     private void registerStation() {
         try {
             String registerStation = InputView.requestRegisterStation();
+            stationManageService.validateIsUnregisterStation(registerStation);
             stationManageService.registerStation(registerStation);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());

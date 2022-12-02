@@ -31,6 +31,7 @@ public class SectionManageController {
 
     private void registerSection() {
         String line = requestLine();
+        String station = requestStation();
     }
 
     private String requestLine() {
@@ -41,6 +42,17 @@ public class SectionManageController {
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return requestLine();
+        }
+    }
+
+    private String requestStation() {
+        try {
+            String station = InputView.requestStation();
+            stationManageService.validateIsRegisterStation(station);
+            return station;
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return requestStation();
         }
     }
 }

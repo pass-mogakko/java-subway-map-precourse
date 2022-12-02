@@ -33,5 +33,4 @@ public class LineManageService {
     public List<String> lookupLine() {
         return LineRepository.findAllLineNames();
     }
-
 }

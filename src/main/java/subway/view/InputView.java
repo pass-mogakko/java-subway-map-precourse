@@ -121,4 +121,10 @@ public class InputView {
         String line = scanner.nextLine();
         return line;
     }
+
+    public static String requestStation() {
+        printSelectionTitle(Message.REQUEST_STATION);
+        String line = scanner.nextLine();
+        return line;
+    }
 }

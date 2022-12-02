@@ -1,7 +1,6 @@
 package subway.domain.station;
 
 import java.util.List;
-import subway.constant.ErrorMessage;
 
 public class StationRepository {
 
@@ -27,9 +26,7 @@ public class StationRepository {
         return stationGroup.findAllStationNames();
     }
 
-    public static void validateIsRegisterStation(String station) {
-        if (!stationGroup.isExistStation(station)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_STATION);
-        }
+    public static boolean isRegisterStation(String station) {
+        return stationGroup.isExistStation(station);
     }
 }

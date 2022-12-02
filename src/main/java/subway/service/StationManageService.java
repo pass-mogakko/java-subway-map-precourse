@@ -1,6 +1,7 @@
 package subway.service;
 
 import java.util.List;
+import subway.constant.ErrorMessage;
 import subway.domain.station.StationRepository;
 
 public class StationManageService {
@@ -18,7 +19,17 @@ public class StationManageService {
     }
 
     public void validateIsRegisterStation(String station) {
-        StationRepository.validateIsRegisterStation(station);
+        boolean isRegisterStation = StationRepository.isRegisterStation(station);
+        if (!isRegisterStation) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_STATION);
+        }
+    }
+
+    public void validateIsUnregisterStation(String station) {
+        boolean isRegisterStation = StationRepository.isRegisterStation(station);
+        if (isRegisterStation) {
+            throw new IllegalArgumentException(ErrorMessage.ALREADY_EXIST_STATION);
+        }
     }
 
 }
