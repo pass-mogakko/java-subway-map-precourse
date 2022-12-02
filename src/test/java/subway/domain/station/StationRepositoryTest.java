@@ -3,9 +3,15 @@ package subway.domain.station;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class StationRepositoryTest {
+
+    @BeforeEach
+    void setUp() {
+        StationRepository.clear();
+    }
 
     @Test
     void 역_등록하기() {
@@ -29,5 +35,11 @@ class StationRepositoryTest {
         assertThatCode(() -> StationRepository.findStationByName("양재역")).doesNotThrowAnyException();
         assertThatCode(() -> StationRepository.findStationByName("양재시민의숲역")).doesNotThrowAnyException();
         assertThatCode(() -> StationRepository.findStationByName("매봉역")).doesNotThrowAnyException();
+    }
+
+    @Test
+    void 이미_등록된_역_등록하기() {
+        StationRepository.addStation("충정로역");
+        assertThatThrownBy(() -> StationRepository.addStation("충정로역")).isInstanceOf(IllegalArgumentException.class);
     }
 }

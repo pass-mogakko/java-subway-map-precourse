@@ -40,7 +40,5 @@ class SectionGroupTest {
         assertThatCode(() -> sinBunDangStationGroup.findStationByName("강남역")).doesNotThrowAnyException();
         assertThatCode(() -> sinBunDangStationGroup.findStationByName("양재역")).doesNotThrowAnyException();
         assertThatCode(() -> sinBunDangStationGroup.findStationByName("양재시민의숲역")).doesNotThrowAnyException();
-
-
     }
 }

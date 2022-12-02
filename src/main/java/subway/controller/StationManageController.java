@@ -20,14 +20,24 @@ public class StationManageController {
     }
 
     public void run() {
-        String stationManageSelection = InputView.requestStationManageSelection();
-        selectionNavigator.get(stationManageSelection)
-                .run();
+        try {
+            String stationManageSelection = InputView.requestStationManageSelection();
+            selectionNavigator.get(stationManageSelection)
+                    .run();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            run();
+        }
     }
 
     private void registerStation() {
-        String registerStation = InputView.requestRegisterStation();
-        stationManageService.registerStation(registerStation);
+        try {
+            String registerStation = InputView.requestRegisterStation();
+            stationManageService.registerStation(registerStation);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            registerStation();
+        }
     }
 
     private void deleteStation() {

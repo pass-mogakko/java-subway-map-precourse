@@ -39,9 +39,18 @@ public class StationGroup {
                 .collect(Collectors.toList());
     }
 
+
     public void addStationByName(String registerStation) {
+        if (isExistStation(registerStation)) {
+            throw new IllegalArgumentException(ErrorMessage.ALREADY_EXIST_STATION);
+        }
         Station station = new Station(registerStation);
         stations.add(station);
+    }
+
+    private boolean isExistStation(String stationName) {
+        return stations.stream()
+                .anyMatch(station -> station.isSameName(stationName));
     }
 
     public List<String> findAllStationNames() {

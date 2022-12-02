@@ -6,6 +6,10 @@ public class StationRepository {
 
     private static StationGroup stationGroup = new StationGroup();
 
+    public static void clear() {
+        stationGroup = new StationGroup();
+    }
+
     public static Station findStationByName(String stationName) {
         return stationGroup.findStationByName(stationName);
     }

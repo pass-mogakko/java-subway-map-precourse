@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import subway.view.InputView;
 import subway.view.MainScreenSelection;
+import subway.view.OutputView;
 
 public class SubwayController {
 
@@ -17,9 +18,13 @@ public class SubwayController {
     }
 
     public void run() {
-        String mainScreenSelection = InputView.requestMainScreenSelection();
-        selectionNavigator.get(mainScreenSelection)
-                .run();
+        try {
+            String mainScreenSelection = InputView.requestMainScreenSelection();
+            selectionNavigator.get(mainScreenSelection)
+                    .run();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+        }
         run();
     }
 }

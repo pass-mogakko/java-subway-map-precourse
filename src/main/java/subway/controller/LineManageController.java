@@ -5,6 +5,7 @@ import java.util.Map;
 import subway.service.LineManageService;
 import subway.view.InputView;
 import subway.view.LineManageSelection;
+import subway.view.OutputView;
 
 public class LineManageController {
 
@@ -16,12 +17,23 @@ public class LineManageController {
     }
 
     public void run() {
-        String lineManageSelection = InputView.requestLineManageSelection();
-        selectionNavigator.get(lineManageSelection)
-                .run();
+        try {
+            String lineManageSelection = InputView.requestLineManageSelection();
+            selectionNavigator.get(lineManageSelection)
+                    .run();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            run();
+        }
+
     }
 
     private void registerLine() {
-        String registerLine = InputView.requestRegisterLine();
+        try {
+            String registerLine = InputView.requestRegisterLine();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            registerLine();
+        }
     }
 }
