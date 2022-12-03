@@ -5,6 +5,9 @@ import static subway.view.constants.SubCommand.BACK;
 import static subway.view.constants.SubCommand.CREATE;
 import static subway.view.constants.SubCommand.DELETE;
 
+import java.util.List;
+import subway.dto.PathDTO;
+import subway.service.PathService;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.constants.SubCommand;
@@ -18,6 +21,11 @@ public class PathController {
             SubCommand command = InputView.inputSubCommand();
             runStatus = runSelectedFunction(command);
         }
+    }
+
+    public void showAllSubwayLines() {
+        List<PathDTO> allPathsByLine = PathService.getAllPathsByLine();
+//        OutputView.printSubwayLines(allPathsByLine);
     }
 
     private RunStatus runSelectedFunction(SubCommand command) {

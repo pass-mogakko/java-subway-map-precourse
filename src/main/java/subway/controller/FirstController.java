@@ -40,7 +40,7 @@ public class FirstController {
             pathController.run();
         }
         if (mainCommand == SUBWAY_LINES) {
-            // TODO PathController 실행
+            pathController.showAllSubwayLines();
         }
         return RUNNING;
     }

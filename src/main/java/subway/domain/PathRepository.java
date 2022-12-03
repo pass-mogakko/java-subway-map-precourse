@@ -35,6 +35,6 @@ public class PathRepository {
 
     public static boolean hasStation(String stationName) {
         return paths().stream()
-                .anyMatch(path -> path.getPath().contains(stationName));
+                .anyMatch(path -> path.getStations().contains(stationName));
     }
 }
