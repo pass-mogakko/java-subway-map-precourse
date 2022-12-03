@@ -25,7 +25,7 @@ public class PathController {
 
     public void showAllSubwayLines() {
         List<PathDTO> allPathsByLine = PathService.getAllPathsByLine();
-//        OutputView.printSubwayLines(allPathsByLine);
+        OutputView.printSubwayLines(allPathsByLine);
     }
 
     private RunStatus runSelectedFunction(SubCommand command) {

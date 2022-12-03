@@ -3,12 +3,14 @@ package subway.view;
 import static subway.view.constants.Format.HEADER;
 import static subway.view.constants.Format.INFO;
 import static subway.view.constants.Format.MENU;
+import static subway.view.constants.OutputMessage.BORDER_LINE;
 import static subway.view.constants.OutputMessage.LINE_DISPLAY_HEADER;
 import static subway.view.constants.OutputMessage.LINE_READ_HEADER;
 import static subway.view.constants.OutputMessage.MAIN_DISPLAY_HEADER;
 import static subway.view.constants.OutputMessage.PATH_DISPLAY_HEADER;
 import static subway.view.constants.OutputMessage.STATION_DISPLAY_HEADER;
 import static subway.view.constants.OutputMessage.STATION_READ_HEADER;
+import static subway.view.constants.OutputMessage.SUBWAY_LINES_DISPLAY_HEADER;
 import static subway.view.constants.SubDisplay.BACK;
 import static subway.view.constants.SubDisplay.LINE_CREATE;
 import static subway.view.constants.SubDisplay.LINE_DELETE;
@@ -22,6 +24,7 @@ import static subway.view.constants.SubDisplay.STATION_READ;
 import java.util.Arrays;
 import java.util.List;
 import subway.dto.LineDTO;
+import subway.dto.PathDTO;
 import subway.dto.StationDTO;
 import subway.view.constants.MainDisplay;
 import subway.view.constants.OutputMessage;
@@ -36,7 +39,7 @@ public class OutputView {
     public static void printMain() {
         ConsolePrinter.printFormattedLine(HEADER, MAIN_DISPLAY_HEADER.getValue());
         Arrays.stream(MainDisplay.values())
-                        .forEach(value -> ConsolePrinter.printFormattedLine(MENU, value.getCommandKey(), value.getMenu()));
+                .forEach(value -> ConsolePrinter.printFormattedLine(MENU, value.getCommandKey(), value.getMenu()));
         ConsolePrinter.printBlankLine();
     }
 
@@ -79,4 +82,16 @@ public class OutputView {
         ConsolePrinter.printBlankLine();
     }
 
+    public static void printSubwayLines(List<PathDTO> allPathsByLine) {
+        ConsolePrinter.printFormattedLine(HEADER, SUBWAY_LINES_DISPLAY_HEADER.getValue());
+        allPathsByLine.forEach(OutputView::printPathByLine);
+    }
+
+    private static void printPathByLine(PathDTO path) {
+        ConsolePrinter.printFormattedLine(INFO, path.getLineName());
+        ConsolePrinter.printFormattedLine(INFO, BORDER_LINE.getValue());
+        path.getStations()
+                .forEach(stationName -> ConsolePrinter.printFormattedLine(INFO, stationName));
+        ConsolePrinter.printBlankLine();
+    }
 }

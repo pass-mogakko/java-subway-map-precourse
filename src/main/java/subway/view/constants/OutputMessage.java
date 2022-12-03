@@ -18,8 +18,9 @@ public enum OutputMessage {
     LINE_DELETE_INFO("지하철 노선이 삭제되었습니다."),
 
     PATH_CREATE_INFO("구간이 등록되었습니다."),
-    PATH_DELETE_INFO("구간이 삭제되었습니다.")
-    ;
+    PATH_DELETE_INFO("구간이 삭제되었습니다."),
+
+    BORDER_LINE("---");
 
     private final String value;
 
