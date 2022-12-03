@@ -29,4 +29,11 @@ public class InputView {
         ConsolePrinter.printBlankLine();
         return name;
     }
+
+    public static int inputIndex(InputMessage message) {
+        ConsolePrinter.printFormattedLine(HEADER, message.getValue());
+        int index = ConsoleReader.readNumber();
+        ConsolePrinter.printBlankLine();
+        return index;
+    }
 }
