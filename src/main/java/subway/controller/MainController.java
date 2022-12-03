@@ -9,13 +9,13 @@ import java.util.List;
 public class MainController {
     private static final StationController stationController = new StationController();
 
-    public void viewMain() {
+    public static void viewMain() {
         printMainView();
         final String function = readFunction();
-        run(function);
+        runMain(function);
     }
 
-    private void run(String function) {
+    private static void runMain(String function) {
         if (Function.isManageStation(function)) {
             stationController.run();
         }
@@ -24,7 +24,7 @@ public class MainController {
         }
     }
 
-    private String readFunction() {
+    private static String readFunction() {
         try {
             String function = InputView.inputFunction();
             return Function.find(function);
@@ -34,7 +34,7 @@ public class MainController {
         }
     }
 
-    private void printMainView() {
+    private static void printMainView() {
         List<String> functions = Function.getFunctions();
         OutputView.printMainView(functions);
     }
