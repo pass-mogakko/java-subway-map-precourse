@@ -22,6 +22,10 @@ public class PathRepository {
         paths.add(path);
     }
 
+    public static boolean deletePath(String lineName) {
+        return paths.removeIf(path -> Objects.equals(path.getLineName(), lineName));
+    }
+
     public static Path findPathOrNullByLineName(String lineName) {
         return paths.stream()
                 .filter(path -> Objects.equals(path.getLineName(), lineName))
@@ -33,6 +37,4 @@ public class PathRepository {
         return paths().stream()
                 .anyMatch(path -> path.getPath().contains(stationName));
     }
-
-    // TODO 특정 노선의 경로 내 특정 역만 등록, 삭제하기
 }

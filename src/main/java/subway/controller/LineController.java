@@ -4,7 +4,9 @@ import static subway.controller.RunStatus.RUNNING;
 import static subway.view.constants.InputMessage.LINE_CREATE_DOWN_FINAL_NAME_HEADER;
 import static subway.view.constants.InputMessage.LINE_CREATE_NAME_HEADER;
 import static subway.view.constants.InputMessage.LINE_CREATE_UP_FINAL_NAME_HEADER;
+import static subway.view.constants.InputMessage.LINE_DELETE_HEADER;
 import static subway.view.constants.OutputMessage.LINE_CREATE_INFO;
+import static subway.view.constants.OutputMessage.LINE_DELETE_INFO;
 import static subway.view.constants.SubCommand.BACK;
 import static subway.view.constants.SubCommand.CREATE;
 import static subway.view.constants.SubCommand.DELETE;
@@ -41,7 +43,9 @@ public class LineController {
             OutputView.printInfoMessage(LINE_CREATE_INFO);
         }
         if (command == DELETE) {
-            // TODO 메소드 실행
+            String lineName = InputView.inputName(LINE_DELETE_HEADER);
+            LineService.deleteLine(new LineDTO(lineName));
+            OutputView.printInfoMessage(LINE_DELETE_INFO);
         }
         if (command == READ) {
             List<LineDTO> lines = LineService.getAllLines();
