@@ -10,7 +10,7 @@ import java.util.Objects;
 public enum StationManage {
     REGISTER("1", "역 등록"),
     DELETE("2", "역 삭제"),
-    INQUIRE("3", "역 조회"),
+    SEARCH_LIST("3", "역 조회"),
     TURN_BACK("B", "돌아가기");
 
     private final String key;
@@ -45,8 +45,8 @@ public enum StationManage {
         return Objects.equals(DELETE.key, command);
     }
 
-    public static boolean isInquire(final String command) {
-        return Objects.equals(INQUIRE.key, command);
+    public static boolean isSearchList(final String command) {
+        return Objects.equals(SEARCH_LIST.key, command);
     }
 
     @Override
