@@ -6,6 +6,9 @@ import static subway.view.constants.SubCommand.CREATE;
 import static subway.view.constants.SubCommand.DELETE;
 import static subway.view.constants.SubCommand.READ;
 
+import java.util.List;
+import subway.dto.LineDTO;
+import subway.service.LineService;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.constants.SubCommand;
@@ -32,7 +35,8 @@ public class LineController {
             // TODO 메소드 실행
         }
         if (command == READ) {
-            // TODO 메소드 실행
+            List<LineDTO> lines = LineService.getAllLines();
+            OutputView.printLines(lines);
         }
         return RUNNING;
     }

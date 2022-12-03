@@ -28,6 +28,11 @@ import subway.view.constants.OutputMessage;
 
 public class OutputView {
 
+    public static void printInfoMessage(OutputMessage message) {
+        ConsolePrinter.printFormattedLine(INFO, message.getValue());
+        ConsolePrinter.printBlankLine();
+    }
+
     public static void printMain() {
         ConsolePrinter.printFormattedLine(HEADER, MAIN_DISPLAY_HEADER.getValue());
         Arrays.stream(MainDisplay.values())
@@ -74,8 +79,4 @@ public class OutputView {
         ConsolePrinter.printBlankLine();
     }
 
-    public static void printInfoMessage(OutputMessage message) {
-        ConsolePrinter.printFormattedLine(INFO, message.getValue());
-        ConsolePrinter.printBlankLine();
-    }
 }

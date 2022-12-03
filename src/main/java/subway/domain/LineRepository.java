@@ -10,7 +10,7 @@ public class LineRepository {
 
     static {
         lines.add(new Line("2호선"));
-        lines.add(new Line("2호선"));
+        lines.add(new Line("3호선"));
         lines.add(new Line("신분당선"));
     }
 
