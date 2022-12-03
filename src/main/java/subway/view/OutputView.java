@@ -15,13 +15,13 @@ public class OutputView {
 
     public static void printAllStations(List<String> allStations) {
         printTitleMessage(Message.STATION_LIST);
+        System.out.println();
         allStations.forEach(OutputView::printInfoMessage);
     }
 
     public static void printTitleMessage(String message) {
         System.out.println();
         System.out.printf(Message.TITLE_MESSAGE_FORM, message);
-        System.out.println();
     }
 
     private static void printInfoMessage(String message) {
@@ -79,9 +79,9 @@ public class OutputView {
         String lineName = sectionDto.getLineName();
         List<String> stationNames = sectionDto.getStationName();
 
+        System.out.println();
         printInfoMessage(lineName);
         printInfoMessage(Message.DIVISION_LINE);
         stationNames.forEach(OutputView::printInfoMessage);
-        System.out.println();
     }
 }

@@ -26,8 +26,7 @@ public enum LineManageSelection {
         }
     }
 
-    @Override
-    public String toString() {
+    public String toKorean() {
         return String.format(Message.SELECTION_MESSAGE_FORM, selection, content);
     }
 

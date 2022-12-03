@@ -11,6 +11,7 @@ public class InputView {
     public static String requestMainScreenSelection() {
         printSelectionTitle(Message.MAIN_SCREEN);
         Arrays.stream(MainScreenSelection.values())
+                .map(MainScreenSelection::toKorean)
                 .forEach(System.out::println);
         printSelectFunction();
         String mainScreenSelection = scanner.nextLine();
@@ -33,6 +34,7 @@ public class InputView {
     public static String requestStationManageSelection() {
         printSelectionTitle(Message.STATION_MANAGE_SCREEN);
         Arrays.stream(StationManageSelection.values())
+                .map(StationManageSelection::toKorean)
                 .forEach(System.out::println);
         printSelectFunction();
         String stationManageSelection = scanner.nextLine();
@@ -53,6 +55,7 @@ public class InputView {
     public static String requestLineManageSelection() {
         printSelectionTitle(Message.LINE_MANAGE_SCREEN);
         Arrays.stream(LineManageSelection.values())
+                .map(LineManageSelection::toKorean)
                 .forEach(System.out::println);
         printSelectFunction();
         String lineManageSelection = scanner.nextLine();
@@ -83,6 +86,7 @@ public class InputView {
     public static String requestSectionManageSelection() {
         printSelectionTitle(Message.SECTION_MANAGE_SCREEN);
         Arrays.stream(SectionManageSelection.values())
+                .map(SectionManageSelection::toKorean)
                 .forEach(System.out::println);
         printSelectFunction();
         String sectionManageSelection = scanner.nextLine();
