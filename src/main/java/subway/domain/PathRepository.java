@@ -3,6 +3,7 @@ package subway.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class PathRepository {
     private static final List<Path> paths = new ArrayList<>();
@@ -18,8 +19,19 @@ public class PathRepository {
     }
 
     public static void addPath(Path path) {
-        // TODO line, station 검증
         paths.add(path);
+    }
+
+    public static Path findPathOrNullByLineName(String lineName) {
+        return paths.stream()
+                .filter(path -> Objects.equals(path.getLineName(), lineName))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public static boolean hasStation(String stationName) {
+        return paths().stream()
+                .anyMatch(path -> path.getPath().contains(stationName));
     }
 
     // TODO 특정 노선의 경로 내 특정 역만 등록, 삭제하기

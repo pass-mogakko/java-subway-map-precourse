@@ -2,6 +2,7 @@ package subway.controller;
 
 import static subway.controller.RunStatus.RUNNING;
 import static subway.view.constants.OutputMessage.STATION_CREATE_INFO;
+import static subway.view.constants.OutputMessage.STATION_DELETE_INFO;
 import static subway.view.constants.SubCommand.BACK;
 import static subway.view.constants.SubCommand.CREATE;
 import static subway.view.constants.SubCommand.DELETE;
@@ -17,7 +18,8 @@ import subway.view.constants.SubCommand;
 
 public class StationController {
 
-    private StationController() { }
+    private StationController() {
+    }
 
     public static void run() {
         RunStatus runStatus = RUNNING;
@@ -38,7 +40,9 @@ public class StationController {
             OutputView.printInfoMessage(STATION_CREATE_INFO);
         }
         if (command == DELETE) {
-            // TODO 메소드 실행
+            String name = InputView.inputName(InputMessage.STATION_CREATE_NAME_HEADER);
+            StationService.deleteStation(new StationDTO(name));
+            OutputView.printInfoMessage(STATION_DELETE_INFO);
         }
         if (command == READ) {
             List<StationDTO> stationDTOs = StationService.getAllStations();
