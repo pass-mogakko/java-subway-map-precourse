@@ -21,16 +21,16 @@ public class StationController {
     private StationController() {
     }
 
-    public static void run() {
+    public static void showMenus() {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
             OutputView.printStationDisplay();
             SubCommand command = InputView.inputSubCommand();
-            runStatus = runSelectedFunction(command);
+            runStatus = runSelectedMenu(command);
         }
     }
 
-    private static RunStatus runSelectedFunction(SubCommand command) {
+    private static RunStatus runSelectedMenu(SubCommand command) {
         if (command == BACK) {
             return RunStatus.QUIT;
         }

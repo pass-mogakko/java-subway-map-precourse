@@ -22,7 +22,7 @@ import subway.view.constants.SubCommand;
 
 public class LineController {
 
-    public void showMenus() {
+    public static void showMenus() {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
             OutputView.printLineDisplay();
@@ -31,7 +31,7 @@ public class LineController {
         }
     }
 
-    private RunStatus runSelectedMenu(SubCommand command) {
+    private static RunStatus runSelectedMenu(SubCommand command) {
         if (command == BACK) {
             return RunStatus.QUIT;
         }

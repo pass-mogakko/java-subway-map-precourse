@@ -14,7 +14,7 @@ import subway.view.constants.SubCommand;
 
 public class PathController {
 
-    public void showMenus() {
+    public static void showMenus() {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
             OutputView.printPathDisplay();
@@ -23,12 +23,12 @@ public class PathController {
         }
     }
 
-    public void showAllSubwayLines() {
+    public static void showAllSubwayLines() {
         List<PathDTO> allPathsByLine = PathService.getAllPathsByLine();
         OutputView.printSubwayLines(allPathsByLine);
     }
 
-    private RunStatus runSelectedMenu(SubCommand command) {
+    private static RunStatus runSelectedMenu(SubCommand command) {
         if (command == BACK) {
             return RunStatus.QUIT;
         }
