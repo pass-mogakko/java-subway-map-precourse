@@ -31,13 +31,13 @@ public class FirstController {
             return RunStatus.QUIT;
         }
         if (mainCommand == STATION) {
-            StationController.run();
+            StationController.showMenus();
         }
         if (mainCommand == LINE) {
-            lineController.run();
+            lineController.showMenus();
         }
         if (mainCommand == PATH) {
-            pathController.run();
+            pathController.showMenus();
         }
         if (mainCommand == SUBWAY_LINES) {
             pathController.showAllSubwayLines();

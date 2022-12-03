@@ -10,8 +10,7 @@ public enum MainCommand {
     LINE("2"),
     PATH("3"),
     SUBWAY_LINES("4"),
-    QUIT("Q")
-    ;
+    QUIT("Q");
 
     private final String key;
 
@@ -19,14 +18,16 @@ public enum MainCommand {
         this.key = key;
     }
 
-    public String getKey() {
-        return key;
-    }
-
     public static MainCommand find(String key) {
         return Arrays.stream(values())
                 .filter(value -> value.key.equals(key))
                 .findFirst()
-                .orElseThrow(() -> {throw new IllegalArgumentException(INPUT_INVALID_COMMAND.getValue());});
+                .orElseThrow(() -> {
+                    throw new IllegalArgumentException(INPUT_INVALID_COMMAND.getValue());
+                });
+    }
+
+    public String getKey() {
+        return key;
     }
 }

@@ -95,10 +95,10 @@
     - [x] 필요한 이름 입력 (역 이름, 노선 이름, 종점역 이름)
     - `예외발생` : 공백 또는 빈 문자열
 5.
-    - [ ] 정보 및 결과 메시지 출력
+    - [x] 정보 및 결과 메시지 출력
     - [x] 역 목록
     - [x] 노선 목록
-    - [ ] 세부 기능 중 지하철 노선도
+    - [x] 세부 기능 중 지하철 노선도
     - [x] 특정 기능 완료 메시지
 6.
     - [ ] 입력 안내 메시지 출력
@@ -160,7 +160,6 @@
     - Station
     - Line
     - Path
-    - Command
 
 - service
     - StationService
@@ -170,15 +169,14 @@
 - dto
     - StationsDTO
     - LinesDTO
+    - FinalStationsDTO
     - PathsDTO
-    - CommandDTO
 
 - controller
-    - SubwayController
+    - FirstController
     - StationController
     - LineController
     - PathController
-    - DTOMapper
     - InputHandler
 
 - view

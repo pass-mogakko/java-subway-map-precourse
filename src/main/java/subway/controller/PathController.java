@@ -14,12 +14,12 @@ import subway.view.constants.SubCommand;
 
 public class PathController {
 
-    public void run() {
+    public void showMenus() {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
             OutputView.printPathDisplay();
             SubCommand command = InputView.inputSubCommand();
-            runStatus = runSelectedFunction(command);
+            runStatus = runSelectedMenu(command);
         }
     }
 
@@ -28,7 +28,7 @@ public class PathController {
         OutputView.printSubwayLines(allPathsByLine);
     }
 
-    private RunStatus runSelectedFunction(SubCommand command) {
+    private RunStatus runSelectedMenu(SubCommand command) {
         if (command == BACK) {
             return RunStatus.QUIT;
         }
