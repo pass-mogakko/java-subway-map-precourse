@@ -1,6 +1,7 @@
 package subway.service;
 
 import java.util.List;
+import subway.constant.ErrorMessage;
 import subway.domain.line.Line;
 import subway.domain.line.LineRepository;
 import subway.domain.section.SectionRepository;
@@ -9,7 +10,10 @@ import subway.domain.station.StationRepository;
 
 public class LineManageService {
 
-    public static void registerLine(String registerLine, String firstStationName, String lastStationName) {
+    public void registerLine(String registerLine, String firstStationName, String lastStationName) {
+        if (firstStationName.equals(lastStationName)) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_REGISTER_LINE_LAST_STATION);
+        }
         Station firstStation = StationRepository.findStationByName(firstStationName);
         Station lastStation = StationRepository.findStationByName(lastStationName);
         LineRepository.addLine(registerLine);

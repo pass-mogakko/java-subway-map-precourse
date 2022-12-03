@@ -34,6 +34,9 @@ public class Section {
         if (isInvalidOrder(stationGroup.size(), order)) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_SECTION_ORDER);
         }
+        if (stationGroup.isExistStation(station.getName())) {
+            throw new IllegalArgumentException(ErrorMessage.ALREADY_EXIST_SECTION);
+        }
         stationGroup.addStation(station, order);
     }
 

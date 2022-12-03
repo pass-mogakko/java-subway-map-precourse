@@ -2,8 +2,6 @@ package subway.view;
 
 import java.util.Arrays;
 import java.util.Scanner;
-import subway.constant.Constant;
-import subway.constant.ErrorMessage;
 import subway.constant.Message;
 
 public class InputView {
@@ -44,15 +42,7 @@ public class InputView {
 
     public static String requestRegisterStation() {
         printSelectionTitle(Message.REQUEST_REGISTER_STATION);
-        String registerStation = scanner.nextLine();
-        validateRegisterStation(registerStation);
-        return registerStation;
-    }
-
-    private static void validateRegisterStation(String registerStation) {
-        if (registerStation.length() < Constant.STATION_NAME_SIZE_MIN) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_STATION_NAME_SIZE);
-        }
+        return scanner.nextLine();
     }
 
     public static String requestDeleteStation() {
@@ -72,15 +62,7 @@ public class InputView {
 
     public static String requestRegisterLine() {
         printSelectionTitle(Message.REQUEST_REGISTER_LINE);
-        String registerLine = scanner.nextLine();
-        validateRegisterLine(registerLine);
-        return registerLine;
-    }
-
-    private static void validateRegisterLine(String registerLine) {
-        if (registerLine.length() < Constant.LINE_NAME_SIZE_MIN) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_LINE_NAME_SIZE);
-        }
+        return scanner.nextLine();
     }
 
     public static String requestRegisterLineFirstStation() {
@@ -88,13 +70,9 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static String requestRegisterLineLastStation(String firstStation) {
+    public static String requestRegisterLineLastStation() {
         printSelectionTitle(Message.REQUEST_LINE_LAST_STATION);
-        String lastStation = scanner.nextLine();
-        if (firstStation.equals(lastStation)) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_REGISTER_LINE_LAST_STATION);
-        }
-        return lastStation;
+        return scanner.nextLine();
     }
 
     public static String requestDeleteLine() {

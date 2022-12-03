@@ -59,7 +59,7 @@ public class StationGroup {
 
     public List<String> findAllStationNames() {
         return stations.stream()
-                .map(station -> station.getName())
+                .map(Station::getName)
                 .distinct()
                 .collect(Collectors.toList());
     }

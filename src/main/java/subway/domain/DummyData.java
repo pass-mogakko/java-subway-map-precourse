@@ -11,8 +11,8 @@ public enum DummyData {
     THREE("3호선", "교대역-남부터미널역-양재역-매봉역"),
     SINBUNDAN("신분당선", "강남역-양재역-양재시민의숲역");
 
-    private String lineName;
-    private String stationNames;
+    private final String lineName;
+    private final String stationNames;
 
     DummyData(String lineName, String stationNames) {
         this.lineName = lineName;
@@ -29,7 +29,7 @@ public enum DummyData {
 
     public static List<String> findAllLinesName() {
         return Arrays.stream(DummyData.values())
-                .map(dummyData -> dummyData.getLineName())
+                .map(DummyData::getLineName)
                 .collect(Collectors.toList());
     }
 

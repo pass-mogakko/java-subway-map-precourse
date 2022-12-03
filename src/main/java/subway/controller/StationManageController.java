@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import subway.service.StationManageService;
+import subway.utils.Utils;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.StationManageSelection;
@@ -20,41 +21,32 @@ public class StationManageController {
     }
 
     public void run() {
-        try {
-            String stationManageSelection = InputView.requestStationManageSelection();
-            if (stationManageSelection.equals(StationManageSelection.BACK.getSelection())) {
-                return;
-            }
-            Runnable nextAction = selectionNavigator.get(stationManageSelection);
-            nextAction.run();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            run();
+        String stationManageSelection = Utils.requestInput(InputView::requestStationManageSelection, OutputView::printErrorMessage);
+        if (stationManageSelection.equals(StationManageSelection.BACK.getSelection())) {
+            return;
         }
+        Runnable nextAction = selectionNavigator.get(stationManageSelection);
+        nextAction.run();
     }
 
     private void registerStation() {
+        String registerStation = InputView.requestRegisterStation();
         try {
-            String registerStation = InputView.requestRegisterStation();
             stationManageService.registerStation(registerStation);
+            OutputView.printRegisterStation();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            registerStation();
-            return;
         }
-        OutputView.printRegisterStation();
     }
 
     private void deleteStation() {
+        String deleteStation = InputView.requestDeleteStation();
         try {
-            String deleteStation = InputView.requestDeleteStation();
             stationManageService.deleteStation(deleteStation);
+            OutputView.printDeleteStation();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            deleteStation();
-            return;
         }
-        OutputView.printDeleteStation();
     }
 
     private void lookupStation() {

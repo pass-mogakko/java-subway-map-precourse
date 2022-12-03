@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import subway.service.LineManageService;
+import subway.utils.Utils;
 import subway.view.InputView;
 import subway.view.LineManageSelection;
 import subway.view.OutputView;
@@ -20,67 +21,34 @@ public class LineManageController {
     }
 
     public void run() {
-        try {
-            String lineManageSelection = InputView.requestLineManageSelection();
-            if (lineManageSelection.equals(LineManageSelection.BACK.getSelection())) {
-                return;
-            }
-            Runnable nextAction = selectionNavigator.get(lineManageSelection);
-            nextAction.run();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            run();
+        String lineManageSelection = Utils.requestInput(InputView::requestLineManageSelection, OutputView::printErrorMessage);
+        if (lineManageSelection.equals(LineManageSelection.BACK.getSelection())) {
+            return;
         }
+        Runnable nextAction = selectionNavigator.get(lineManageSelection);
+        nextAction.run();
     }
 
     private void registerLine() {
-        String registerLine = requestRegisterLine();
-        String firstStation = requestRegisterLineFirstStation();
-        String lastStation = requestRegisterLineLastStation(firstStation);
-        LineManageService.registerLine(registerLine, firstStation, lastStation);
-        OutputView.printRegisterLine();
-    }
-
-    private String requestRegisterLine() {
+        String registerLine = InputView.requestRegisterLine();
+        String firstStation = InputView.requestRegisterLineFirstStation();
+        String lastStation = InputView.requestRegisterLineLastStation();
         try {
-            String registerLine = InputView.requestRegisterLine();
-            return registerLine;
+            lineManageService.registerLine(registerLine, firstStation, lastStation);
+            OutputView.printRegisterLine();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return requestRegisterLine();
-        }
-    }
-
-    private String requestRegisterLineFirstStation() {
-        try {
-            String firstStation = InputView.requestRegisterLineFirstStation();
-            return firstStation;
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return requestRegisterLineFirstStation();
-        }
-    }
-
-    private String requestRegisterLineLastStation(String firstStation) {
-        try {
-            String lastStation = InputView.requestRegisterLineLastStation(firstStation);
-            return lastStation;
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return requestRegisterLineLastStation(firstStation);
         }
     }
 
     private void deleteLine() {
+        String deleteLine = InputView.requestDeleteLine();
         try {
-            String deleteLine = InputView.requestDeleteLine();
             lineManageService.deleteLine(deleteLine);
+            OutputView.printDeleteLine();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            deleteLine();
-            return;
         }
-        OutputView.printDeleteLine();
     }
 
     private void lookupLine() {

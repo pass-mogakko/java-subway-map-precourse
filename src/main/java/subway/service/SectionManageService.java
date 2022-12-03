@@ -1,8 +1,6 @@
 package subway.service;
 
 import java.util.List;
-import subway.domain.line.Line;
-import subway.domain.line.LineRepository;
 import subway.domain.section.Section;
 import subway.domain.section.SectionRepository;
 import subway.domain.station.Station;
@@ -17,7 +15,6 @@ public class SectionManageService {
     }
 
     public void deleteSection(String lineName, String stationName) {
-        Line line = LineRepository.findLineByName(lineName);
         Section section = SectionRepository.findSectionByLineName(lineName);
         section.deleteStationByName(stationName);
     }

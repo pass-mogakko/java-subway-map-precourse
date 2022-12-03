@@ -52,7 +52,7 @@ public class SectionGroup {
 
     public List<SectionDto> findAllSectionDtos() {
         return sections.stream()
-                .map(section -> section.toDto())
+                .map(Section::toDto)
                 .collect(Collectors.toList());
     }
 }

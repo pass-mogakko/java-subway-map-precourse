@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import subway.dto.SectionDto;
 import subway.service.SectionManageService;
+import subway.utils.Utils;
 import subway.view.InputView;
 import subway.view.MainScreenSelection;
 import subway.view.OutputView;
@@ -25,16 +26,12 @@ public class SubwayController {
     }
 
     public void run() {
-        try {
-            String mainScreenSelection = InputView.requestMainScreenSelection();
-            if (mainScreenSelection.equals(MainScreenSelection.QUIT.getSelection())) {
-                return;
-            }
-            Runnable nextAction = selectionNavigator.get(mainScreenSelection);
-            nextAction.run();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
+        String mainScreenSelection = Utils.requestInput(InputView::requestMainScreenSelection, OutputView::printErrorMessage);
+        if (mainScreenSelection.equals(MainScreenSelection.QUIT.getSelection())) {
+            return;
         }
+        Runnable nextAction = selectionNavigator.get(mainScreenSelection);
+        nextAction.run();
         run();
     }
 
