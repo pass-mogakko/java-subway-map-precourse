@@ -11,7 +11,12 @@ import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.constants.MainCommand;
 
-public class SubwayController {
+public class FirstController {
+
+    // TODO 싱글턴 검토
+    private final StationController stationController = new StationController();
+    private final LineController lineController = new LineController();
+    private final PathController pathController = new PathController();
 
     public void run() {
         RunStatus runStatus = RUNNING;
@@ -27,13 +32,13 @@ public class SubwayController {
             return RunStatus.QUIT;
         }
         if (mainCommand == STATION) {
-            // TODO StationController 실행
+            stationController.run();
         }
         if (mainCommand == LINE) {
-            // TODO LineController 실행
+            lineController.run();
         }
         if (mainCommand == PATH) {
-            // TODO PathController 실행
+            pathController.run();
         }
         if (mainCommand == SUBWAY_LINES) {
             // TODO PathController 실행

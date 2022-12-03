@@ -10,11 +10,15 @@ public class InputView {
 
     public static MainCommand inputMainCommand() {
         ConsolePrinter.printFormattedLine(HEADER, COMMAND_HEADER.getValue());
-        return ConsoleReader.readMainCommand();
+        MainCommand mainCommand = ConsoleReader.readMainCommand();
+        ConsolePrinter.printBlankLine();
+        return mainCommand;
     }
 
     public static SubCommand inputSubCommand() {
         ConsolePrinter.printFormattedLine(HEADER, COMMAND_HEADER.getValue());
-        return ConsoleReader.readSubCommand();
+        SubCommand subCommand = ConsoleReader.readSubCommand();
+        ConsolePrinter.printBlankLine();
+        return subCommand;
     }
 }
