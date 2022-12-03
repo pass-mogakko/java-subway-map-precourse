@@ -20,4 +20,12 @@ public class OutputView {
             System.out.println(manage);
         }
     }
+
+    public static void printStationList(List<String> stationList){
+        System.out.print(System.lineSeparator());
+        System.out.println("## 역 목록");
+        for(String station : stationList){
+            System.out.println(INFO + station);
+        }
+    }
 }
