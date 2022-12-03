@@ -12,43 +12,58 @@ public enum Function {
     MANAGE_LINE("2", "노선 관리"),
     MANAGE_SECTION("3", "구간 관리"),
     PRINT_LINE_MAP("4", "지하철 노선도 출력"),
-    EXIT("Q", "종료")
-    ;
+    EXIT("Q", "종료");
 
     private final String key;
     private final String content;
 
-    Function(final String key, final String content){
+    Function(final String key, final String content) {
         this.key = key;
         this.content = content;
     }
 
-    public static String find(final String command){
+    public static String find(final String command) {
         return Arrays.stream(Function.values())
                 .filter(function -> Objects.equals(function.getKey(), command))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_FUNCTION_KEY))
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_FUNCTION))
                 .key;
     }
 
-    public static List<String> getFunctions(){
+    public static List<String> getFunctions() {
         List<String> functions = new ArrayList<>();
-        for(Function function : Function.values()){
+        for (Function function : Function.values()) {
             functions.add(function.toString());
         }
         return functions;
     }
 
-    public String getKey(){
+    public static boolean isManageStation(String function) {
+        return Objects.equals(MANAGE_STATION.key, function);
+    }
+
+    public static boolean isManageLine(String function) {
+        return Objects.equals(MANAGE_LINE.key, function);
+    }
+
+    public static boolean isManageSection(String function) {
+        return Objects.equals(MANAGE_SECTION.key, function);
+    }
+
+    public static boolean isPrintLineMap(String function) {
+        return Objects.equals(PRINT_LINE_MAP.key, function);
+    }
+
+    public String getKey() {
         return this.key;
     }
 
-    public String getContent(){
+    public String getContent() {
         return this.content;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return key + ". " + content;
     }
 }
