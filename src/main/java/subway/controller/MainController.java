@@ -7,10 +7,21 @@ import subway.view.OutputView;
 import java.util.List;
 
 public class MainController {
+    private static final StationController stationController = new StationController();
 
-    public void view() {
+    public void viewMain() {
         printMainView();
         final String function = readFunction();
+        run(function);
+    }
+
+    private void run(String function) {
+        if (Function.isManageStation(function)) {
+            stationController.run();
+        }
+        if(Function.isManageLine(function)){
+
+        }
     }
 
     private String readFunction() {
