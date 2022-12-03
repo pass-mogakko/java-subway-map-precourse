@@ -12,6 +12,7 @@ import subway.dto.StationDTO;
 import subway.service.StationService;
 import subway.view.InputView;
 import subway.view.OutputView;
+import subway.view.constants.InputMessage;
 import subway.view.constants.SubCommand;
 
 public class StationController {
@@ -32,7 +33,7 @@ public class StationController {
             return RunStatus.QUIT;
         }
         if (command == CREATE) {
-            String name = InputView.inputStationName();
+            String name = InputView.inputName(InputMessage.STATION_CREATE_NAME_HEADER);
             StationService.addStation(new StationDTO(name));
             OutputView.printInfoMessage(STATION_CREATE_INFO);
         }
