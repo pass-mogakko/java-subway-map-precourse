@@ -6,13 +6,18 @@ import static subway.view.constants.SubCommand.CREATE;
 import static subway.view.constants.SubCommand.DELETE;
 import static subway.view.constants.SubCommand.READ;
 
+import java.util.List;
+import subway.dto.StationDTO;
+import subway.service.StationService;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.constants.SubCommand;
 
 public class StationController {
 
-    public void run() {
+    private StationController() { }
+
+    public static void run() {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
             OutputView.printStationDisplay();
@@ -21,7 +26,7 @@ public class StationController {
         }
     }
 
-    private RunStatus runSelectedFunction(SubCommand command) {
+    private static RunStatus runSelectedFunction(SubCommand command) {
         if (command == BACK) {
             return RunStatus.QUIT;
         }
@@ -32,7 +37,8 @@ public class StationController {
             // TODO 메소드 실행
         }
         if (command == READ) {
-            // TODO 메소드 실행
+            List<StationDTO> stationDTOs = StationService.getAllStations();
+            // TODO 출력
         }
         return RUNNING;
     }

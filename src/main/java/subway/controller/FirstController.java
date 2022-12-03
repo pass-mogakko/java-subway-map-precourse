@@ -14,7 +14,6 @@ import subway.view.constants.MainCommand;
 public class FirstController {
 
     // TODO 싱글턴 검토
-    private final StationController stationController = new StationController();
     private final LineController lineController = new LineController();
     private final PathController pathController = new PathController();
 
@@ -32,7 +31,7 @@ public class FirstController {
             return RunStatus.QUIT;
         }
         if (mainCommand == STATION) {
-            stationController.run();
+            StationController.run();
         }
         if (mainCommand == LINE) {
             lineController.run();
