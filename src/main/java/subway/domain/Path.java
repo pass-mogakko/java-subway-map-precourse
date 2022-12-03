@@ -20,4 +20,8 @@ public class Path {
     public List<String> getStations() {
         return Collections.unmodifiableList(stations);
     }
+
+    public void insertStation(int index, String stationName) {
+        stations.add(index, stationName);
+    }
 }
