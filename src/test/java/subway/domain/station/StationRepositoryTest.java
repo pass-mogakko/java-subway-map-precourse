@@ -42,11 +42,4 @@ class StationRepositoryTest {
         StationRepository.addStation("충정로역");
         assertThatThrownBy(() -> StationRepository.addStation("충정로역")).isInstanceOf(IllegalArgumentException.class);
     }
-
-    @Test
-    void 등록된_역인지_아닌지_유효성검사() {
-        assertThatThrownBy(() -> StationRepository.validateIsRegisterStation("충정로역")).isInstanceOf(IllegalArgumentException.class);
-        StationRepository.addStation("충정로역");
-        assertThatCode(() -> StationRepository.validateIsRegisterStation("충정로역")).doesNotThrowAnyException();
-    }
 }

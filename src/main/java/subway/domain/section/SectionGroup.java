@@ -36,19 +36,16 @@ public class SectionGroup {
         return sections.stream()
                 .filter(section -> section.isSameLineName(lineName))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_LINE));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_SECTION));
     }
 
-    public void registerSection(String registerLine, String firstStation, String lastStation) {
-        Line line = new Line(registerLine);
-        List<String> stationsName = Arrays.asList(firstStation, lastStation);
-        StationGroup stationGroup = new StationGroup(stationsName);
+    public void registerSection(Line line, Station firstStation, Station lastStation) {
+        StationGroup stationGroup = new StationGroup(firstStation, lastStation);
         Section section = new Section(line, stationGroup);
         sections.add(section);
     }
 
-    public void registerSection(String lineName, String stationName, int order) {
-        Station station = new Station(stationName);
+    public void registerSection(String lineName, Station station, int order) {
         Section section = findSectionByLineName(lineName);
         section.addStation(station, order);
     }

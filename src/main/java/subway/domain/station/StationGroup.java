@@ -1,5 +1,6 @@
 package subway.domain.station;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import subway.constant.ErrorMessage;
@@ -7,7 +8,7 @@ import subway.domain.DummyData;
 
 public class StationGroup {
 
-    private List<Station> stations;
+    private final List<Station> stations;
 
     public StationGroup(List<String> stationsName) {
         stations = stationsName.stream()
@@ -17,6 +18,10 @@ public class StationGroup {
 
     public StationGroup() {
         stations = initDummyData();
+    }
+
+    public StationGroup(Station firstStation, Station lastStation) {
+        stations = Arrays.asList(firstStation, lastStation);
     }
 
     private List<Station> initDummyData() {
@@ -40,6 +45,9 @@ public class StationGroup {
 
 
     public void addStationByName(String registerStation) {
+        if (isExistStation(registerStation)) {
+            throw new IllegalArgumentException(ErrorMessage.ALREADY_EXIST_STATION);
+        }
         Station station = new Station(registerStation);
         stations.add(station);
     }

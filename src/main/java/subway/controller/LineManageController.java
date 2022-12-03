@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import subway.service.LineManageService;
-import subway.service.StationManageService;
 import subway.view.InputView;
 import subway.view.LineManageSelection;
 import subway.view.OutputView;
@@ -13,7 +12,6 @@ public class LineManageController {
 
     private final Map<String, Runnable> selectionNavigator = new HashMap<>();
     private final LineManageService lineManageService = new LineManageService();
-    private final StationManageService stationManageService = new StationManageService();
 
     public LineManageController() {
         selectionNavigator.put(LineManageSelection.ONE.getSelection(), this::registerLine);
@@ -46,7 +44,6 @@ public class LineManageController {
     private String requestRegisterLine() {
         try {
             String registerLine = InputView.requestRegisterLine();
-            lineManageService.validateIsUnregisterLine(registerLine);
             return registerLine;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
@@ -57,7 +54,6 @@ public class LineManageController {
     private String requestRegisterLineFirstStation() {
         try {
             String firstStation = InputView.requestRegisterLineFirstStation();
-            stationManageService.validateIsRegisterStation(firstStation);
             return firstStation;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
@@ -68,7 +64,6 @@ public class LineManageController {
     private String requestRegisterLineLastStation(String firstStation) {
         try {
             String lastStation = InputView.requestRegisterLineLastStation(firstStation);
-            stationManageService.validateIsRegisterStation(lastStation);
             return lastStation;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
@@ -83,6 +78,7 @@ public class LineManageController {
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             deleteLine();
+            return;
         }
         OutputView.printDeleteLine();
     }

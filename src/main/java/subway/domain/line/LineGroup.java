@@ -33,6 +33,9 @@ public class LineGroup {
     }
 
     public void addLineByName(String registerLine) {
+        if (isExistLine(registerLine)) {
+            throw new IllegalArgumentException(ErrorMessage.ALREADY_EXIST_LINE);
+        }
         Line line = new Line(registerLine);
         lines.add(line);
     }

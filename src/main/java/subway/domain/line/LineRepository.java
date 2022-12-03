@@ -10,10 +10,6 @@ public class LineRepository {
         return lineGroup.findLineByName(name);
     }
 
-    public static boolean isRegisterLine(String lineName) {
-        return lineGroup.isExistLine(lineName);
-    }
-
     public static void addLine(String registerLine) {
         lineGroup.addLineByName(registerLine);
     }

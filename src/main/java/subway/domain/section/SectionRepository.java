@@ -1,6 +1,8 @@
 package subway.domain.section;
 
 import java.util.List;
+import subway.domain.line.Line;
+import subway.domain.station.Station;
 import subway.dto.SectionDto;
 
 public class SectionRepository {
@@ -11,18 +13,12 @@ public class SectionRepository {
         return sections.findSectionByLineName(lineName);
     }
 
-
-    public static void registerSection(String registerLine, String firstStation, String lastStation) {
-        sections.registerSection(registerLine, firstStation, lastStation);
+    public static void registerSection(Line line, Station firstStation, Station lastStation) {
+        sections.registerSection(line, firstStation, lastStation);
     }
 
-    public static int findSectionSizeByLineName(String lineName) {
-        Section section = findSectionByLineName(lineName);
-        return section.size();
-    }
-
-    public static void registerSection(String lineName, String stationName, int order) {
-        sections.registerSection(lineName, stationName, order);
+    public static void registerSection(String lineName, Station station, int order) {
+        sections.registerSection(lineName, station, order);
     }
 
     public static List<SectionDto> findAllSectionDtos() {

@@ -25,8 +25,4 @@ public class StationRepository {
     public static List<String> findAllStationNames() {
         return stationGroup.findAllStationNames();
     }
-
-    public static boolean isRegisterStation(String station) {
-        return stationGroup.isExistStation(station);
-    }
 }

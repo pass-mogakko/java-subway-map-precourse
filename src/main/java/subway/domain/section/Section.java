@@ -1,6 +1,8 @@
 package subway.domain.section;
 
 import java.util.List;
+import subway.constant.Constant;
+import subway.constant.ErrorMessage;
 import subway.domain.line.Line;
 import subway.domain.station.Station;
 import subway.domain.station.StationGroup;
@@ -28,15 +30,21 @@ public class Section {
         return stationGroup.size();
     }
 
-    public boolean contains(String stationName) {
-        return stationGroup.isExistStation(stationName);
-    }
-
     public void addStation(Station station, int order) {
+        if (isInvalidOrder(stationGroup.size(), order)) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_SECTION_ORDER);
+        }
         stationGroup.addStation(station, order);
     }
 
+    private boolean isInvalidOrder(int sectionSize, int order) {
+        return sectionSize + 1 < order || order < 1;
+    }
+
     public void deleteStationByName(String stationName) {
+        if (stationGroup.size() <= Constant.SECTION_SIZE_MIN) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_SECTION_SIZE);
+        }
         stationGroup.deleteStationByName(stationName);
     }
 

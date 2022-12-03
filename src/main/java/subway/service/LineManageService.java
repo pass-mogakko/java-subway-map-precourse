@@ -1,29 +1,20 @@
 package subway.service;
 
 import java.util.List;
-import subway.constant.ErrorMessage;
+import subway.domain.line.Line;
 import subway.domain.line.LineRepository;
 import subway.domain.section.SectionRepository;
+import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
 
 public class LineManageService {
 
-    public static void registerLine(String registerLine, String firstStation, String lastStation) {
+    public static void registerLine(String registerLine, String firstStationName, String lastStationName) {
+        Station firstStation = StationRepository.findStationByName(firstStationName);
+        Station lastStation = StationRepository.findStationByName(lastStationName);
         LineRepository.addLine(registerLine);
-        SectionRepository.registerSection(registerLine, firstStation, lastStation);
-    }
-
-    public void validateIsUnregisterLine(String lineName) {
-        boolean isRegisterLine = LineRepository.isRegisterLine(lineName);
-        if (isRegisterLine) {
-            throw new IllegalArgumentException(ErrorMessage.ALREADY_EXIST_LINE);
-        }
-    }
-
-    public void validateIsRegisterLine(String lineName) {
-        boolean isRegisterLine = LineRepository.isRegisterLine(lineName);
-        if (!isRegisterLine) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_LINE);
-        }
+        Line line = LineRepository.findLineByName(registerLine);
+        SectionRepository.registerSection(line, firstStation, lastStation);
     }
 
     public void deleteLine(String lineName) {
