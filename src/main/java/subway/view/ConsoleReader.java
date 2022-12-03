@@ -1,5 +1,7 @@
 package subway.view;
 
+import static subway.view.constants.ErrorMessage.INPUT_BLANK_NAME;
+
 import camp.nextstep.edu.missionutils.Console;
 import subway.view.constants.MainCommand;
 import subway.view.constants.SubCommand;
@@ -17,12 +19,14 @@ public class ConsoleReader {
     }
 
     static String readName() {
-        String line = readLine();
-        // TODO 글자 수, trim, 빈 문자열, 공백 검증
+        String line = readLine().trim();
+        if (line.isBlank()) {
+            throw new IllegalArgumentException(INPUT_BLANK_NAME.getValue());
+        }
         return line;
     }
 
-    static String readLine() {
+    private static String readLine() {
         return Console.readLine();
     }
 }

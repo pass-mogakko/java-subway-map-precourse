@@ -2,6 +2,7 @@ package subway.view;
 
 import static subway.view.constants.Format.HEADER;
 import static subway.view.constants.InputMessage.COMMAND_HEADER;
+import static subway.view.constants.InputMessage.STATION_CREATE_NAME_HEADER;
 
 import subway.view.constants.MainCommand;
 import subway.view.constants.SubCommand;
@@ -20,5 +21,12 @@ public class InputView {
         SubCommand subCommand = ConsoleReader.readSubCommand();
         ConsolePrinter.printBlankLine();
         return subCommand;
+    }
+
+    public static String inputStationName() {
+        ConsolePrinter.printFormattedLine(HEADER, STATION_CREATE_NAME_HEADER.getValue());
+        String name = ConsoleReader.readName();
+        ConsolePrinter.printBlankLine();
+        return name;
     }
 }

@@ -1,5 +1,7 @@
 package subway.view.constants;
 
+import static subway.view.constants.ErrorMessage.INPUT_INVALID_COMMAND;
+
 import java.util.Arrays;
 
 public enum SubCommand {
@@ -24,7 +26,6 @@ public enum SubCommand {
         return Arrays.stream(values())
                 .filter(value -> value.key.equals(key))
                 .findFirst()
-                // TODO 에러 메시지 상수화
-                .orElseThrow(() -> {throw new IllegalArgumentException("잘못된 기능 번호를 선택했습니다.");});
+                .orElseThrow(() -> {throw new IllegalArgumentException(INPUT_INVALID_COMMAND.getValue());});
     }
 }
