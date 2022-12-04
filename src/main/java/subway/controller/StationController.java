@@ -18,11 +18,14 @@ public class StationController {
         if (StationManage.isRegister(manage)) {
             registerStation();
         }
-        if(StationManage.isDelete(manage)){
+        if (StationManage.isDelete(manage)) {
             deleteStation();
         }
-        if(StationManage.isSearchList(manage)){
+        if (StationManage.isSearchList(manage)) {
             printStationList();
+        }
+        if (StationManage.isTurnBack(manage)) {
+            MainController.viewMain();
         }
     }
 
@@ -41,11 +44,11 @@ public class StationController {
         run();
     }
 
-    private void deleteStation(){
-        try{
+    private void deleteStation() {
+        try {
             String name = InputView.inputDeleteStation();
             stationRepository.deleteStation(name);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
         run();
@@ -64,7 +67,7 @@ public class StationController {
     private void printStationList() {
         final List<Station> stations = StationRepository.stations();
         final List<String> stationList = new ArrayList<>();
-        for(Station station : stations){
+        for (Station station : stations) {
             stationList.add(station.getName());
         }
         OutputView.printStationList(stationList);

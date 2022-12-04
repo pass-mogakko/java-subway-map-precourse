@@ -49,6 +49,10 @@ public enum StationManage {
         return Objects.equals(SEARCH_LIST.key, command);
     }
 
+    public static boolean isTurnBack(final String command) {
+        return Objects.equals(TURN_BACK.key, command);
+    }
+
     @Override
     public String toString() {
         return key + ". " + content;
