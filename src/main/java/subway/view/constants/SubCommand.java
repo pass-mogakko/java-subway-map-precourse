@@ -9,8 +9,7 @@ public enum SubCommand {
     CREATE("1"),
     DELETE("2"),
     READ("3"),
-    BACK("B")
-    ;
+    BACK("B");
 
     private final String key;
 
@@ -18,14 +17,16 @@ public enum SubCommand {
         this.key = key;
     }
 
-    public String getKey() {
-        return key;
-    }
-
     public static SubCommand find(String key) {
         return Arrays.stream(values())
                 .filter(value -> value.key.equals(key))
                 .findFirst()
-                .orElseThrow(() -> {throw new IllegalArgumentException(INPUT_INVALID_COMMAND.getValue());});
+                .orElseThrow(() -> {
+                    throw new IllegalArgumentException(INPUT_INVALID_COMMAND.getValue());
+                });
+    }
+
+    public String getKey() {
+        return key;
     }
 }

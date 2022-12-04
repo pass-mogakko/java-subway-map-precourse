@@ -17,8 +17,7 @@ public enum SubDisplay {
     PATH_CREATE("구간 등록", CREATE),
     PATH_DELETE("구간 삭제", DELETE),
 
-    BACK("돌아가기", SubCommand.BACK)
-    ;
+    BACK("돌아가기", SubCommand.BACK);
 
     private final String menu;
     private final SubCommand command;

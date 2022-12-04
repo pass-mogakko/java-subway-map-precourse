@@ -5,8 +5,7 @@ public enum Format {
     INFO("[INFO] %s"),
     HEADER("## %s"),
     ERROR("[ERROR] %s"),
-    MENU("%s. %s")
-    ;
+    MENU("%s. %s");
 
     private final String value;
 
