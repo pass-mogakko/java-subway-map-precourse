@@ -5,7 +5,7 @@ public enum InputMessage {
     COMMAND_HEADER("원하는 기능을 선택하세요."),
 
     STATION_CREATE_NAME_HEADER("등록할 역 이름을 입력하세요."),
-    STATION_DELETE_HEADER("삭제할 역 이름을 입력하세요."),
+    STATION_DELETE_NAME_HEADER("삭제할 역 이름을 입력하세요."),
 
     LINE_CREATE_NAME_HEADER("등록할 노선 이름을 입력하세요."),
     LINE_CREATE_UP_FINAL_NAME_HEADER("등록할 노선의 상행 종점역 이름을 입력하세요."),

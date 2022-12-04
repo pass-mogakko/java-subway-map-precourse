@@ -1,6 +1,7 @@
 package subway.controller;
 
 import static subway.controller.RunStatus.RUNNING;
+import static subway.controller.RunStatus.STOPPED;
 import static subway.view.constants.InputMessage.LINE_CREATE_DOWN_FINAL_NAME_HEADER;
 import static subway.view.constants.InputMessage.LINE_CREATE_NAME_HEADER;
 import static subway.view.constants.InputMessage.LINE_CREATE_UP_FINAL_NAME_HEADER;
@@ -22,7 +23,7 @@ import subway.view.constants.SubCommand;
 
 public class LineController {
 
-    public static void showMenus() {
+    public static void selectMenu() {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
             OutputView.printLineDisplay();
@@ -33,7 +34,7 @@ public class LineController {
 
     private static RunStatus runSelectedMenu(SubCommand command) {
         if (command == BACK) {
-            return RunStatus.QUIT;
+            return STOPPED;
         }
         if (command == CREATE) {
             createLine();

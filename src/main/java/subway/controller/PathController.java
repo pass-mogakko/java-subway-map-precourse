@@ -1,6 +1,7 @@
 package subway.controller;
 
 import static subway.controller.RunStatus.RUNNING;
+import static subway.controller.RunStatus.STOPPED;
 import static subway.view.constants.InputMessage.PATH_CREATE_INDEX_HEADER;
 import static subway.view.constants.InputMessage.PATH_CREATE_LINE_NAME_HEADER;
 import static subway.view.constants.InputMessage.PATH_CREATE_STATION_NAME_HEADER;
@@ -21,7 +22,7 @@ import subway.view.constants.SubCommand;
 
 public class PathController {
 
-    public static void showMenus() {
+    public static void selectMenu() {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
             OutputView.printPathDisplay();
@@ -37,7 +38,7 @@ public class PathController {
 
     private static RunStatus runSelectedMenu(SubCommand command) {
         if (command == BACK) {
-            return RunStatus.QUIT;
+            return STOPPED;
         }
         if (command == CREATE) {
             insertStationToPath();
