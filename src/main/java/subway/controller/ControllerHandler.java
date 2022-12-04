@@ -3,7 +3,7 @@ package subway.controller;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
-import subway.view.constants.MainCommand;
+import subway.view.constants.menu.MainCommand;
 
 public enum ControllerHandler {
 

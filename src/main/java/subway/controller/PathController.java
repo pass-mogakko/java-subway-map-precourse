@@ -9,23 +9,23 @@ import static subway.view.constants.InputMessage.PATH_DELETE_LINE_NAME_HEADER;
 import static subway.view.constants.InputMessage.PATH_DELETE_STATION_NAME_HEADER;
 import static subway.view.constants.OutputMessage.PATH_CREATE_INFO;
 import static subway.view.constants.OutputMessage.PATH_DELETE_INFO;
-import static subway.view.constants.SubCommand.BACK;
-import static subway.view.constants.SubCommand.CREATE;
-import static subway.view.constants.SubCommand.DELETE;
+import static subway.view.constants.menu.SubCommand.BACK;
+import static subway.view.constants.menu.SubCommand.CREATE;
+import static subway.view.constants.menu.SubCommand.DELETE;
 
 import java.util.List;
 import subway.dto.PathDTO;
 import subway.service.PathService;
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.view.constants.SubCommand;
+import subway.view.constants.menu.SubCommand;
 
 public class PathController {
 
     public static void selectMenu() {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
-            OutputView.printPathDisplay();
+            OutputView.printPathMenus();
             SubCommand command = InputView.inputSubCommand();
             runStatus = runSelectedMenu(command);
         }

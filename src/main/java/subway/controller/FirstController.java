@@ -2,11 +2,11 @@ package subway.controller;
 
 import static subway.controller.RunStatus.RUNNING;
 import static subway.controller.RunStatus.STOPPED;
-import static subway.view.constants.MainCommand.QUIT;
+import static subway.view.constants.menu.MainCommand.QUIT;
 
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.view.constants.MainCommand;
+import subway.view.constants.menu.MainCommand;
 
 public class FirstController {
 
@@ -23,7 +23,7 @@ public class FirstController {
     }
 
     private static void selectMainMenu() {
-        OutputView.printMain();
+        OutputView.printMainMenus();
         MainCommand mainCommand = InputView.inputMainCommand();
         runSelectedController(mainCommand);
     }
@@ -31,6 +31,7 @@ public class FirstController {
     private static void runSelectedController(MainCommand mainCommand) {
         if (mainCommand == QUIT) {
             runStatus = STOPPED;
+            return;
         }
         ControllerHandler.run(mainCommand);
     }

@@ -8,10 +8,10 @@ import static subway.view.constants.InputMessage.LINE_CREATE_UP_FINAL_NAME_HEADE
 import static subway.view.constants.InputMessage.LINE_DELETE_HEADER;
 import static subway.view.constants.OutputMessage.LINE_CREATE_INFO;
 import static subway.view.constants.OutputMessage.LINE_DELETE_INFO;
-import static subway.view.constants.SubCommand.BACK;
-import static subway.view.constants.SubCommand.CREATE;
-import static subway.view.constants.SubCommand.DELETE;
-import static subway.view.constants.SubCommand.READ;
+import static subway.view.constants.menu.SubCommand.BACK;
+import static subway.view.constants.menu.SubCommand.CREATE;
+import static subway.view.constants.menu.SubCommand.DELETE;
+import static subway.view.constants.menu.SubCommand.READ;
 
 import java.util.List;
 import subway.dto.FinalStationsDTO;
@@ -19,14 +19,14 @@ import subway.dto.LineDTO;
 import subway.service.LineService;
 import subway.view.InputView;
 import subway.view.OutputView;
-import subway.view.constants.SubCommand;
+import subway.view.constants.menu.SubCommand;
 
 public class LineController {
 
     public static void selectMenu() {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
-            OutputView.printLineDisplay();
+            OutputView.printLineMenus();
             SubCommand command = InputView.inputSubCommand();
             runStatus = runSelectedMenu(command);
         }

@@ -4,8 +4,8 @@ import static subway.view.constants.ErrorMessage.INPUT_BLANK_NAME;
 import static subway.view.constants.ErrorMessage.INPUT_NOT_A_NUMBER_INDEX;
 
 import camp.nextstep.edu.missionutils.Console;
-import subway.view.constants.MainCommand;
-import subway.view.constants.SubCommand;
+import subway.view.constants.menu.MainCommand;
+import subway.view.constants.menu.SubCommand;
 
 public class ConsoleReader {
 

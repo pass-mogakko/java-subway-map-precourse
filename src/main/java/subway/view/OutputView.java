@@ -1,9 +1,6 @@
 package subway.view;
 
-import static subway.view.constants.Format.ERROR;
-import static subway.view.constants.Format.HEADER;
-import static subway.view.constants.Format.INFO;
-import static subway.view.constants.Format.MENU;
+import static subway.view.ConsolePrinter.printInfo;
 import static subway.view.constants.OutputMessage.BORDER_LINE;
 import static subway.view.constants.OutputMessage.LINE_DISPLAY_HEADER;
 import static subway.view.constants.OutputMessage.LINE_READ_HEADER;
@@ -12,92 +9,76 @@ import static subway.view.constants.OutputMessage.PATH_DISPLAY_HEADER;
 import static subway.view.constants.OutputMessage.STATION_DISPLAY_HEADER;
 import static subway.view.constants.OutputMessage.STATION_READ_HEADER;
 import static subway.view.constants.OutputMessage.SUBWAY_LINES_DISPLAY_HEADER;
-import static subway.view.constants.SubDisplay.BACK;
-import static subway.view.constants.SubDisplay.LINE_CREATE;
-import static subway.view.constants.SubDisplay.LINE_DELETE;
-import static subway.view.constants.SubDisplay.LINE_READ;
-import static subway.view.constants.SubDisplay.PATH_CREATE;
-import static subway.view.constants.SubDisplay.PATH_DELETE;
-import static subway.view.constants.SubDisplay.STATION_CREATE;
-import static subway.view.constants.SubDisplay.STATION_DELETE;
-import static subway.view.constants.SubDisplay.STATION_READ;
 
-import java.util.Arrays;
 import java.util.List;
 import subway.dto.LineDTO;
 import subway.dto.PathDTO;
 import subway.dto.StationDTO;
-import subway.view.constants.MainDisplay;
 import subway.view.constants.OutputMessage;
+import subway.view.constants.menu.LineMenu;
+import subway.view.constants.menu.MainMenu;
+import subway.view.constants.menu.PathMenu;
+import subway.view.constants.menu.StationMenu;
 
 public class OutputView {
 
     public static void printInfoMessage(OutputMessage message) {
-        ConsolePrinter.printFormattedLine(INFO, message.getValue());
+        ConsolePrinter.printInfo(message.getValue());
         ConsolePrinter.printBlankLine();
     }
 
     public static void printErrorMessage(String message) {
-        ConsolePrinter.printFormattedLine(ERROR, message);
+        ConsolePrinter.printError(message);
         ConsolePrinter.printBlankLine();
     }
 
-    public static void printMain() {
-        ConsolePrinter.printFormattedLine(HEADER, MAIN_DISPLAY_HEADER.getValue());
-        Arrays.stream(MainDisplay.values())
-                .forEach(value -> ConsolePrinter.printFormattedLine(MENU, value.getCommandKey(), value.getMenu()));
+    public static void printMainMenus() {
+        ConsolePrinter.printHeader(MAIN_DISPLAY_HEADER.getValue());
+        ConsolePrinter.printMenus(MainMenu.values());
         ConsolePrinter.printBlankLine();
     }
 
-    // TODO SubDisplay에 find 기능 만들어서 코드 단순화
-    public static void printStationDisplay() {
-        ConsolePrinter.printFormattedLine(HEADER, STATION_DISPLAY_HEADER.getValue());
-        ConsolePrinter.printFormattedLine(MENU, STATION_CREATE.getCommandKey(), STATION_CREATE.getMenu());
-        ConsolePrinter.printFormattedLine(MENU, STATION_DELETE.getCommandKey(), STATION_DELETE.getMenu());
-        ConsolePrinter.printFormattedLine(MENU, STATION_READ.getCommandKey(), STATION_READ.getMenu());
-        ConsolePrinter.printFormattedLine(MENU, BACK.getCommandKey(), BACK.getMenu());
+    public static void printStationMenus() {
+        ConsolePrinter.printHeader(STATION_DISPLAY_HEADER.getValue());
+        ConsolePrinter.printMenus(StationMenu.values());
         ConsolePrinter.printBlankLine();
     }
 
-    public static void printLineDisplay() {
-        ConsolePrinter.printFormattedLine(HEADER, LINE_DISPLAY_HEADER.getValue());
-        ConsolePrinter.printFormattedLine(MENU, LINE_CREATE.getCommandKey(), LINE_CREATE.getMenu());
-        ConsolePrinter.printFormattedLine(MENU, LINE_DELETE.getCommandKey(), LINE_DELETE.getMenu());
-        ConsolePrinter.printFormattedLine(MENU, LINE_READ.getCommandKey(), LINE_READ.getMenu());
-        ConsolePrinter.printFormattedLine(MENU, BACK.getCommandKey(), BACK.getMenu());
+    public static void printLineMenus() {
+        ConsolePrinter.printHeader(LINE_DISPLAY_HEADER.getValue());
+        ConsolePrinter.printMenus(LineMenu.values());
         ConsolePrinter.printBlankLine();
     }
 
-    public static void printPathDisplay() {
-        ConsolePrinter.printFormattedLine(HEADER, PATH_DISPLAY_HEADER.getValue());
-        ConsolePrinter.printFormattedLine(MENU, PATH_CREATE.getCommandKey(), PATH_CREATE.getMenu());
-        ConsolePrinter.printFormattedLine(MENU, PATH_DELETE.getCommandKey(), PATH_DELETE.getMenu());
-        ConsolePrinter.printFormattedLine(MENU, BACK.getCommandKey(), BACK.getMenu());
+    public static void printPathMenus() {
+        ConsolePrinter.printHeader(PATH_DISPLAY_HEADER.getValue());
+        ConsolePrinter.printMenus(PathMenu.values());
         ConsolePrinter.printBlankLine();
     }
 
     public static void printStations(List<StationDTO> stations) {
-        ConsolePrinter.printFormattedLine(HEADER, STATION_READ_HEADER.getValue());
-        stations.forEach(station -> ConsolePrinter.printFormattedLine(INFO, station.getName()));
+        ConsolePrinter.printHeader(STATION_READ_HEADER.getValue());
+        stations.forEach(station -> printInfo(station.getName()));
         ConsolePrinter.printBlankLine();
     }
 
     public static void printLines(List<LineDTO> lines) {
-        ConsolePrinter.printFormattedLine(HEADER, LINE_READ_HEADER.getValue());
-        lines.forEach(line -> ConsolePrinter.printFormattedLine(INFO, line.getName()));
+        ConsolePrinter.printHeader(LINE_READ_HEADER.getValue());
+        lines.forEach(line -> printInfo(line.getName()));
         ConsolePrinter.printBlankLine();
     }
 
     public static void printSubwayLines(List<PathDTO> allPathsByLine) {
-        ConsolePrinter.printFormattedLine(HEADER, SUBWAY_LINES_DISPLAY_HEADER.getValue());
+        ConsolePrinter.printHeader(SUBWAY_LINES_DISPLAY_HEADER.getValue());
         allPathsByLine.forEach(OutputView::printPathByLine);
+        ConsolePrinter.printBlankLine();
     }
 
     private static void printPathByLine(PathDTO path) {
-        ConsolePrinter.printFormattedLine(INFO, path.getLineName());
-        ConsolePrinter.printFormattedLine(INFO, BORDER_LINE.getValue());
+        ConsolePrinter.printInfo(path.getLineName());
+        ConsolePrinter.printInfo(BORDER_LINE.getValue());
         path.getStations()
-                .forEach(stationName -> ConsolePrinter.printFormattedLine(INFO, stationName));
+                .forEach(ConsolePrinter::printInfo);
         ConsolePrinter.printBlankLine();
     }
 }

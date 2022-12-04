@@ -1,4 +1,4 @@
-package subway.view.constants;
+package subway.view.constants.menu;
 
 import static subway.view.constants.ErrorMessage.INPUT_INVALID_COMMAND;
 

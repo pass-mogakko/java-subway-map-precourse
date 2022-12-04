@@ -9,7 +9,7 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.dto.StationDTO;
 
-// TODO 입력 에러 메시지 상수화 or validate 클래스 분리
+// TODO 입력 에러 메시지 상수화 , 검증 로직 장소 검토 (repository)
 public class StationService {
 
     private StationService() {
@@ -40,7 +40,6 @@ public class StationService {
     public static void deleteStation(StationDTO station) {
         String name = station.getName();
         validateNameToDelete(name);
-        // TODO boolean값 필요?
         StationRepository.deleteStation(name);
     }
 
