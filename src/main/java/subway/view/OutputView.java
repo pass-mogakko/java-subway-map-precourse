@@ -1,5 +1,6 @@
 package subway.view;
 
+import static subway.view.constants.Format.ERROR;
 import static subway.view.constants.Format.HEADER;
 import static subway.view.constants.Format.INFO;
 import static subway.view.constants.Format.MENU;
@@ -33,6 +34,11 @@ public class OutputView {
 
     public static void printInfoMessage(OutputMessage message) {
         ConsolePrinter.printFormattedLine(INFO, message.getValue());
+        ConsolePrinter.printBlankLine();
+    }
+
+    public static void printErrorMessage(String message) {
+        ConsolePrinter.printFormattedLine(ERROR, message);
         ConsolePrinter.printBlankLine();
     }
 
