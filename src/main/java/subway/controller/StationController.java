@@ -35,19 +35,31 @@ public class StationController {
             return RunStatus.QUIT;
         }
         if (command == CREATE) {
-            String name = InputView.inputName(InputMessage.STATION_CREATE_NAME_HEADER);
-            StationService.addStation(new StationDTO(name));
-            OutputView.printInfoMessage(STATION_CREATE_INFO);
+            createStation();
         }
         if (command == DELETE) {
-            String name = InputView.inputName(InputMessage.STATION_CREATE_NAME_HEADER);
-            StationService.deleteStation(new StationDTO(name));
-            OutputView.printInfoMessage(STATION_DELETE_INFO);
+            deleteStation();
         }
         if (command == READ) {
-            List<StationDTO> stationDTOs = StationService.getAllStations();
-            OutputView.printStations(stationDTOs);
+            readStations();
         }
         return RUNNING;
+    }
+
+    private static void createStation() {
+        String name = InputView.inputName(InputMessage.STATION_CREATE_NAME_HEADER);
+        StationService.addStation(new StationDTO(name));
+        OutputView.printInfoMessage(STATION_CREATE_INFO);
+    }
+
+    private static void deleteStation() {
+        String name = InputView.inputName(InputMessage.STATION_CREATE_NAME_HEADER);
+        StationService.deleteStation(new StationDTO(name));
+        OutputView.printInfoMessage(STATION_DELETE_INFO);
+    }
+
+    private static void readStations() {
+        List<StationDTO> stationDTOs = StationService.getAllStations();
+        OutputView.printStations(stationDTOs);
     }
 }

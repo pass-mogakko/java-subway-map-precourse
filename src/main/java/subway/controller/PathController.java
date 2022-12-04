@@ -40,18 +40,26 @@ public class PathController {
             return RunStatus.QUIT;
         }
         if (command == CREATE) {
-            String lineName = InputView.inputName(PATH_CREATE_LINE_NAME_HEADER);
-            String stationName = InputView.inputName(PATH_CREATE_STATION_NAME_HEADER);
-            int index = InputView.inputIndex(PATH_CREATE_INDEX_HEADER);
-            PathService.insertStationToPath(lineName, stationName, index);
-            OutputView.printInfoMessage(PATH_CREATE_INFO);
+            insertStationToPath();
         }
         if (command == DELETE) {
-            String lineName = InputView.inputName(PATH_DELETE_LINE_NAME_HEADER);
-            String stationName = InputView.inputName(PATH_DELETE_STATION_NAME_HEADER);
-            PathService.deleteStationFromPath(lineName, stationName);
-            OutputView.printInfoMessage(PATH_DELETE_INFO);
+            deleteStationFromPath();
         }
         return RUNNING;
+    }
+
+    private static void insertStationToPath() {
+        String lineName = InputView.inputName(PATH_CREATE_LINE_NAME_HEADER);
+        String stationName = InputView.inputName(PATH_CREATE_STATION_NAME_HEADER);
+        int index = InputView.inputIndex(PATH_CREATE_INDEX_HEADER);
+        PathService.insertStationToPath(lineName, stationName, index);
+        OutputView.printInfoMessage(PATH_CREATE_INFO);
+    }
+
+    private static void deleteStationFromPath() {
+        String lineName = InputView.inputName(PATH_DELETE_LINE_NAME_HEADER);
+        String stationName = InputView.inputName(PATH_DELETE_STATION_NAME_HEADER);
+        PathService.deleteStationFromPath(lineName, stationName);
+        OutputView.printInfoMessage(PATH_DELETE_INFO);
     }
 }

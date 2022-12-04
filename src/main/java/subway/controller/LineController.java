@@ -36,21 +36,33 @@ public class LineController {
             return RunStatus.QUIT;
         }
         if (command == CREATE) {
-            String lineName = InputView.inputName(LINE_CREATE_NAME_HEADER);
-            String upFinalStationName = InputView.inputName(LINE_CREATE_UP_FINAL_NAME_HEADER);
-            String downFinalStationName = InputView.inputName(LINE_CREATE_DOWN_FINAL_NAME_HEADER);
-            LineService.addLine(new LineDTO(lineName), new FinalStationsDTO(upFinalStationName, downFinalStationName));
-            OutputView.printInfoMessage(LINE_CREATE_INFO);
+            createLine();
         }
         if (command == DELETE) {
-            String lineName = InputView.inputName(LINE_DELETE_HEADER);
-            LineService.deleteLine(new LineDTO(lineName));
-            OutputView.printInfoMessage(LINE_DELETE_INFO);
+            deleteLine();
         }
         if (command == READ) {
-            List<LineDTO> lines = LineService.getAllLines();
-            OutputView.printLines(lines);
+            readLines();
         }
         return RUNNING;
+    }
+
+    private static void createLine() {
+        String lineName = InputView.inputName(LINE_CREATE_NAME_HEADER);
+        String upFinalStationName = InputView.inputName(LINE_CREATE_UP_FINAL_NAME_HEADER);
+        String downFinalStationName = InputView.inputName(LINE_CREATE_DOWN_FINAL_NAME_HEADER);
+        LineService.addLine(new LineDTO(lineName), new FinalStationsDTO(upFinalStationName, downFinalStationName));
+        OutputView.printInfoMessage(LINE_CREATE_INFO);
+    }
+
+    private static void deleteLine() {
+        String lineName = InputView.inputName(LINE_DELETE_HEADER);
+        LineService.deleteLine(new LineDTO(lineName));
+        OutputView.printInfoMessage(LINE_DELETE_INFO);
+    }
+
+    private static void readLines() {
+        List<LineDTO> lines = LineService.getAllLines();
+        OutputView.printLines(lines);
     }
 }
