@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+// TODO 검증 로직 클래스 분리
 public class PathRepository {
     private static final List<Path> paths = new ArrayList<>();
 
@@ -22,8 +23,23 @@ public class PathRepository {
         paths.add(path);
     }
 
-    public static boolean deletePath(String lineName) {
-        return paths.removeIf(path -> Objects.equals(path.getLineName(), lineName));
+    public static void deletePath(String lineName) {
+        boolean isCompleted = paths.removeIf(path -> Objects.equals(path.getLineName(), lineName));
+        if (!isCompleted) {
+            throw new IllegalArgumentException("해당 이름을 가진 노선이 존재하지 않습니다.");
+        }
+    }
+
+    public static void insertStationInPath(String lineName, String stationName, int index) {
+        Path path = findPathOrNullByLineName(lineName);
+        validatePathNullPointed(path);
+        path.insertStation(index, stationName);
+    }
+
+    public static void deleteStationInPath(String lineName, String stationName) {
+        Path path = findPathOrNullByLineName(lineName);
+        validatePathNullPointed(path);
+        path.deleteStation(stationName);
     }
 
     public static Path findPathOrNullByLineName(String lineName) {
@@ -33,6 +49,13 @@ public class PathRepository {
                 .orElse(null);
     }
 
+    private static void validatePathNullPointed(Path path) {
+        if (path == null) {
+            throw new IllegalArgumentException("해당 이름을 가진 노선이 존재하지 않습니다.");
+        }
+    }
+
+    // TODO find메소드만 있어도 되므로 삭제
     public static boolean hasStation(String stationName) {
         return paths().stream()
                 .anyMatch(path -> path.getStations().contains(stationName));

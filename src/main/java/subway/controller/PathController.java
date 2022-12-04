@@ -4,7 +4,10 @@ import static subway.controller.RunStatus.RUNNING;
 import static subway.view.constants.InputMessage.PATH_CREATE_INDEX_HEADER;
 import static subway.view.constants.InputMessage.PATH_CREATE_LINE_NAME_HEADER;
 import static subway.view.constants.InputMessage.PATH_CREATE_STATION_NAME_HEADER;
+import static subway.view.constants.InputMessage.PATH_DELETE_LINE_NAME_HEADER;
+import static subway.view.constants.InputMessage.PATH_DELETE_STATION_NAME_HEADER;
 import static subway.view.constants.OutputMessage.PATH_CREATE_INFO;
+import static subway.view.constants.OutputMessage.PATH_DELETE_INFO;
 import static subway.view.constants.SubCommand.BACK;
 import static subway.view.constants.SubCommand.CREATE;
 import static subway.view.constants.SubCommand.DELETE;
@@ -40,11 +43,14 @@ public class PathController {
             String lineName = InputView.inputName(PATH_CREATE_LINE_NAME_HEADER);
             String stationName = InputView.inputName(PATH_CREATE_STATION_NAME_HEADER);
             int index = InputView.inputIndex(PATH_CREATE_INDEX_HEADER);
-            PathService.insertPath(lineName, stationName, index);
+            PathService.insertStationToPath(lineName, stationName, index);
             OutputView.printInfoMessage(PATH_CREATE_INFO);
         }
         if (command == DELETE) {
-            // TODO 메소드 실행
+            String lineName = InputView.inputName(PATH_DELETE_LINE_NAME_HEADER);
+            String stationName = InputView.inputName(PATH_DELETE_STATION_NAME_HEADER);
+            PathService.deleteStationFromPath(lineName, stationName);
+            OutputView.printInfoMessage(PATH_DELETE_INFO);
         }
         return RUNNING;
     }
