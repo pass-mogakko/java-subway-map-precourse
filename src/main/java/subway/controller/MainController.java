@@ -1,19 +1,37 @@
 package subway.controller;
 
-/*
-* 메인 화면의 기능을 담당하는 컨트롤러
-*/
-
+import subway.constants.Mode;
+import subway.domain.command.MainCommand;
 import subway.view.input.InputView;
 
 public class MainController {
 
     public void run() {
-        InputView.readMainMenu();
+        while (true) {
+            MainCommand enteredCommand = readCommand();
+            if (enteredCommand == null) {
+                continue;
+            }
+            if (enteredCommand.equals(MainCommand.QUIT)) {
+                break;
+            }
+
+            executeManage(enteredCommand);
+        }
     }
 
+    public void executeManage(MainCommand mainCommand) {
+        ManagementController managementController = Mode.findControllerByMainCommand(mainCommand);
+        managementController.execute();
+    }
 
-
-
-
+    public MainCommand readCommand() {
+        try {
+            MainCommand mainCommand = InputView.readMainMenu();
+            return mainCommand;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }
