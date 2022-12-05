@@ -26,7 +26,7 @@ public class LineController {
 
         if (command == ADD_LINE) addLine();
         if (command == DELETE_LINE) deleteLine();
-//        if (command == SHOW_LINE) showAllLines();
+        if (command == SHOW_LINE) showAllLines();
         if (command == BACK) return;
     }
 
@@ -42,6 +42,11 @@ public class LineController {
         String lineName = ExceptionHandler.repeatForValidInput(InputView::readLineNameToDelete);
         lineService.deleteLine(lineName);
         OutputView.print(messageFactory.makeInfoMessage(LINE_DELETION_COMPLETE));
+    }
+
+    private void showAllLines() {
+        String result = lineService.showAllLines();
+        OutputView.print(result);
     }
 
 }

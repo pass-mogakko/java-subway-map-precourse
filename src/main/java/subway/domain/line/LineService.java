@@ -5,10 +5,8 @@ import subway.domain.section.LineSectionRepository;
 import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 import subway.domain.util.MessageFactory;
-
 import java.util.LinkedList;
 import java.util.List;
-
 import static subway.domain.util.ErrorCode.*;
 
 public class LineService {
@@ -27,6 +25,17 @@ public class LineService {
         Station lastStation = findPresentStation(downFinalStationName);
         LineSection lineSection = new LineSection(line, new LinkedList<>(List.of(firstStation, lastStation)));
         LineSectionRepository.save(lineSection);
+    }
+
+    public String showAllLines() {
+        List<Line> lines = LineRepository.findAll();
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Line line : lines) {
+            String lineInfo = messageFactory.makeInfo(line.getName());
+            stringBuilder.append(lineInfo);
+        }
+        return stringBuilder.toString();
     }
 
     public void deleteLine(String lineName) {
@@ -56,4 +65,5 @@ public class LineService {
             throw new IllegalArgumentException(messageFactory.makeErrorMessage(LINE_NOT_FOUND));
         }
     }
+
 }

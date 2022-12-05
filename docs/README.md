@@ -565,8 +565,8 @@ private static final List<Station> stations = new ArrayList<>();
   - [x] `InputView` : 원하는 기능 번호 입력받기
     - [x] `Exception` : 1, 2, 3, B가 아닐 경우 예외 처리
     - [x] 1 선택시 -> 노선 추가하기 기능 실행
-    - [ ] 2 선택시 -> 노선 삭제하기 기능 실행
-    - [ ] 3 선택시 -> 노선 조회하기 기능 실행
+    - [x] 2 선택시 -> 노선 삭제하기 기능 실행
+    - [x] 3 선택시 -> 노선 조회하기 기능 실행
     - [x] B 선택시 -> 프로그램 처음으로 돌아가기
 
 
@@ -635,12 +635,12 @@ private static final List<Station> stations = new ArrayList<>();
 - [x] 메인 화면으로 돌아가기
 
 **노선 조회하기**
-- [ ] `InputView` : 노선 이름 입력 받기
-- [ ] 입력값 검증하기
-  - [ ] `Exception` : 해당 노선이 등록되어있지 않으면 예외 처리
-- [ ] 노선 정보 찾아오기
-- [ ] `OutputView` : 노선 목록 출력하기
-- [ ] 메인 화면으로 돌아가기
+- [x] `InputView` : 노선 이름 입력 받기
+- [x] 입력값 검증하기
+  - [x] `Exception` : 해당 노선이 등록되어있지 않으면 예외 처리
+- [x] 노선 정보 찾아오기
+- [x] `OutputView` : 노선 목록 출력하기
+- [x] 메인 화면으로 돌아가기
 
 
 ### 지하철 구간 관련 기능

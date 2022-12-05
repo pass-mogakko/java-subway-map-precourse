@@ -21,6 +21,17 @@ class StationService {
         StationRepository.deleteStation(stationName);
     }
 
+    public String showAllStations() {
+        List<Station> stations = StationRepository.findAll();
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Station station : stations) {
+            String stationInfo = messageFactory.makeInfo(station.getName());
+            stringBuilder.append(stationInfo);
+        }
+        return stringBuilder.toString();
+    }
+
     private void validateNewName(String name) {
         Station station = StationRepository.findByName(name);
         if (station != null) {
@@ -35,15 +46,5 @@ class StationService {
         }
     }
 
-    public String showAllStations() {
-        List<Station> stations = StationRepository.findAll();
-
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Station station : stations) {
-            String stationInfo = messageFactory.makeInfo(station.getName());
-            stringBuilder.append(stationInfo);
-        }
-        return stringBuilder.toString();
-    }
 
 }
