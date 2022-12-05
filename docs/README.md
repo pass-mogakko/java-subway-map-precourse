@@ -538,7 +538,7 @@ private static final List<Station> stations = new ArrayList<>();
 ### 초기 설정
 
 - [x] 지하철역 - 교대역, 강남역, 역삼역, 남부터미널역, 양재역, 양재시민의숲역, 매봉역을 사전 등록하기
-- [ ] 지하철 노선 - 2호선, 3호선, 신분당선을 등록한다.
+- [x] 지하철 노선 - 2호선, 3호선, 신분당선을 등록한다.
 - [ ] 노선에 역을 아래와 같이 등록한다.
   - [ ] 2호선 : 교대역 - 강남역 - 역삼역
   - [ ] 3호선 : 교대역 - 남부터미널역 - 양재역 - 매봉역
@@ -583,6 +583,8 @@ private static final List<Station> stations = new ArrayList<>();
 
 **노선 추가하기**
 - [ ] `InputView` : 지하철 노선 이름 입력 받기
+- [ ] `InputView` : 상행 종점역 이름 입력 받기
+- [ ] `InputView` : 하행 종점역 이름 입력 받기
 - [ ] 입력값 검증하기
   - [ ] `Exception` : 중복된 지하철 노선 이름이 등록될 경우 예외 처리
   - [ ] `Exception` : 노선 이름이 2글자 이하일 경우 예외 처리
@@ -634,5 +636,5 @@ private static final List<Station> stations = new ArrayList<>();
   - StationRepository
 - Line (지하철 노선)
   - LineRepository : LinkedList
-- Link(구간) (필요시)
-  - LinkRepository (필요시)
+- LineSection(구간)
+  - LineSection
