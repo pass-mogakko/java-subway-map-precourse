@@ -9,8 +9,8 @@ import subway.command.StationCommand;
 
 
 public class OutputView {
-    private static final String SUCCESS_ADD_STATION = Constants.ERROR_PREFIX + "지하철 역이 등록되었습니다.";
-    private static final String SUCCESS_REMOVE_STATION = Constants.ERROR_PREFIX + "지하철 역이 삭제되었습니다.";
+    private static final String SUCCESS_ADD_STATION = Constants.INFO_PREFIX + "지하철 역이 등록되었습니다.";
+    private static final String SUCCESS_REMOVE_STATION = Constants.INFO_PREFIX + "지하철 역이 삭제되었습니다.";
 
     public static void printMainMenu() {
         System.out.println("## 메인 화면");
