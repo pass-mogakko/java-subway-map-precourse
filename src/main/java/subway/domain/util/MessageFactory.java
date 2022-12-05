@@ -8,7 +8,7 @@ public class MessageFactory {
         return ERROR_PREFIX + errorCode.getMessage();
     }
 
-    public String makeInfoMessage(String str) {
-        return INFO_PREFIX + str;
+    public String makeInfoMessage(InfoCode infoCode) {
+        return INFO_PREFIX + infoCode.getMessage();
     }
 }
