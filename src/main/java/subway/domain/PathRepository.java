@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-// TODO 검증 로직 클래스 분리
 public class PathRepository {
     private static final List<Path> paths = new ArrayList<>();
 
@@ -19,8 +18,13 @@ public class PathRepository {
         return Collections.unmodifiableList(paths);
     }
 
+    public static boolean hasStationInPath(String stationName) {
+        return paths().stream()
+                .anyMatch(path -> path.getStationNames().contains(stationName));
+    }
+
     public static void addPath(Path path) {
-        List<String> stations = path.getStations();
+        List<String> stations = path.getStationNames();
         validateLineName(path.getLineName());
         validateNamesToAdd(stations.get(0), stations.get(1));
         paths.add(path);
@@ -71,11 +75,4 @@ public class PathRepository {
                     throw new IllegalArgumentException("해당 이름을 가진 노선 경로 정보가 존재하지 않습니다.");
                 });
     }
-
-    public static boolean hasStationInPath(String stationName) {
-        return paths().stream()
-                .anyMatch(path -> path.getStations().contains(stationName));
-    }
-
-
 }

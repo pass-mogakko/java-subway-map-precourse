@@ -10,7 +10,7 @@ public class PathService {
     public static List<PathDTO> getAllPathsByLine() {
         return PathRepository.paths()
                 .stream()
-                .map(path -> new PathDTO(path.getLineName(), path.getStations()))
+                .map(path -> new PathDTO(path.getLineName(), path.getStationNames()))
                 .collect(Collectors.toList());
     }
 
