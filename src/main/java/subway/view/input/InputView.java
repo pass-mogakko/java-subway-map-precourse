@@ -25,9 +25,7 @@ public class InputView {
         return ManageCommand.getCommand(command);
     }
 
-    public static String readNewStation() {
-        return scanner.nextLine();
-    }
+
 
 }
 
