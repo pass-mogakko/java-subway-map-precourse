@@ -23,7 +23,7 @@ public class StationController {
     private StationController() {
     }
 
-    public static void selectMenu() {
+    static void selectMenu() {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
             OutputView.printStationMenus();

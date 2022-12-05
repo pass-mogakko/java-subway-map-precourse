@@ -193,11 +193,11 @@
 
 - controller
     - FirstController
+        - (inner) ControllerHandler
     - StationController
     - LineController
     - PathController
     - ErrorInterceptor
-    - ControllerHandler
 
 - view
     - OutputView

@@ -23,7 +23,10 @@ import subway.view.constants.menu.SubCommand;
 
 public class LineController {
 
-    public static void selectMenu() {
+    private LineController() {
+    }
+
+    static void selectMenu() {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
             OutputView.printLineMenus();
