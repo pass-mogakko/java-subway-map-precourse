@@ -40,7 +40,7 @@ public class LineService {
 
     public void deleteLine(LineDTO lineDTO) {
         String name = lineDTO.getName();
-        LineRepository.deleteLineByName(name);
         PathRepository.deletePath(name);
+        LineRepository.deleteLineByName(name);
     }
 }
