@@ -3,9 +3,16 @@ package subway.controller.function;
 import subway.constants.menu.Menu;
 import subway.controller.ManagementController;
 import subway.domain.command.ManageCommand;
+import subway.service.LineService;
 import subway.view.input.InputView;
+import subway.view.input.LineInputView;
+import subway.view.output.LineOutputView;
 
 public class LineController implements ManagementController {
+
+    private final LineService lineService = new LineService();
+    private final LineInputView lineInputView = new LineInputView();
+    private final LineOutputView lineOutputView = new LineOutputView();
 
     @Override
     public void execute() {
@@ -18,6 +25,7 @@ public class LineController implements ManagementController {
                 break;
             }
             executeByCommand(manageCommand);
+            break;
         }
     }
 
@@ -32,26 +40,35 @@ public class LineController implements ManagementController {
     }
 
     private void executeByCommand(ManageCommand manageCommand) {
+        try {
+            insert(manageCommand);
+            delete(manageCommand);
+            read(manageCommand);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void insert(ManageCommand manageCommand) {
         if (manageCommand.equals(ManageCommand.INSERT)) {
-            insert();
+            String name = lineInputView.readLineName();
+            String upStopStationName = lineInputView.readUpStopStationName();
+            String downStopStationName = lineInputView.readDownStopStationName();
+            lineService.insert(name, upStopStationName, downStopStationName);
+            lineOutputView.printInsertSuccess();
         }
+    }
+
+    private void delete(ManageCommand manageCommand) {
         if (manageCommand.equals(ManageCommand.DELETE)) {
-            delete();
+            lineService.delete(lineInputView.readDeleteLineName());
+            lineOutputView.printDeleteSuccess();
         }
+    }
+
+    private void read(ManageCommand manageCommand) {
         if (manageCommand.equals(ManageCommand.READ)) {
-            read();
+            lineOutputView.printLines(lineService.read());
         }
-    }
-
-    private void insert() {
-
-    }
-
-    private void delete() {
-
-    }
-
-    private void read() {
-
     }
 }
