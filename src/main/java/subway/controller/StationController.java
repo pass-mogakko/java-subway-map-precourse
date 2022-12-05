@@ -1,5 +1,7 @@
 package subway.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import subway.command.StationCommand;
 import subway.domain.Station;
 import subway.domain.StationRepository;
@@ -25,7 +27,7 @@ public class StationController {
         }
 
         if (command.equals(StationCommand.SHOW)) {
-
+            show();
         }
     }
 
@@ -71,5 +73,14 @@ public class StationController {
                 System.out.println(exception.getMessage());
             }
         }
+    }
+
+    private void show() {
+        List<Station> stations = StationRepository.stations();
+        List<String> stationNames = stations.stream()
+                .map(Station::getName)
+                .collect(Collectors.toList());
+
+        OutputView.printStations(stationNames);
     }
 }

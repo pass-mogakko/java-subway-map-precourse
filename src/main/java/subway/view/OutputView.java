@@ -1,5 +1,6 @@
 package subway.view;
 
+import java.util.List;
 import subway.Constants;
 import subway.command.LineCommand;
 import subway.command.MainCommand;
@@ -50,5 +51,11 @@ public class OutputView {
 
     public static void printStationRemoveSuccess() {
         System.out.println(SUCCESS_REMOVE_STATION);
+    }
+
+    public static void printStations(List<String> stationNames) {
+        stationNames.stream()
+                .forEach(System.out::println);
+        System.out.println();
     }
 }
