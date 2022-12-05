@@ -122,4 +122,5 @@ public class InputView {
         String input = Console.readLine();
         return inputValidator.validateSectionOrder(input);
     }
+
 }

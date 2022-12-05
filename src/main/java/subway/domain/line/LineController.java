@@ -4,6 +4,7 @@ import subway.domain.util.ExceptionHandler;
 import subway.domain.util.MessageFactory;
 import subway.view.InputView;
 import subway.view.OutputView;
+
 import static subway.domain.line.LineCommand.*;
 import static subway.domain.util.InfoCode.*;
 
@@ -15,7 +16,7 @@ public class LineController {
         lineService.setUp();
     }
 
-    public void run(){
+    public void run() {
         OutputView.printLinePage();
         String input = ExceptionHandler.repeatForValidInput(InputView::readDetailCommand);
         executeCommand(input);

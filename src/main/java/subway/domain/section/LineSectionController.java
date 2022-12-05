@@ -51,4 +51,5 @@ public class LineSectionController {
         String result = lineSectionService.showMap();
         OutputView.print(result);
     }
+
 }

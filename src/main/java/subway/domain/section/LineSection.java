@@ -26,7 +26,7 @@ public class LineSection {
     }
 
     public void addStation(Station station, int index) {
-        stations.add(index-1, station);
+        stations.add(index - 1, station);
     }
 
     public void deleteStation(Station station) {

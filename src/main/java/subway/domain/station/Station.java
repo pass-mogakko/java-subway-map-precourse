@@ -14,4 +14,5 @@ public class Station {
     public boolean nameEquals(String input) {
         return name.equals(input);
     }
+
 }
