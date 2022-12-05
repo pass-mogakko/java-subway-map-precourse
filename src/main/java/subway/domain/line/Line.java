@@ -17,16 +17,16 @@ public class Line {
         return name;
     }
 
-    public Sections getSections() {
-        return this.sections;
-    }
-
     public List<String> getSectionNames() {
         return sections.getStationNames();
     }
 
     public void addStation(int index, Station station) {
         sections.addSection(index, station);
+    }
+
+    public void deleteStation(Station station) {
+        sections.deleteSection(station);
     }
 
 }
