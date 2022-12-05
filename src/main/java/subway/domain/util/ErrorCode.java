@@ -12,7 +12,10 @@ public enum ErrorCode {
     // 노선 관련 오류
     INVALID_LINE_NAME("노선 이름은 숫자나 온전한 한글로만만 이루어져야 하며, 3글자 이상이어야 합니다."),
     DUPLICATE_LINE_NAME("이미 존재하는 노선 이름입니다. 메인 페이지로 돌아갑니다."),
-    LINE_NOT_FOUND("존재하지 않는 노선입니다. 메인 페이지로 돌아갑니다.");
+    LINE_NOT_FOUND("존재하지 않는 노선입니다. 메인 페이지로 돌아갑니다."),
+
+    // 구간 관련 오류
+    INVALID_ORDER_RANGE("구간은 1부터 시작하므로 1 이상의 숫자만 입력할 수 있습니다.");
 
     private final String message;
 

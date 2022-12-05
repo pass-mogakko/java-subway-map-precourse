@@ -574,7 +574,7 @@ private static final List<Station> stations = new ArrayList<>();
   - [x] `OutputView` : 구간 관리 화면 출력하기
   - [x] `InputView` : 원하는 기능 번호 입력받기
     - [x] `Exception` : 1, 2, B가 아닐 경우 예외 처리
-    - [ ] 1 선택시 -> 구간 추가하기 기능 실행
+    - [x] 1 선택시 -> 구간 추가하기 기능 실행
     - [ ] 2 선택시 -> 구간 삭제하기 기능 실행
     - [x] B 선택시 -> 프로그램 처음으로 돌아가기
 
@@ -645,13 +645,13 @@ private static final List<Station> stations = new ArrayList<>();
 
 ### 지하철 구간 관련 기능
 **구간 추가하기**
-- [ ] `InputView` : 지하철 노선 이름 입력 받기
-- [ ] `InputView` : 지하철 역 이름 입력 받기
-- [ ] `InputView` : 순서 입력 받기
-- [ ] 입력값 검증하기
-  - [ ] 지하철 노선, 역에 대한 유효성 검증
-  - [ ] `Exception` : 양의 정수가 아닐 경우 예외 처리
-- [ ] `OutputView` : 지하철 구간 추가 완료 메시지 출력하기
+- [x] `InputView` : 지하철 노선 이름 입력 받기
+- [x] `InputView` : 지하철 역 이름 입력 받기
+- [x] `InputView` : 순서 입력 받기
+- [x] 입력값 검증하기
+  - [x] 지하철 노선, 역에 대한 유효성 검증
+  - [x] `Exception` : 양의 정수가 아닐 경우 예외 처리
+- [x] `OutputView` : 지하철 구간 추가 완료 메시지 출력하기
 - [ ] 메인 화면으로 돌아가기
 
 **구간 삭제하기**

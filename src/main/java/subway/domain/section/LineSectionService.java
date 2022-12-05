@@ -6,6 +6,8 @@ import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 import java.util.LinkedList;
 import java.util.List;
+
+import static subway.domain.util.ErrorCode.*;
 import static subway.domain.util.SetupConstant.*;
 
 public class LineSectionService {
@@ -30,6 +32,30 @@ public class LineSectionService {
             stations.add(station);
         }
         return new LineSection(line, stations);
+    }
+
+    public void addSection(String lineName, String stationName, int order) {
+        Line line = findPresentLine(lineName);
+        Station station = findPresentStation(stationName);
+
+        LineSection lineSection = LineSectionRepository.findByLine(line);
+        lineSection.updateSection(station, order);
+    }
+
+    private Line findPresentLine(String lineName) {
+        Line line = LineRepository.findByName(lineName);
+        if (line == null) {
+            throw new IllegalArgumentException(LINE_NOT_FOUND.getMessage());
+        }
+        return line;
+    }
+
+    private Station findPresentStation(String stationName) {
+        Station station = StationRepository.findByName(stationName);
+        if (station == null) {
+            throw new IllegalArgumentException(STATION_NOT_FOUND.getMessage());
+        }
+        return station;
     }
 
 }

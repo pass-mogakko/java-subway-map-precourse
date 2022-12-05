@@ -13,7 +13,16 @@ public class LineSection {
         this.stations = stations;
     }
 
-    public Object getLineName() {
+    public String getLineName() {
         return line.getName();
     }
+
+    public boolean lineEquals(Line inputLine) {
+        return line.equals(inputLine);
+    }
+
+    public void updateSection(Station station, int index) {
+        stations.add(index-1, station);
+    }
+
 }

@@ -49,4 +49,11 @@ public class InputValidator {
         return input;
     }
 
+    public int validateSectionOrder(String input) {
+        int inputOrder = Integer.parseInt(input);
+        if (inputOrder < 1) {
+            throw new IllegalArgumentException(messageFactory.makeErrorMessage(ErrorCode.INVALID_ORDER_RANGE));
+        }
+        return inputOrder;
+    }
 }

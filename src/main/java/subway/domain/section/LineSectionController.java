@@ -1,13 +1,16 @@
 package subway.domain.section;
 
 import subway.domain.util.ExceptionHandler;
+import subway.domain.util.MessageFactory;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 import static subway.domain.section.LineSectionCommand.*;
+import static subway.domain.util.InfoCode.*;
 
 public class LineSectionController {
     private static final LineSectionService lineSectionService = new LineSectionService();
+    private final MessageFactory messageFactory = new MessageFactory();
 
     public void setUp() {
         lineSectionService.setUp();
@@ -24,6 +27,15 @@ public class LineSectionController {
         if (command == ADD_SECTION) addSection();
 //        if (command == DELETE_SECTION) deleteSection();
         if (command == BACK) return;
+    }
+
+    private void addSection() {
+        String lineName = InputView.readLineName();
+        String stationName = InputView.readStationName();
+        int order = InputView.readSectionOrder();
+        lineSectionService.addSection(lineName, stationName, order);
+
+        OutputView.print(messageFactory.makeInfoMessage(SECTION_ADDITION_COMPLETE));
     }
 
     public void showMap() {
