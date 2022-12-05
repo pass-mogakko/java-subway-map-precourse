@@ -25,7 +25,7 @@ public class LineSectionController {
     private void executeCommand(String input) {
         LineSectionCommand command = getCode(input);
         if (command == ADD_SECTION) addSection();
-//        if (command == DELETE_SECTION) deleteSection();
+        if (command == DELETE_SECTION) deleteSection();
         if (command == BACK) return;
     }
 
@@ -36,6 +36,14 @@ public class LineSectionController {
         lineSectionService.addSection(lineName, stationName, order);
 
         OutputView.print(messageFactory.makeInfoMessage(SECTION_ADDITION_COMPLETE));
+    }
+
+    private void deleteSection() {
+        String lineName = InputView.readLineName();
+        String stationName = InputView.readStationName();
+        lineSectionService.deleteSection(lineName, stationName);
+
+        OutputView.print(messageFactory.makeInfoMessage(SECTION_DELETION_COMPLETE));
     }
 
     public void showMap() {

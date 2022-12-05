@@ -15,7 +15,10 @@ public enum ErrorCode {
     LINE_NOT_FOUND("존재하지 않는 노선입니다. 메인 페이지로 돌아갑니다."),
 
     // 구간 관련 오류
-    INVALID_ORDER_RANGE("구간은 1부터 시작하므로 1 이상의 숫자만 입력할 수 있습니다.");
+    INVALID_ORDER_RANGE("구간은 1부터 시작하므로 1 이상의 숫자만 입력할 수 있습니다."),
+    DUPLICATE_SECTION("이미 해당 노선에 존재하는 역입니다. 메인 페이지로 이동합니다."),
+    SECTION_NOT_FOUND("존재하지 않는 구간입니다. 메인 페이지로 이동합니다."),
+    TOO_SHORT_SECTION("노선에 포함된 역이 두 개 이하라 더 이상 구간을 삭제할 수 없습니다. 메인 페이지로 이동합니다.");
 
     private final String message;
 

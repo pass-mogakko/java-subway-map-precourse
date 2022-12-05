@@ -21,8 +21,21 @@ public class LineSection {
         return line.equals(inputLine);
     }
 
-    public void updateSection(Station station, int index) {
+    public void addStation(Station station, int index) {
         stations.add(index-1, station);
+    }
+
+    public void deleteStation(Station station) {
+        stations.remove(station);
+    }
+
+    public boolean containsStation(Station station) {
+        return stations.contains(station);
+
+    }
+
+    public boolean isAffordable() {
+        return stations.size() > 2;
     }
 
 }
