@@ -12,4 +12,8 @@ public class LineSection {
         this.line = line;
         this.stations = stations;
     }
+
+    public Object getLineName() {
+        return line.getName();
+    }
 }

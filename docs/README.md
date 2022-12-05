@@ -628,11 +628,11 @@ private static final List<Station> stations = new ArrayList<>();
 - [x] 메인 화면으로 돌아가기
 
 **노선 삭제하기**
-- [ ] `InputView` : 노선 이름 입력 받기
-- [ ] 입력값 검증하기
-  - [ ] `Exception` : 해당 노선이 등록되어있지 않으면 예외 처리
-- [ ] `OutputView` : 노선 삭제 완료 메시지 출력하기
-- [ ] 메인 화면으로 돌아가기
+- [x] `InputView` : 노선 이름 입력 받기
+- [x] 입력값 검증하기
+  - [x] `Exception` : 해당 노선이 등록되어있지 않으면 예외 처리
+- [x] `OutputView` : 노선 삭제 완료 메시지 출력하기
+- [x] 메인 화면으로 돌아가기
 
 **노선 조회하기**
 - [ ] `InputView` : 노선 이름 입력 받기

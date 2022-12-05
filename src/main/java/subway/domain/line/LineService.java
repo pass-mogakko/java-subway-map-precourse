@@ -9,8 +9,7 @@ import subway.domain.util.MessageFactory;
 import java.util.LinkedList;
 import java.util.List;
 
-import static subway.domain.util.ErrorCode.DUPLICATE_LINE_NAME;
-import static subway.domain.util.ErrorCode.STATION_NOT_FOUND;
+import static subway.domain.util.ErrorCode.*;
 
 public class LineService {
     private static final MessageFactory messageFactory = new MessageFactory();
@@ -30,6 +29,12 @@ public class LineService {
         LineSectionRepository.save(lineSection);
     }
 
+    public void deleteLine(String lineName) {
+        validatePresentLine(lineName);
+        LineRepository.deleteByName(lineName);
+        LineSectionRepository.deleteByLineName(lineName);
+    }
+
     private void validateNewName(String name) {
         Line line = LineRepository.findByName(name);
         if (line != null) {
@@ -43,5 +48,12 @@ public class LineService {
             throw new IllegalArgumentException(messageFactory.makeErrorMessage(STATION_NOT_FOUND));
         }
         return station;
+    }
+
+    private void validatePresentLine(String name) {
+        Line line = LineRepository.findByName(name);
+        if (line == null) {
+            throw new IllegalArgumentException(messageFactory.makeErrorMessage(LINE_NOT_FOUND));
+        }
     }
 }

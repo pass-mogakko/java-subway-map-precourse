@@ -6,6 +6,7 @@ public class InputView {
     private static final String COMMAND_MESSAGE = "## 원하는 기능을 선택하세요.";
     private static final String ADD_STATION_MESSAGE = "## 등록할 역 이름을 입력하세요.";
     private static final String DELETE_STATION_MESSAGE = "## 삭제할 역 이름을 입력하세요.";
+    private static final String DELETE_LINE_MESSAGE = "## 삭제할 노선 이름을 입력하세요.";
     private static final String ADD_LINE_MESSAGE = "## 등록할 노선 이름을 입력하세요.";
     private static final String ADD_UP_FINAL_STATION_MESSAGE = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
     private static final String ADD_DOWN_FINAL_STATION_MESSAGE = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
@@ -75,4 +76,12 @@ public class InputView {
         return input;
     }
 
+    public static String readLineNameToDelete() {
+        System.out.println();
+        System.out.println(DELETE_LINE_MESSAGE);
+
+        String input = Console.readLine();
+        inputValidator.validateLineName(input);
+        return input;
+    }
 }
