@@ -2,8 +2,8 @@ package subway.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.domain.entity.Station;
+import subway.domain.repository.StationRepository;
 import subway.dto.StationDTO;
 
 public class StationService {

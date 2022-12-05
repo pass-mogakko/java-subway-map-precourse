@@ -1,4 +1,4 @@
-package subway.domain;
+package subway.domain.repository;
 
 import static subway.domain.constants.ErrorMessage.DOWN_FINAL_STATION_NOT_FOUND;
 import static subway.domain.constants.ErrorMessage.LINE_NOT_FOUND;
@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.domain.entity.Path;
 
 public class PathRepository {
     private static final List<Path> paths = new ArrayList<>();
