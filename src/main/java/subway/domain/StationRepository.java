@@ -1,5 +1,9 @@
 package subway.domain;
 
+import static subway.domain.constants.ErrorMessage.STATION_EXISTING;
+import static subway.domain.constants.ErrorMessage.STATION_IN_LINE;
+import static subway.domain.constants.ErrorMessage.STATION_NOT_FOUND;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,7 +38,7 @@ public class StationRepository {
 
     private static void validateNameToAdd(String name) {
         if (hasStation(name)) {
-            throw new IllegalArgumentException("이미 등록된 역 이름입니다.");
+            throw new IllegalArgumentException(STATION_EXISTING.getValue());
         }
     }
 
@@ -45,10 +49,10 @@ public class StationRepository {
 
     private static void validateNameToDelete(String name) {
         if (!hasStation(name)) {
-            throw new IllegalArgumentException("삭제할 역이 존재하지 않습니다.");
+            throw new IllegalArgumentException(STATION_NOT_FOUND.getValue());
         }
         if (PathRepository.hasStationInPath(name)) {
-            throw new IllegalArgumentException("노선에 등록된 역은 삭제할 수 없습니다.");
+            throw new IllegalArgumentException(STATION_IN_LINE.getValue());
         }
     }
 }

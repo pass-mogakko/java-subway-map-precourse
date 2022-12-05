@@ -1,5 +1,6 @@
 package subway.domain;
 
+import static subway.domain.constants.ErrorMessage.STATION_NAME_INVALID_LENGTH;
 import static subway.domain.constants.SubwayRule.NAME_MINIMUM_LENGTH;
 
 public class Station {
@@ -12,7 +13,7 @@ public class Station {
 
     private void validateName(String name) {
         if (name.length() < NAME_MINIMUM_LENGTH.getValue()) {
-            throw new IllegalArgumentException("역 이름은 최소 2글자 이상이어야 합니다.");
+            throw new IllegalArgumentException(STATION_NAME_INVALID_LENGTH.getValue());
         }
     }
 

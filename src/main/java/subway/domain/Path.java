@@ -1,5 +1,9 @@
 package subway.domain;
 
+import static subway.domain.constants.ErrorMessage.PATH_DUPLICATED_STATION;
+import static subway.domain.constants.ErrorMessage.PATH_INVALID_INDEX;
+import static subway.domain.constants.ErrorMessage.PATH_INVALID_SIZE;
+import static subway.domain.constants.ErrorMessage.PATH_INVALID_STATION;
 import static subway.domain.constants.SubwayRule.LINE_MINIMUM_STATION_COUNT;
 
 import java.util.Collections;
@@ -32,13 +36,13 @@ public class Path {
 
     private void validateIndex(int index) {
         if ((stationNames.size() + 1) < index) {
-            throw new IllegalArgumentException("노선 사이에 빈 구간을 둘 수 없습니다.");
+            throw new IllegalArgumentException(PATH_INVALID_INDEX.getValue());
         }
     }
 
     private void validateStationNameToInsert(String stationName) {
         if (stationNames.contains(stationName)) {
-            throw new IllegalArgumentException("이미 해당 노선에 포함된 역입니다.");
+            throw new IllegalArgumentException(PATH_DUPLICATED_STATION.getValue());
         }
     }
 
@@ -50,13 +54,13 @@ public class Path {
 
     private void validateStationsSize() {
         if (stationNames.size() == LINE_MINIMUM_STATION_COUNT.getValue()) {
-            throw new IllegalArgumentException("해당 노선의 역이 2개이므로 더 이상 삭제할 수 없습니다.");
+            throw new IllegalArgumentException(PATH_INVALID_SIZE.getValue());
         }
     }
 
     private void validateStationNameToDelete(String stationName) {
         if (!stationNames.contains(stationName)) {
-            throw new IllegalArgumentException("해당 노선에 포함되지 않은 역입니다.");
+            throw new IllegalArgumentException(PATH_INVALID_STATION.getValue());
         }
     }
 }

@@ -120,9 +120,7 @@
 - [x] 역, 노선 이름 조건 (2글자 이상)
 - [x] 노선에 필요한 최소 역 개수 (2개)
 - [x] 구간 순서 최소값 (1)
-
-- [ ] 메인 기능 종류 (역 관리, 노선관리, 구간 관리, 지하철 노선도 출력, 종료)
-- [ ] 세부 기능 종류 (등록, 삭제, 조회, 돌아가기)
+- [x] 에러메시지
 
 ### UI 로직 정보
 
@@ -133,7 +131,7 @@
 - [x] 세부 기능 명령어 (1, 2, 3, B / 등록, 삭제, 조회, 돌아가기)
 
 - [x] 안내 메시지 `원하는 기능을 선택하세요.`, `노선 목록` ...
-- [ ] 에러 메시지 `이미 등록된 역 이름입니다.` ...
+- [x] 에러 메시지 (키워드, 공백/빈문자열, 데이터 형식)
 - [x] 정보 및 결과 메시지 `구간이 삭제되었습니다.` ...
 - [x] 지하철 노선도 출력 구분선 `---`
 
@@ -169,19 +167,18 @@
 
 ## 🖋 클래스 설계
 
-- repository
-    - StationRepository
-    - LineRepository
-    - PathRepository
-- entity
-    - Station
-    - Line
-    - Path
-
-- service
-    - StationService
-    - LineService
-    - PathService
+- domain
+    - repository
+        - StationRepository
+        - LineRepository
+        - PathRepository
+    - entity
+        - Station
+        - Line
+        - Path
+    - constants
+        - SubwayRule
+        - ErrorMessage
 
 - dto
     - StationsDTO
@@ -189,21 +186,32 @@
     - FinalStationsDTO
     - PathsDTO
 
+- service
+    - StationService
+    - LineService
+    - PathService
+
 - controller
     - FirstController
     - StationController
     - LineController
     - PathController
-    - InputHandler
+    - ErrorInterceptor
+    - ControllerHandler
 
 - view
     - OutputView
     - InputView
     - ConsolePrinter
+    - ConsoleReader
     - constants
-        - Display
-        - MainCommand
-        - SubCommand
+        - menu
+            - MainMenu
+            - StationMenu
+            - LineMenu
+            - PathMenu
+            - MainCommand
+            - SubCommand
         - InputMessage
         - OutputMessage
         - ErrorMessage

@@ -1,5 +1,11 @@
 package subway.domain;
 
+import static subway.domain.constants.ErrorMessage.DOWN_FINAL_STATION_NOT_FOUND;
+import static subway.domain.constants.ErrorMessage.LINE_NOT_FOUND;
+import static subway.domain.constants.ErrorMessage.PATH_BY_LINE_NOT_FOUND;
+import static subway.domain.constants.ErrorMessage.STATION_NOT_FOUND;
+import static subway.domain.constants.ErrorMessage.UP_FINAL_STATION_NOT_FOUND;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,16 +32,16 @@ public class PathRepository {
     public static void addPath(Path path) {
         List<String> stations = path.getStationNames();
         validateLineName(path.getLineName());
-        validateNamesToAdd(stations.get(0), stations.get(1));
+        validateStationNamesToAdd(stations.get(0), stations.get(1));
         paths.add(path);
     }
 
-    private static void validateNamesToAdd(String upFinalStationName, String downFinalStationName) {
+    private static void validateStationNamesToAdd(String upFinalStationName, String downFinalStationName) {
         if (!StationRepository.hasStation(upFinalStationName)) {
-            throw new IllegalArgumentException("상행 종점역 등록 불가: 존재하지 않는 역 이름입니다.");
+            throw new IllegalArgumentException(UP_FINAL_STATION_NOT_FOUND.getValue());
         }
         if (!StationRepository.hasStation(downFinalStationName)) {
-            throw new IllegalArgumentException("하행 종점역 등록 불가: 존재하지 않는 역 이름입니다.");
+            throw new IllegalArgumentException(DOWN_FINAL_STATION_NOT_FOUND.getValue());
         }
     }
 
@@ -46,7 +52,7 @@ public class PathRepository {
 
     private static void validateLineName(String lineName) {
         if (!LineRepository.hasLine(lineName)) {
-            throw new IllegalArgumentException("해당 이름을 가진 노선이 존재하지 않습니다.");
+            throw new IllegalArgumentException(LINE_NOT_FOUND.getValue());
         }
     }
 
@@ -58,7 +64,7 @@ public class PathRepository {
 
     private static void validateStationName(String stationName) {
         if (!StationRepository.hasStation(stationName)) {
-            throw new IllegalArgumentException("존재하지 않는 역 이름입니다.");
+            throw new IllegalArgumentException(STATION_NOT_FOUND.getValue());
         }
     }
 
@@ -72,7 +78,7 @@ public class PathRepository {
                 .filter(path -> Objects.equals(path.getLineName(), lineName))
                 .findFirst()
                 .orElseThrow(() -> {
-                    throw new IllegalArgumentException("해당 이름을 가진 노선 경로 정보가 존재하지 않습니다.");
+                    throw new IllegalArgumentException(PATH_BY_LINE_NOT_FOUND.getValue());
                 });
     }
 }

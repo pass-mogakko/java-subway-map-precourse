@@ -1,5 +1,8 @@
 package subway.domain;
 
+import static subway.domain.constants.ErrorMessage.LINE_EXISTING;
+import static subway.domain.constants.ErrorMessage.LINE_NOT_FOUND;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,7 +33,7 @@ public class LineRepository {
 
     private static void validateNameToAdd(String name) {
         if (hasLine(name)) {
-            throw new IllegalArgumentException("이미 등록된 노선 이름입니다.");
+            throw new IllegalArgumentException(LINE_EXISTING.getValue());
         }
     }
 
@@ -41,7 +44,7 @@ public class LineRepository {
 
     private static void validateNameToDelete(String name) {
         if (!hasLine(name)) {
-            throw new IllegalArgumentException("삭제할 노선이 노선 목록에 존재하지 않습니다.");
+            throw new IllegalArgumentException(LINE_NOT_FOUND.getValue());
         }
     }
 }
