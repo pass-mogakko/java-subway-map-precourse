@@ -1,7 +1,6 @@
 package subway.dto;
 
 public class FinalStationsDTO {
-
     private final String upFinalStationName;
     private final String downFinalStationName;
 

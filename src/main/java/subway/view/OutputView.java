@@ -21,7 +21,6 @@ import subway.view.constants.menu.PathMenu;
 import subway.view.constants.menu.StationMenu;
 
 public class OutputView {
-
     private OutputView() {
     }
 
@@ -80,7 +79,7 @@ public class OutputView {
     private static void printPathByLine(PathDTO path) {
         ConsolePrinter.printInfo(path.getLineName());
         ConsolePrinter.printInfo(BORDER_LINE.getValue());
-        path.getStations()
+        path.getStationNames()
                 .forEach(ConsolePrinter::printInfo);
         ConsolePrinter.printBlankLine();
     }

@@ -21,7 +21,6 @@ import subway.view.OutputView;
 import subway.view.constants.menu.SubCommand;
 
 public class PathController {
-
     private static final PathService pathService = PathService.getInstance();
 
     private PathController() {

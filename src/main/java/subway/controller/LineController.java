@@ -22,7 +22,6 @@ import subway.view.OutputView;
 import subway.view.constants.menu.SubCommand;
 
 public class LineController {
-
     private static final LineService lineService = LineService.getInstance();
 
     private LineController() {

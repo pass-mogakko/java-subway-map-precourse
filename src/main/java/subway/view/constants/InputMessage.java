@@ -1,7 +1,6 @@
 package subway.view.constants;
 
 public enum InputMessage {
-
     COMMAND_HEADER("원하는 기능을 선택하세요."),
 
     STATION_CREATE_NAME_HEADER("등록할 역 이름을 입력하세요."),

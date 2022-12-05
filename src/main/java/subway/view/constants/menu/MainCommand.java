@@ -5,7 +5,6 @@ import static subway.view.constants.ErrorMessage.INPUT_INVALID_COMMAND;
 import java.util.Arrays;
 
 public enum MainCommand {
-
     STATION("1"),
     LINE("2"),
     PATH("3"),

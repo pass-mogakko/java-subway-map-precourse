@@ -1,7 +1,6 @@
 package subway.domain.constants;
 
 public enum SubwayRule {
-
     NAME_MINIMUM_LENGTH(2),
     LINE_MINIMUM_STATION_COUNT(2),
     PATH_STARTING_INDEX(1);

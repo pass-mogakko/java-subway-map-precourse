@@ -1,7 +1,6 @@
 package subway.domain.constants;
 
 public enum ErrorMessage {
-
     STATION_NAME_INVALID_LENGTH("역 이름은 최소 2글자 이상이어야 합니다."),
     LINE_NAME_INVALID_LENGTH("노선 이름은 최소 2글자 이상이어야 합니다."),
 

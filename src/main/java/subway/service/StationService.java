@@ -7,7 +7,6 @@ import subway.domain.repository.StationRepository;
 import subway.dto.StationDTO;
 
 public class StationService {
-
     private static StationService instance;
 
     private StationService() {

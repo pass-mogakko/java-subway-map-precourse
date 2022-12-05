@@ -8,7 +8,6 @@ import subway.view.constants.menu.MainCommand;
 import subway.view.constants.menu.SubCommand;
 
 public class ConsoleReader {
-
     private static final String REGEX_NUMBER = "^[1-9][0-9]*$";
 
     private ConsoleReader() {

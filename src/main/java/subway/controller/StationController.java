@@ -19,7 +19,6 @@ import subway.view.OutputView;
 import subway.view.constants.menu.SubCommand;
 
 public class StationController {
-
     private static final StationService stationService = StationService.getInstance();
 
     private StationController() {

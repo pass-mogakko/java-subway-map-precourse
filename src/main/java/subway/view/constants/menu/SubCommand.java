@@ -5,7 +5,6 @@ import static subway.view.constants.ErrorMessage.INPUT_INVALID_COMMAND;
 import java.util.Arrays;
 
 public enum SubCommand {
-
     CREATE("1"),
     DELETE("2"),
     READ("3"),

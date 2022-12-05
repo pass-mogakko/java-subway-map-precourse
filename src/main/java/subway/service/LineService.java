@@ -10,7 +10,6 @@ import subway.dto.FinalStationsDTO;
 import subway.dto.LineDTO;
 
 public class LineService {
-
     private static LineService instance;
 
     private LineService() {

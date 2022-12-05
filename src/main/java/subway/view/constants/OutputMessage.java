@@ -1,7 +1,6 @@
 package subway.view.constants;
 
 public enum OutputMessage {
-
     MAIN_DISPLAY_HEADER("메인 화면"),
     STATION_DISPLAY_HEADER("역 관리 화면"),
     LINE_DISPLAY_HEADER("노선 관리 화면"),

@@ -10,7 +10,6 @@ import subway.view.constants.Format;
 import subway.view.constants.menu.Menu;
 
 public class ConsolePrinter {
-
     private ConsolePrinter() {
     }
 

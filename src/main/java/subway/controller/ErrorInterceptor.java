@@ -3,7 +3,6 @@ package subway.controller;
 import subway.view.OutputView;
 
 public class ErrorInterceptor {
-
     private ErrorInterceptor() {
     }
 

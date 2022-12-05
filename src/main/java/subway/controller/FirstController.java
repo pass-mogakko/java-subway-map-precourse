@@ -12,12 +12,15 @@ import subway.view.OutputView;
 import subway.view.constants.menu.MainCommand;
 
 public class FirstController {
-
     private static FirstController instance;
     private RunStatus runStatus = STOPPED;
 
     private FirstController() {
-        run();
+        try {
+            run();
+        } catch (Exception exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+        }
     }
 
     public static void initializeInstance() {

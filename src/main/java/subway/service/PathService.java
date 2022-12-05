@@ -6,7 +6,6 @@ import subway.domain.repository.PathRepository;
 import subway.dto.PathDTO;
 
 public class PathService {
-
     private static PathService instance;
 
     private PathService() {

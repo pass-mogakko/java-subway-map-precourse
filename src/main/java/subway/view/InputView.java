@@ -7,7 +7,6 @@ import subway.view.constants.menu.MainCommand;
 import subway.view.constants.menu.SubCommand;
 
 public class InputView {
-
     private InputView() {
     }
 
