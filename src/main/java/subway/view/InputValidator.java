@@ -2,7 +2,6 @@ package subway.view;
 
 import subway.domain.util.ErrorCode;
 import subway.domain.util.MessageFactory;
-
 import java.util.List;
 
 public class InputValidator {

@@ -1,11 +1,15 @@
 package subway.domain.station;
 
 import subway.domain.util.MessageFactory;
-
+import java.util.List;
 import static subway.domain.util.ErrorCode.*;
 
 class StationService {
     private static final MessageFactory messageFactory = new MessageFactory();
+
+    public void setUp() {
+        StationRepository.setUp();
+    }
 
     public void addStation(String name) {
         validateNewName(name);
@@ -29,6 +33,17 @@ class StationService {
         if (station == null) {
             throw new IllegalArgumentException(messageFactory.makeErrorMessage(STATION_NOT_FOUND));
         }
+    }
+
+    public String showAllStations() {
+        List<Station> stations = StationRepository.findAll();
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Station station : stations) {
+            String stationInfo = messageFactory.makeInfo(station.getName());
+            stringBuilder.append(stationInfo);
+        }
+        return stringBuilder.toString();
     }
 
 }

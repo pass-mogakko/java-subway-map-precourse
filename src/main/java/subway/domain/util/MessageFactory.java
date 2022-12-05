@@ -11,4 +11,8 @@ public class MessageFactory {
     public String makeInfoMessage(InfoCode infoCode) {
         return String.format(INFO_FORMAT, infoCode.getMessage());
     }
+
+    public String makeInfo(String str) {
+        return String.format(INFO_FORMAT, str);
+    }
 }

@@ -4,13 +4,16 @@ import subway.domain.util.ExceptionHandler;
 import subway.domain.util.MessageFactory;
 import subway.view.InputView;
 import subway.view.OutputView;
-
 import static subway.domain.station.StationCommand.*;
 import static subway.domain.util.InfoCode.*;
 
 public class StationController {
     private static final StationService stationService = new StationService();
     private final MessageFactory messageFactory = new MessageFactory();
+
+    public void setUp() {
+        stationService.setUp();
+    }
 
     public void run() {
         OutputView.printStationPage();
@@ -23,8 +26,8 @@ public class StationController {
 
         if (command == ADD_STATION) addStation();
         if (command == StationCommand.DELETE_STATION) deleteStation();
-//        if (command == StationCommand.SHOW_STATION) showStation();
-//        if (command == StationCommand.BACK) return;
+        if (command == StationCommand.SHOW_STATION) showAllStations();
+        if (command == StationCommand.BACK) return;
     }
 
     private void addStation() {
@@ -38,4 +41,10 @@ public class StationController {
         stationService.deleteStation(stationName);
         OutputView.print(messageFactory.makeInfoMessage(DELETE_STATION_COMPLETE));
     }
+
+    private void showAllStations() {
+        String result = stationService.showAllStations();
+        OutputView.print(result);
+    }
+
 }

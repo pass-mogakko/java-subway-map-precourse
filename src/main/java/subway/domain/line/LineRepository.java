@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-
 import static subway.domain.util.SetupConstant.*;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
     
-    private LineRepository() {
+    private LineRepository() {}
+
+    public static void setUp() {
         save(new Line(LINE_2));
         save(new Line(LINE_3));
         save(new Line(LINE_SINBUNDANG));

@@ -3,7 +3,6 @@ package subway.domain.global;
 import subway.domain.line.LineController;
 import subway.domain.section.LineSectionController;
 import subway.domain.station.StationController;
-
 import static subway.domain.global.SystemCommand.*;
 
 public class SystemService {

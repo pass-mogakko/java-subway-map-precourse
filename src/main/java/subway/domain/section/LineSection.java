@@ -2,7 +2,6 @@ package subway.domain.section;
 
 import subway.domain.line.Line;
 import subway.domain.station.Station;
-
 import java.util.LinkedList;
 
 public class LineSection {

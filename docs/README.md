@@ -606,12 +606,9 @@ private static final List<Station> stations = new ArrayList<>();
 - [x] 첫 페이지로 돌아가기
 
 **역 목록 조회하기**
-- [ ] `InputView` : 지하철 역 이름 입력 받기
-- [ ] 입력값 검증하기
-  - [ ] `Exception` : 해당 역이 등록되어있지 않으면 예외 처리
-- [ ] 지하철 역 목록 가져오기
-- [ ] `OutputView` : 지하철 목록 출력하기
-- [ ] 메인 화면으로 돌아가기
+- [x] 지하철 역 목록 가져오기
+- [x] `OutputView` : 지하철 목록 출력하기
+- [x] 메인 화면으로 돌아가기
 
 
 ### 지하철 노선 관련 기능
@@ -670,6 +667,6 @@ private static final List<Station> stations = new ArrayList<>();
 - Station(지하철 역)
   - StationRepository
 - Line (지하철 노선)
-  - LineRepository : LinkedList
+  - LineRepository
 - LineSection(구간)
-  - LineSection
+  - LineSection : LinkedList

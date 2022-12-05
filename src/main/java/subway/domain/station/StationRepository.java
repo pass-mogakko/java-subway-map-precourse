@@ -1,13 +1,14 @@
 package subway.domain.station;
 
 import java.util.*;
-
 import static subway.domain.util.SetupConstant.*;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
 
-    private StationRepository() {
+    private StationRepository() {}
+
+    public static void setUp() {
         save(new Station(STATION_GYODAE));
         save(new Station(STATION_GANGNAM));
         save(new Station(STATION_YEOKSAM));
@@ -16,6 +17,7 @@ public class StationRepository {
         save(new Station(STATION_YANGJAE_CITIZENS_FOREST));
         save(new Station(STATION_MAEBONG));
     }
+
     public static List<Station> findAll() {
         return Collections.unmodifiableList(stations);
     }

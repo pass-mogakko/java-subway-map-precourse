@@ -1,7 +1,6 @@
 package subway.domain.util;
 
 import subway.view.OutputView;
-
 import java.util.function.Supplier;
 
 public class ExceptionHandler {
