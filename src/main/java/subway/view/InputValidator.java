@@ -7,6 +7,7 @@ import java.util.List;
 public class InputValidator {
     private static final List<String> VALID_MAIN_COMMAND_RANGE = List.of("1", "2", "3", "4", "Q");
     private static final List<String> VALID_DETAIL_COMMAND_RANGE = List.of("1", "2", "3", "B");
+    private static final List<String> VALID_SECTION_COMMAND_RANGE = List.of("1", "2", "3", "B");
     private static final int VALID_NAME_MINIMUM = 3;
     private static final String STATION_NAME_REGEX = "[^가-힣]";
     private static final String LINE_NAME_REGEX = "[^가-힣0-9]";
@@ -21,6 +22,12 @@ public class InputValidator {
     }
 
     void validateDetailCommand(String input) {
+        if (!VALID_DETAIL_COMMAND_RANGE.contains(input)) {
+            throw new IllegalArgumentException(messageFactory.makeErrorMessage(ErrorCode.INVALID_COMMAND));
+        }
+    }
+
+    void validateSectionCommand(String input) {
         if (!VALID_DETAIL_COMMAND_RANGE.contains(input)) {
             throw new IllegalArgumentException(messageFactory.makeErrorMessage(ErrorCode.INVALID_COMMAND));
         }
@@ -41,4 +48,5 @@ public class InputValidator {
         }
         return input;
     }
+
 }

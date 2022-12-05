@@ -72,8 +72,7 @@ public class InputView {
         System.out.println(ADD_DOWN_FINAL_STATION_MESSAGE);
 
         String input = Console.readLine();
-        inputValidator.validateStationName(input);
-        return input;
+        return inputValidator.validateStationName(input);
     }
 
     public static String readLineNameToDelete() {
@@ -81,7 +80,16 @@ public class InputView {
         System.out.println(DELETE_LINE_MESSAGE);
 
         String input = Console.readLine();
-        inputValidator.validateLineName(input);
+        return inputValidator.validateLineName(input);
+    }
+
+    public static String readSectionCommand() {
+        System.out.println();
+        System.out.println(COMMAND_MESSAGE);
+
+        String input = Console.readLine();
+        inputValidator.validateSectionCommand(input);
         return input;
     }
+
 }

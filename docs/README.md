@@ -571,7 +571,7 @@ private static final List<Station> stations = new ArrayList<>();
 
 
 - 3 선택시
-  - [ ] `OutputView` : 구간 관리 화면 출력하기
+  - [x] `OutputView` : 구간 관리 화면 출력하기
   - [ ] `InputView` : 원하는 기능 번호 입력받기
     - [ ] `Exception` : 1, 2, B가 아닐 경우 예외 처리
     - [ ] 1 선택시 -> 구간 추가하기 기능 실행
