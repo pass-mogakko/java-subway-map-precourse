@@ -17,6 +17,6 @@ public class Station {
 
     @Override
     public String toString() {
-        return Constants.INFO_PREFIX + name;
+        return name;
     }
 }

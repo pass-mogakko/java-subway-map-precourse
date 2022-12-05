@@ -23,14 +23,7 @@ public class Route {
 
     @Override
     public String toString() {
-        String result = "";
-
-        result += line.toString() + System.lineSeparator();
-        result += Constants.INFO_PREFIX + "---" + System.lineSeparator();
-        for (final Station station : stations) {
-            result += station.toString() + System.lineSeparator();
-        }
-
-        return result;
+        return "line=" + line +
+                ", stations=" + stations;
     }
 }
