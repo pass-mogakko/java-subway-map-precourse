@@ -20,6 +20,12 @@ public class LineRepository {
         return Collections.unmodifiableList(lines);
     }
 
+    public static Line getLine(String name) {
+        return lines.stream()
+                .filter(line -> name.equals(line.getName()))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 노선"));
+    }
 
     public static void addLine(Line line) {
         lines.add(line);

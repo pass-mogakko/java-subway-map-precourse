@@ -24,6 +24,13 @@ public class StationRepository {
         return Collections.unmodifiableList(stations);
     }
 
+    public static Station getStation(String name) {
+        return stations.stream()
+                .filter(station -> name.equals(station.getName()))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("잘못된 역이름"));
+    }
+
     public static void addStation(Station station) {
         stations.add(station);
     }
