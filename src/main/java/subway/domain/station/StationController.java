@@ -33,13 +33,13 @@ public class StationController {
     private void addStation() {
         String stationName = ExceptionHandler.repeatForValidInput(InputView::readStationNameToAdd);
         stationService.addStation(stationName);
-        OutputView.print(messageFactory.makeInfoMessage(ADD_STATION_COMPLETE));
+        OutputView.print(messageFactory.makeInfoMessage(STATION_ADDITION_COMPLETE));
     }
 
     private void deleteStation() {
         String stationName = ExceptionHandler.repeatForValidInput(InputView::readStationNameToDelete);
         stationService.deleteStation(stationName);
-        OutputView.print(messageFactory.makeInfoMessage(DELETE_STATION_COMPLETE));
+        OutputView.print(messageFactory.makeInfoMessage(STATION_DELETION_COMPLETE));
     }
 
     private void showAllStations() {
