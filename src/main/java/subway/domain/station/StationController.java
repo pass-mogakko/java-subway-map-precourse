@@ -16,7 +16,6 @@ public class StationController {
     }
 
     private void executeCommand(String input) {
-        stationService.validateCommand(input);
         StationCommand command = getCode(input);
 
         if (command == ADD_STATION) addStation();
