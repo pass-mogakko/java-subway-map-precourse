@@ -2,7 +2,7 @@ package subway.domain.station;
 
 import subway.domain.util.MessageFactory;
 
-import static subway.domain.util.ErrorCode.DUPLICATE_STATION_NAME;
+import static subway.domain.util.ErrorCode.*;
 
 class StationService {
     private static final MessageFactory messageFactory = new MessageFactory();
@@ -12,6 +12,11 @@ class StationService {
         StationRepository.save(new Station(name));
     }
 
+    public void deleteStation(String stationName) {
+        validatePresentStation(stationName);
+        StationRepository.deleteStation(stationName);
+    }
+
     private void validateNewName(String name) {
         Station station = StationRepository.findByName(name);
         if (station != null) {
@@ -19,11 +24,11 @@ class StationService {
         }
     }
 
-    private Station isPresentStation(String name) {
+    private void validatePresentStation(String name) {
         Station station = StationRepository.findByName(name);
         if (station == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(messageFactory.makeErrorMessage(STATION_NOT_FOUND));
         }
-        return station;
     }
+
 }

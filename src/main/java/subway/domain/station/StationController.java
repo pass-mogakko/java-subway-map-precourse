@@ -6,7 +6,7 @@ import subway.view.InputView;
 import subway.view.OutputView;
 
 import static subway.domain.station.StationCommand.*;
-import static subway.domain.util.InfoCode.ADD_STATION_COMPLETE;
+import static subway.domain.util.InfoCode.*;
 
 public class StationController {
     private static final StationService stationService = new StationService();
@@ -22,7 +22,7 @@ public class StationController {
         StationCommand command = getCode(input);
 
         if (command == ADD_STATION) addStation();
-//        if (command == StationCommand.DELETE_STATION) deleteStation();
+        if (command == StationCommand.DELETE_STATION) deleteStation();
 //        if (command == StationCommand.SHOW_STATION) showStation();
 //        if (command == StationCommand.BACK) return;
     }
@@ -31,5 +31,11 @@ public class StationController {
         String stationName = ExceptionHandler.repeatForValidInput(InputView::readStationName);
         stationService.addStation(stationName);
         OutputView.print(messageFactory.makeInfoMessage(ADD_STATION_COMPLETE));
+    }
+
+    private void deleteStation() {
+        String stationName = ExceptionHandler.repeatForValidInput(InputView::readStationName);
+        stationService.deleteStation(stationName);
+        OutputView.print(messageFactory.makeInfoMessage(DELETE_STATION_COMPLETE));
     }
 }

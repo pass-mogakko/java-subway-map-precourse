@@ -556,7 +556,7 @@ private static final List<Station> stations = new ArrayList<>();
   - [x] `InputView` : 원하는 기능 번호 입력받기
     - [x] `Exception` : 1, 2, 3, B가 아닐 경우 예외 처리
     - [x] 1 선택시 -> 역 추가하기 기능 실행
-    - [ ] 2 선택시 -> 역 삭제하기 기능 실행
+    - [x] 2 선택시 -> 역 삭제하기 기능 실행
     - [ ] 3 선택시 -> 역 조회하기 기능 실행
     - [ ] B 선택시 -> 프로그램 처음으로 돌아가기
 
@@ -599,11 +599,11 @@ private static final List<Station> stations = new ArrayList<>();
 
 
 **역 삭제하기**
-- [ ] `InputView` : 지하철 역 이름 입력 받기
-- [ ] 입력값 검증하기
-  - [ ] `Exception` : 해당 역이 등록되어있지 않으면 예외 처리
-- [ ] `OutputView` : 지하철 역 삭제 완료 메시지 출력하기
-- [ ] 첫 페이지로 돌아가기
+- [x] `InputView` : 지하철 역 이름 입력 받기
+- [x] 입력값 검증하기
+  - [x] `Exception` : 해당 역이 등록되어있지 않으면 예외 처리
+- [x] `OutputView` : 지하철 역 삭제 완료 메시지 출력하기
+- [x] 첫 페이지로 돌아가기
 
 **역 목록 조회하기**
 - [ ] `InputView` : 지하철 역 이름 입력 받기
