@@ -552,10 +552,10 @@ private static final List<Station> stations = new ArrayList<>();
   - [x] `Exception` : 예외 발생시 유효한 값이 올때까지 반복
 
 - 1 선택시
-  - [ ] `OutputView` : 역 관리 화면 출력하기
-  - [ ] `InputView` : 원하는 기능 번호 입력받기
-    - [ ] `Exception` : 1, 2, 3, B가 아닐 경우 예외 처리
-    - [ ] 1 선택시 -> 역 추가하기 기능 실행
+  - [x] `OutputView` : 역 관리 화면 출력하기
+  - [x] `InputView` : 원하는 기능 번호 입력받기
+    - [x] `Exception` : 1, 2, 3, B가 아닐 경우 예외 처리
+    - [x] 1 선택시 -> 역 추가하기 기능 실행
     - [ ] 2 선택시 -> 역 삭제하기 기능 실행
     - [ ] 3 선택시 -> 역 조회하기 기능 실행
     - [ ] B 선택시 -> 프로그램 처음으로 돌아가기

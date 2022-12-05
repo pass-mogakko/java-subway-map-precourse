@@ -5,6 +5,8 @@ import subway.domain.util.ExceptionHandler;
 import subway.view.InputView;
 import subway.view.OutputView;
 
+import static subway.domain.SystemCommand.*;
+
 public class SystemController {
     private static final SystemController systemController = new SystemController();
     private static final SystemService systemService = new SystemService();
@@ -17,7 +19,8 @@ public class SystemController {
     public void run() {
         OutputView.printMainPage();
         String input = ExceptionHandler.repeatForValidInput(systemController::readMainCommand);
-        systemService.executeCommand(input);
+        SystemCommand command = convertToCommand(input);
+        systemService.executeCommand(command);
     }
 
     private String readMainCommand() {

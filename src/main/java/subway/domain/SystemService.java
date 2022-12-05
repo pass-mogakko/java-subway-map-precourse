@@ -32,11 +32,11 @@ public class SystemService {
         }
     }
 
-    public void executeCommand(String command) {
-        if (command.equals(STATION_MANAGEMENT)) stationController.run();
-        if (command.equals(LINE_MANAGEMENT))    lineController.run();
-        if (command.equals(SECTION_MANAGEMENT)) lineSectionController.run();
-        if (command.equals(SHOW_LINE_SECTION_MAP)) lineSectionController.showMap();
-        if (command.equals(QUIT)) return;
+    public void executeCommand(SystemCommand command) {
+        if (command.equals(SystemCommand.STATION_MANAGEMENT)) stationController.run();
+        if (command.equals(SystemCommand.LINE_MANAGEMENT))    lineController.run();
+        if (command.equals(SystemCommand.SECTION_MANAGEMENT)) lineSectionController.run();
+        if (command.equals(SystemCommand.SHOW_LINE_SECTION_MAP)) lineSectionController.showMap();
+        if (command.equals(SystemCommand.QUIT)) return;
     }
 }
