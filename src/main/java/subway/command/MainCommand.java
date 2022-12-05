@@ -22,7 +22,7 @@ public enum MainCommand {
 
     public static MainCommand getCommand(String input) {
         return Arrays.stream(MainCommand.values())
-                .filter(command -> input.equals(command.name()))
+                .filter(mainCommand -> input.equals(mainCommand.command))
                 .findAny()
                 .orElseThrow(()
                         -> new IllegalArgumentException(Constants.ERROR_PREFIX + "선택할 수 없는 기능입니다."));

@@ -20,7 +20,7 @@ public enum RouteCommand {
 
     public static RouteCommand getCommand(final String input) {
         return Arrays.stream(RouteCommand.values())
-                .filter(command -> input.equals(command.name()))
+                .filter(routeCommand -> input.equals(routeCommand.command))
                 .findAny()
                 .orElseThrow(()
                         -> new IllegalArgumentException(Constants.ERROR_PREFIX + "선택할 수 없는 기능입니다."));

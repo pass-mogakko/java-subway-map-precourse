@@ -21,7 +21,7 @@ public enum StationCommand {
 
     public static StationCommand getCommand(final String input) {
         return Arrays.stream(StationCommand.values())
-                .filter(command -> input.equals(command.name()))
+                .filter(stationCommand -> input.equals(stationCommand.command))
                 .findAny()
                 .orElseThrow(()
                         -> new IllegalArgumentException(Constants.ERROR_PREFIX + "선택할 수 없는 기능입니다."));

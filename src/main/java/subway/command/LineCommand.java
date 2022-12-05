@@ -21,7 +21,7 @@ public enum LineCommand {
 
     public static LineCommand getCommand(final String input) {
         return Arrays.stream(LineCommand.values())
-                .filter(command -> input.equals(command.name()))
+                .filter(lineCommand -> input.equals(lineCommand.command))
                 .findAny()
                 .orElseThrow(()
                         -> new IllegalArgumentException(Constants.ERROR_PREFIX + "선택할 수 없는 기능입니다."));
