@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SystemCommandTest {
 
-    @DisplayName("메인페이지 입력값을 Command로 변환하기")
+    @DisplayName("메인페이지 입력값을 Command로 변환 테스트")
     @Test
     void convertToCommandTest() {
         assertThat(SystemCommand.convertToCommand("1")).isEqualTo(SystemCommand.STATION_MANAGEMENT);
@@ -20,7 +20,7 @@ class SystemCommandTest {
         assertThat(SystemCommand.convertToCommand("Q")).isEqualTo(SystemCommand.QUIT);
     }
 
-    @DisplayName("메인페이지 입력값을 Command로 변환하기 - null")
+    @DisplayName("메인페이지 입력값을 Command로 변환 테스트 - null")
     @ValueSource(strings = {"0", "5", "일", "", "B"})
     @ParameterizedTest
     void convertToCommandNullTest(String input) {
