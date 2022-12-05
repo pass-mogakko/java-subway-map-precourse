@@ -5,10 +5,7 @@ import subway.domain.util.ExceptionHandler;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-import static subway.domain.SystemCommand.*;
-
 public class SystemController {
-    private static final SystemController systemController = new SystemController();
     private static final SystemService systemService = new SystemService();
 
     public SystemController() {
@@ -18,14 +15,11 @@ public class SystemController {
 
     public void run() {
         OutputView.printMainPage();
-        String input = ExceptionHandler.repeatForValidInput(systemController::readMainCommand);
-        SystemCommand command = convertToCommand(input);
-        systemService.executeCommand(command);
+        String input = ExceptionHandler.repeatForValidInput(InputView::readMainCommand);
+        executeMainCommand(input);
     }
 
-    private String readMainCommand() {
-        String input = InputView.readMainCommand();
-        systemService.validateCommand(input);
-        return input;
+    private void executeMainCommand(String input) {
+        systemService.executeCommand(input);
     }
 }

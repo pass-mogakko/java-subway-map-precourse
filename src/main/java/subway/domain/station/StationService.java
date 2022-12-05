@@ -2,6 +2,7 @@ package subway.domain.station;
 
 import subway.domain.util.ErrorCode;
 import subway.domain.util.MessageFactory;
+
 import java.util.List;
 
 class StationService {
@@ -12,6 +13,16 @@ class StationService {
     public void validateCommand(String input) {
         if (!COMMAND_VALID_RANGE.contains(input)) {
             throw new IllegalArgumentException(messageFactory.makeErrorMessage(ErrorCode.INVALID_COMMAND));
+        }
+    }
+
+    public void addStation(String input) {
+        validateStationName(input);
+    }
+
+    public void validateStationName(String input) {
+        if (input.length() <= 2) {
+            throw new IllegalArgumentException(messageFactory.makeErrorMessage(ErrorCode.INVALID_STATION_NAME));
         }
     }
 }
