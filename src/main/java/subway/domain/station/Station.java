@@ -1,4 +1,4 @@
-package subway.domain;
+package subway.domain.station;
 
 public class Station {
     private String name;
@@ -9,6 +9,12 @@ public class Station {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Station compareStation = (Station) obj;
+        return name.equals(compareStation.getName());
     }
 
     // 추가 기능 구현

@@ -3,9 +3,16 @@ package subway.controller.function;
 import subway.constants.menu.Menu;
 import subway.controller.ManagementController;
 import subway.domain.command.ManageCommand;
+import subway.service.StationService;
 import subway.view.input.InputView;
+import subway.view.input.StationInputView;
+import subway.view.output.StationOutputView;
 
 public class StationController implements ManagementController {
+
+    private final StationService stationService = new StationService();
+    private final StationInputView stationInputView = new StationInputView();
+    private final StationOutputView stationOutputView = new StationOutputView();
 
     @Override
     public void execute() {
@@ -18,6 +25,7 @@ public class StationController implements ManagementController {
                 break;
             }
             executeByCommand(manageCommand);
+            break;
         }
     }
 
@@ -44,6 +52,11 @@ public class StationController implements ManagementController {
     }
 
     public void insert() {
+        try {
+            stationService.insert(InputView.readNewStation());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
@@ -52,7 +65,7 @@ public class StationController implements ManagementController {
     }
 
     public void read() {
-
+        stationOutputView.printStations(stationService.read());
     }
 
 }
