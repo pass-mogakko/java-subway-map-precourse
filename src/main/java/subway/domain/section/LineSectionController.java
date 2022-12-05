@@ -1,13 +1,15 @@
 package subway.domain.section;
 
 public class LineSectionController {
-    public static void setUp() {
-        LineSectionService.setUp();
+    private static final LineSectionService lineSectionService = new LineSectionService();
+
+    public void setUp() {
+        lineSectionService.setUp();
     }
 
-    public static void run() {
+    public void run() {
     }
 
-    public static void showMap() {
+    public void showMap() {
     }
 }

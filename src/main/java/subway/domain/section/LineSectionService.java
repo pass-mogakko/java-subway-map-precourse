@@ -10,7 +10,7 @@ import static subway.domain.util.SetupConstant.*;
 
 public class LineSectionService {
 
-    public static void setUp() {
+    public void setUp() {
         LineSection lineSection2 = createLineSection(LINE_2, List.of(STATION_GYODAE, STATION_GANGNAM, STATION_YEOKSAM));
         LineSectionRepository.save(lineSection2);
 
@@ -21,7 +21,7 @@ public class LineSectionService {
         LineSectionRepository.save(lineSectionSinbundang);
     }
 
-    private static LineSection createLineSection(String lineName, List<String> stationNames) {
+    private LineSection createLineSection(String lineName, List<String> stationNames) {
         Line line = LineRepository.findByName(lineName);
 
         LinkedList<Station> stations = new LinkedList<>();

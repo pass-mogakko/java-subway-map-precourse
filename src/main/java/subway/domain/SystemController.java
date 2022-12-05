@@ -1,28 +1,28 @@
 package subway.domain;
 
-import subway.domain.line.LineController;
 import subway.domain.section.LineSectionController;
-import subway.domain.station.StationController;
 import subway.domain.util.ExceptionHandler;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 public class SystemController {
+    private static final SystemController systemController = new SystemController();
+    private static final SystemService systemService = new SystemService();
 
-    private SystemController() {
-        LineSectionController.setUp();
+    public SystemController() {
+        final LineSectionController lineSectionController = new LineSectionController();
+        lineSectionController.setUp();
     }
 
-    public static void run() {
-        OutputView.printMain();
-        String input = ExceptionHandler.repeatForValidInput(SystemController::readMainCommand);
-        SystemService.executeCommand(input);
+    public void run() {
+        OutputView.printMainPage();
+        String input = ExceptionHandler.repeatForValidInput(systemController::readMainCommand);
+        systemService.executeCommand(input);
     }
 
-    private static String readMainCommand() {
-        String input = ExceptionHandler.repeatForValidInput(InputView::readMainCommand);
-        SystemService.executeCommand(input);
+    private String readMainCommand() {
+        String input = InputView.readMainCommand();
+        systemService.validateCommand(input);
         return input;
     }
-
 }
