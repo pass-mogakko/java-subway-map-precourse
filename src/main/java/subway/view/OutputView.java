@@ -22,6 +22,9 @@ import subway.view.constants.menu.StationMenu;
 
 public class OutputView {
 
+    private OutputView() {
+    }
+
     public static void printInfoMessage(OutputMessage message) {
         ConsolePrinter.printInfo(message.getValue());
         ConsolePrinter.printBlankLine();

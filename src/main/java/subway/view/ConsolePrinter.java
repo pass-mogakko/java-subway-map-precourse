@@ -11,6 +11,9 @@ import subway.view.constants.menu.Menu;
 
 public class ConsolePrinter {
 
+    private ConsolePrinter() {
+    }
+
     static void printBlankLine() {
         System.out.println();
     }

@@ -7,6 +7,9 @@ import subway.dto.PathDTO;
 
 public class PathService {
 
+    private PathService() {
+    }
+
     public static List<PathDTO> getAllPathsByLine() {
         return PathRepository.paths()
                 .stream()

@@ -11,6 +11,9 @@ public class ConsoleReader {
 
     private static final String REGEX_NUMBER = "^[1-9][0-9]*$";
 
+    private ConsoleReader() {
+    }
+
     static MainCommand readMainCommand() {
         String line = readLine();
         return MainCommand.find(line);
@@ -29,7 +32,7 @@ public class ConsoleReader {
         return line;
     }
 
-    public static int readNumber() {
+    static int readNumber() {
         String line = readLine().trim();
         if (!line.matches(REGEX_NUMBER)) {
             throw new IllegalArgumentException(INPUT_NOT_A_NUMBER_INDEX.getValue());

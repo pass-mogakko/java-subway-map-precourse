@@ -8,6 +8,9 @@ import subway.view.constants.menu.SubCommand;
 
 public class InputView {
 
+    private InputView() {
+    }
+
     public static MainCommand inputMainCommand() {
         ConsolePrinter.printHeader(COMMAND_HEADER.getValue());
         MainCommand mainCommand = ConsoleReader.readMainCommand();
