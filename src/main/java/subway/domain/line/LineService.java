@@ -14,11 +14,11 @@ import static subway.domain.util.ErrorCode.*;
 public class LineService {
     private static final MessageFactory messageFactory = new MessageFactory();
 
-    public void setUp() {
+    void setUp() {
         LineRepository.setUp();
     }
 
-    public void addLine(String lineName, String upFinalStationName, String downFinalStationName) {
+    void addLine(String lineName, String upFinalStationName, String downFinalStationName) {
         validateNewName(lineName);
         Line line = new Line(lineName);
         LineRepository.save(line);
@@ -29,7 +29,7 @@ public class LineService {
         LineSectionRepository.save(lineSection);
     }
 
-    public String showAllLines() {
+    String showAllLines() {
         List<Line> lines = LineRepository.findAll();
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -40,7 +40,7 @@ public class LineService {
         return stringBuilder.toString();
     }
 
-    public void deleteLine(String lineName) {
+    void deleteLine(String lineName) {
         validatePresentLine(lineName);
         LineRepository.deleteByName(lineName);
         LineSectionRepository.deleteByLineName(lineName);
