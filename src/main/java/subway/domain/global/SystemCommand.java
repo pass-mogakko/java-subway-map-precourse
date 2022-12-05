@@ -1,4 +1,4 @@
-package subway.domain;
+package subway.domain.global;
 
 import java.util.Arrays;
 

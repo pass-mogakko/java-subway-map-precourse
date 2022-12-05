@@ -1,11 +1,11 @@
-package subway.domain;
+package subway.domain.global;
 
 import subway.domain.section.LineSectionController;
 import subway.domain.util.ExceptionHandler;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-import static subway.domain.SystemCommand.*;
+import static subway.domain.global.SystemCommand.*;
 
 public class SystemController {
     private boolean systemContinue = true;

@@ -1,6 +1,6 @@
 package subway;
 
-import subway.domain.SystemController;
+import subway.domain.global.SystemController;
 
 public class Application {
 
