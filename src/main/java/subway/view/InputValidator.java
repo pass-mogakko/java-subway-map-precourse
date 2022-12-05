@@ -28,7 +28,7 @@ public class InputValidator {
     }
 
     void validateSectionCommand(String input) {
-        if (!VALID_DETAIL_COMMAND_RANGE.contains(input)) {
+        if (!VALID_SECTION_COMMAND_RANGE.contains(input)) {
             throw new IllegalArgumentException(messageFactory.makeErrorMessage(ErrorCode.INVALID_COMMAND));
         }
     }

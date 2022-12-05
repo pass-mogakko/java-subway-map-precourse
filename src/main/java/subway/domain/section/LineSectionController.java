@@ -21,8 +21,7 @@ public class LineSectionController {
 
     private void executeCommand(String input) {
         LineSectionCommand command = getCode(input);
-
-//        if (command == ADD_SECTION) addSection();
+        if (command == ADD_SECTION) addSection();
 //        if (command == DELETE_SECTION) deleteSection();
         if (command == BACK) return;
     }
