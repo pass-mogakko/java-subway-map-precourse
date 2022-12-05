@@ -14,6 +14,8 @@ import subway.dto.StationDTO;
 
 class StationServiceTest {
 
+    private static final StationService stationService = StationService.getInstance();
+
     private static Stream<String> generateInitialStationsStream() {
         return StationRepository.stations()
                 .stream().map(Station::getName)
@@ -24,27 +26,27 @@ class StationServiceTest {
     @ParameterizedTest
     @ValueSource(strings = {"역", "1", "", "@"})
     void 역등록_정해진_길이_미만_이름_예외발생(String invalidName) {
-        assertThatThrownBy(() -> StationService.addStation(new StationDTO(invalidName)))
+        assertThatThrownBy(() -> stationService.addStation(new StationDTO(invalidName)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @MethodSource("generateInitialStationsStream")
     void 역등록_이미_등록된_이름_예외발생(String duplicatedName) {
-        assertThatThrownBy(() -> StationService.addStation(new StationDTO(duplicatedName)))
+        assertThatThrownBy(() -> stationService.addStation(new StationDTO(duplicatedName)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @MethodSource("generateInitialStationsStream")
     void 역삭제_노선에_등록된_역_이름_예외발생(String linedName) {
-        assertThatThrownBy(() -> StationService.deleteStation(new StationDTO(linedName)))
+        assertThatThrownBy(() -> stationService.deleteStation(new StationDTO(linedName)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 역삭제_존재하지_않는_역_이름_예외발생() {
-        assertThatThrownBy(() -> StationService.deleteStation(new StationDTO("테스트역이름")))
+        assertThatThrownBy(() -> stationService.deleteStation(new StationDTO("테스트역이름")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

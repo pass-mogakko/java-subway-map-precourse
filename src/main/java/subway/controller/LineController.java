@@ -23,6 +23,8 @@ import subway.view.constants.menu.SubCommand;
 
 public class LineController {
 
+    private static final LineService lineService = LineService.getInstance();
+
     private LineController() {
     }
 
@@ -55,18 +57,18 @@ public class LineController {
         String lineName = InputView.inputName(LINE_CREATE_NAME_HEADER);
         String upFinalStationName = InputView.inputName(LINE_CREATE_UP_FINAL_NAME_HEADER);
         String downFinalStationName = InputView.inputName(LINE_CREATE_DOWN_FINAL_NAME_HEADER);
-        LineService.addLine(new LineDTO(lineName), new FinalStationsDTO(upFinalStationName, downFinalStationName));
+        lineService.addLine(new LineDTO(lineName), new FinalStationsDTO(upFinalStationName, downFinalStationName));
         OutputView.printInfoMessage(LINE_CREATE_INFO);
     }
 
     private static void deleteLine() {
         String lineName = InputView.inputName(LINE_DELETE_HEADER);
-        LineService.deleteLine(new LineDTO(lineName));
+        lineService.deleteLine(new LineDTO(lineName));
         OutputView.printInfoMessage(LINE_DELETE_INFO);
     }
 
     private static void readLines() {
-        List<LineDTO> lines = LineService.getAllLines();
+        List<LineDTO> lines = lineService.getAllLines();
         OutputView.printLines(lines);
     }
 }

@@ -22,6 +22,8 @@ import subway.view.constants.menu.SubCommand;
 
 public class PathController {
 
+    private static final PathService pathService = PathService.getInstance();
+
     private PathController() {
     }
 
@@ -35,7 +37,7 @@ public class PathController {
     }
 
     static void showAllSubwayLines() {
-        List<PathDTO> allPathsByLine = PathService.getAllPathsByLine();
+        List<PathDTO> allPathsByLine = pathService.getAllPathsByLine();
         OutputView.printSubwayLines(allPathsByLine);
     }
 
@@ -56,14 +58,14 @@ public class PathController {
         String lineName = InputView.inputName(PATH_CREATE_LINE_NAME_HEADER);
         String stationName = InputView.inputName(PATH_CREATE_STATION_NAME_HEADER);
         int index = InputView.inputIndex(PATH_CREATE_INDEX_HEADER);
-        PathService.insertStationToPath(lineName, stationName, index);
+        pathService.insertStationToPath(lineName, stationName, index);
         OutputView.printInfoMessage(PATH_CREATE_INFO);
     }
 
     private static void deleteStationFromPath() {
         String lineName = InputView.inputName(PATH_DELETE_LINE_NAME_HEADER);
         String stationName = InputView.inputName(PATH_DELETE_STATION_NAME_HEADER);
-        PathService.deleteStationFromPath(lineName, stationName);
+        pathService.deleteStationFromPath(lineName, stationName);
         OutputView.printInfoMessage(PATH_DELETE_INFO);
     }
 }

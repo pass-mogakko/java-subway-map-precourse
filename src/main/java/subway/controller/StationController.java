@@ -20,6 +20,8 @@ import subway.view.constants.menu.SubCommand;
 
 public class StationController {
 
+    private static final StationService stationService = StationService.getInstance();
+
     private StationController() {
     }
 
@@ -50,18 +52,18 @@ public class StationController {
 
     private static void createStation() {
         String name = InputView.inputName(STATION_CREATE_NAME_HEADER);
-        StationService.addStation(new StationDTO(name));
+        stationService.addStation(new StationDTO(name));
         OutputView.printInfoMessage(STATION_CREATE_INFO);
     }
 
     private static void deleteStation() {
         String name = InputView.inputName(STATION_DELETE_NAME_HEADER);
-        StationService.deleteStation(new StationDTO(name));
+        stationService.deleteStation(new StationDTO(name));
         OutputView.printInfoMessage(STATION_DELETE_INFO);
     }
 
     private static void readStations() {
-        List<StationDTO> stationDTOs = StationService.getAllStations();
+        List<StationDTO> stationDTOs = stationService.getAllStations();
         OutputView.printStations(stationDTOs);
     }
 }

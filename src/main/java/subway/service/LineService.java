@@ -11,17 +11,26 @@ import subway.dto.LineDTO;
 
 public class LineService {
 
+    private static LineService instance;
+
     private LineService() {
     }
 
-    public static List<LineDTO> getAllLines() {
+    public static LineService getInstance() {
+        if (instance == null) {
+            instance = new LineService();
+        }
+        return instance;
+    }
+
+    public List<LineDTO> getAllLines() {
         return LineRepository.lines()
                 .stream()
                 .map(line -> new LineDTO(line.getName()))
                 .collect(Collectors.toList());
     }
 
-    public static void addLine(LineDTO lineDTO, FinalStationsDTO finalStations) {
+    public void addLine(LineDTO lineDTO, FinalStationsDTO finalStations) {
         String lineName = lineDTO.getName();
         String upFinalStationName = finalStations.getUpFinalStationName();
         String downFinalStationName = finalStations.getDownFinalStationName();
@@ -29,7 +38,7 @@ public class LineService {
         PathRepository.addPath(new Path(lineName, List.of(upFinalStationName, downFinalStationName)));
     }
 
-    public static void deleteLine(LineDTO lineDTO) {
+    public void deleteLine(LineDTO lineDTO) {
         String name = lineDTO.getName();
         LineRepository.deleteLineByName(name);
         PathRepository.deletePath(name);
