@@ -23,7 +23,7 @@ public class LineController {
     }
 
     private void executeCommand(String input) {
-        LineCommand command = getCode(input);
+        LineCommand command = convertToCommand(input);
 
         if (command == ADD_LINE) addLine();
         if (command == DELETE_LINE) deleteLine();

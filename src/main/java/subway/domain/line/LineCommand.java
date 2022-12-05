@@ -14,7 +14,7 @@ public enum LineCommand {
         this.button = button;
     }
 
-    public static LineCommand getCode(String button) {
+    public static LineCommand convertToCommand(String button) {
         return Arrays.stream(values())
                 .filter(value -> value.button.equals(button))
                 .findAny()
