@@ -10,6 +10,7 @@ import subway.Constants;
 
 public class StationRepository {
     private static final String INVALID_STATION = Constants.ERROR_PREFIX + "존재하지 않는 역입니다.";
+    private static final String DUPLICATED_STATION = Constants.ERROR_PREFIX + "중복된 역 이름입니다.";
 
     private static final List<Station> stations = new ArrayList<>();
 
@@ -34,11 +35,25 @@ public class StationRepository {
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_STATION));
     }
 
-    public static void addStation(Station station) {
+    public static void addStation(Station station) throws IllegalArgumentException {
+        if (isExistStation(station)) {
+            throw new IllegalArgumentException(DUPLICATED_STATION);
+        }
         stations.add(station);
     }
 
-    public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public static boolean isExistStation(Station inputStation) {
+        return stations.stream()
+                .anyMatch(station -> Objects.equals(station.getName(), inputStation.getName()));
+    }
+
+
+    public static void deleteStation(String name) throws IllegalArgumentException {
+        boolean removeSuccess = stations.removeIf(
+                station -> Objects.equals(station.getName(), name));
+
+        if (!removeSuccess) {
+            throw new IllegalArgumentException(INVALID_STATION);
+        }
     }
 }
