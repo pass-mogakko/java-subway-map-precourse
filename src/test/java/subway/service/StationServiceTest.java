@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -22,33 +21,29 @@ class StationServiceTest {
                 .stream();
     }
 
-    @DisplayName("역 등록: 역 이름이 정해진 길이 미만이면 예외 발생")
     @ParameterizedTest
     @ValueSource(strings = {"역", "1", "", "@"})
-    void addStationWithInvalidName(String invalidName) {
+    void 역등록_정해진_길이_미만_이름_예외발생(String invalidName) {
         assertThatThrownBy(() -> StationService.addStation(new StationDTO(invalidName)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("역 등록: 이미 등록된 역 이름이면 예외 발생")
     @ParameterizedTest
     @MethodSource("generateInitialStationsStream")
-    void addStationWithDuplicatedName(String duplicatedName) {
+    void 역등록_이미_등록된_이름_예외발생(String duplicatedName) {
         assertThatThrownBy(() -> StationService.addStation(new StationDTO(duplicatedName)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("역 삭제: 노선에 등록된 역 이름이면 예외 발생")
     @ParameterizedTest
     @MethodSource("generateInitialStationsStream")
-    void deleteStationInLine(String linedName) {
+    void 역삭제_노선에_등록된_역_이름_예외발생(String linedName) {
         assertThatThrownBy(() -> StationService.deleteStation(new StationDTO(linedName)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("역 삭제: 존재하지 않는 역 이름이면 예외 발생")
     @Test
-    void deleteStationWithNullName() {
+    void 역삭제_존재하지_않는_역_이름_예외발생() {
         assertThatThrownBy(() -> StationService.deleteStation(new StationDTO("테스트역이름")))
                 .isInstanceOf(IllegalArgumentException.class);
     }

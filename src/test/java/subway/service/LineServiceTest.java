@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -23,32 +22,30 @@ class LineServiceTest {
                 .stream();
     }
 
-    @DisplayName("노선 등록: 노선 이름이 정해진 길이 미만이면 예외 발생")
     @ParameterizedTest
     @ValueSource(strings = {"역", "1", "", "@"})
-    void addLineWithInvalidName(String invalidName) {
+    void 노선등록_정해진_길이_미만_이름_예외발생(String invalidName) {
         assertThatThrownBy(() -> LineService.addLine(new LineDTO(invalidName), new FinalStationsDTO("강남역", "양재역")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("노선 등록: 이미 등록된 노선 이름이면 예외 발생")
     @ParameterizedTest
     @MethodSource("generateInitialLinesStream")
-    void addLineWithDuplicatedName(String duplicatedName) {
+    void 노선등록_이미_등록된_이름_예외발생(String duplicatedName) {
         assertThatThrownBy(() -> LineService.addLine(new LineDTO(duplicatedName), new FinalStationsDTO("강남역", "양재역")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("노선 등록: 존재하지 않는 종점역 이름이면 예외 발생")
     @Test
-    void addLineWithNullStations() {
-        assertThatThrownBy(() -> LineService.addLine(new LineDTO("테스트노선이름"), new FinalStationsDTO("역이름1", "역이름2")))
+    void 노선등록_존재하지_않는_종점역_이름_예외발생() {
+        assertThatThrownBy(() -> LineService.addLine(new LineDTO("테스트노선이름"), new FinalStationsDTO("역이름", "강남역")))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> LineService.addLine(new LineDTO("테스트노선이름"), new FinalStationsDTO("강남역", "역이름")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("노선 삭제: 노선 목록에 존재하지 않는 이름이면 예외 발생")
     @Test
-    void deleteLineInLine() {
+    void 노선삭제_존재하지_않는_노선_이름_예외발생() {
         assertThatThrownBy(() -> LineService.deleteLine(new LineDTO("테스트노선이름")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
