@@ -8,7 +8,6 @@ import subway.view.InputView;
 import subway.view.OutputView;
 
 import static subway.domain.global.SystemCommand.*;
-import static subway.domain.global.SystemCommand.SHOW_LINE_SECTION_MAP;
 
 public class SystemController {
     private boolean systemContinue = true;
