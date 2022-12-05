@@ -6,7 +6,7 @@ import subway.domain.util.MessageFactory;
 import java.util.List;
 
 public class InputValidator {
-    private static final List<String> VALID_MAIN_COMMAND_RANGE = List.of("1", "2", "3", "4", "F");
+    private static final List<String> VALID_MAIN_COMMAND_RANGE = List.of("1", "2", "3", "4", "Q");
     private static final List<String> VALID_DETAIL_COMMAND_RANGE = List.of("1", "2", "3", "B");
     private static final int VALID_STATION_NAME_MINIMUM = 3;
     private static final String STATION_NAME_REGEX = "[^가-힣]";

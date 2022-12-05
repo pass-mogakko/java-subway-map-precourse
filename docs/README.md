@@ -595,7 +595,7 @@ private static final List<Station> stations = new ArrayList<>();
   - [x] `Exception` : 역 이름이 2글자 이하일 경우 예외 처리
   - [x] `Exception` : 역 이름이 공백, 특수문자만으로 이루어지는 등 유효하지 않을 경우 예외 처리
 - [x] `OutputView` : 지하철 역 등록 완료 메시지 출력하기
-- [ ] 첫 페이지로 돌아가기
+- [x] 첫 페이지로 돌아가기
 
 
 **역 삭제하기**

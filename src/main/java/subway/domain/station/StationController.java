@@ -1,7 +1,6 @@
 package subway.domain.station;
 
 import subway.domain.util.ExceptionHandler;
-import subway.domain.util.InfoCode;
 import subway.domain.util.MessageFactory;
 import subway.view.InputView;
 import subway.view.OutputView;

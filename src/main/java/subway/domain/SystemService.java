@@ -18,6 +18,5 @@ public class SystemService {
         if (command == LINE_MANAGEMENT)    lineController.run();
         if (command == SECTION_MANAGEMENT) lineSectionController.run();
         if (command == SHOW_LINE_SECTION_MAP) lineSectionController.showMap();
-        if (command == QUIT) return;
     }
 }
