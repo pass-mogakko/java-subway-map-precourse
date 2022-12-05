@@ -2,19 +2,20 @@ package subway.domain.station;
 
 import java.util.*;
 
+import static subway.domain.SetupConstant.*;
+
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
 
     private StationRepository() {
-        save(new Station("교대역"));
-        save(new Station("강남역"));
-        save(new Station("역삼역"));
-        save(new Station("남부터미널역"));
-        save(new Station("양재역"));
-        save(new Station("양재시민의숲역"));
-        save(new Station("매봉역"));
+        save(new Station(STATION_GYODAE));
+        save(new Station(STATION_GANGNAM));
+        save(new Station(STATION_YEOKSAM));
+        save(new Station(STATION_NAMBU_TERMINAL));
+        save(new Station(STATION_YANGJAE));
+        save(new Station(STATION_YANGJAE_CITIZENS_FOREST));
+        save(new Station(STATION_MAEBONG));
     }
-
     public static List<Station> findAll() {
         return Collections.unmodifiableList(stations);
     }
@@ -25,6 +26,13 @@ public class StationRepository {
 
     public static boolean deleteStation(String name) {
         return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    }
+
+    public static Station findByName(String name) {
+        return stations.stream()
+                .filter(station -> station.nameEquals(name))
+                .findAny()
+                .orElse(null);
     }
 }
 
