@@ -1,5 +1,7 @@
 package subway.domain;
 
+import static subway.domain.constants.SubwayRule.NAME_MINIMUM_LENGTH;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,17 +25,35 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
+        validateNameToAdd(station.getName());
         stations.add(station);
     }
 
-    public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    private static void validateNameToAdd(String name) {
+        if (name.length() < NAME_MINIMUM_LENGTH.getValue()) {
+            throw new IllegalArgumentException("역 이름은 최소 2글자 이상이어야 합니다.");
+        }
+        if (hasStation(name)) {
+            throw new IllegalArgumentException("이미 등록된 역 이름입니다.");
+        }
     }
 
-    public static Station findStationOrNullByName(String name) {
+    public static void deleteStation(String name) {
+        validateNameToDelete(name);
+        stations.removeIf(station -> Objects.equals(station.getName(), name));
+    }
+
+    private static void validateNameToDelete(String name) {
+        if (!hasStation(name)) {
+            throw new IllegalArgumentException("삭제할 역이 존재하지 않습니다.");
+        }
+        if (PathRepository.hasStationInPath(name)) {
+            throw new IllegalArgumentException("노선에 등록된 역은 삭제할 수 없습니다.");
+        }
+    }
+
+    public static boolean hasStation(String name) {
         return stations.stream()
-                .filter(station -> Objects.equals(station.getName(), name))
-                .findFirst()
-                .orElse(null);
+                .anyMatch(station -> Objects.equals(station.getName(), name));
     }
 }

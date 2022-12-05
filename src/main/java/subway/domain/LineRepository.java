@@ -1,5 +1,7 @@
 package subway.domain;
 
+import static subway.domain.constants.SubwayRule.NAME_MINIMUM_LENGTH;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,17 +21,32 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
+        validateNameToAdd(line.getName());
         lines.add(line);
     }
 
-    public static boolean deleteLineByName(String name) {
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    private static void validateNameToAdd(String name) {
+        if (name.length() < NAME_MINIMUM_LENGTH.getValue()) {
+            throw new IllegalArgumentException("노선 이름은 최소 2글자 이상이어야 합니다.");
+        }
+        if (hasLine(name)) {
+            throw new IllegalArgumentException("이미 등록된 노선 이름입니다.");
+        }
     }
 
-    public static Line findLineOrNullByName(String name) {
+    public static void deleteLineByName(String name) {
+        validateNameToDelete(name);
+        lines.removeIf(line -> Objects.equals(line.getName(), name));
+    }
+
+    private static void validateNameToDelete(String name) {
+        if (!hasLine(name)) {
+            throw new IllegalArgumentException("삭제할 노선이 노선 목록에 존재하지 않습니다.");
+        }
+    }
+
+    public static boolean hasLine(String name) {
         return lines().stream()
-                .filter(line -> Objects.equals(line.getName(), name))
-                .findFirst()
-                .orElse(null);
+                .anyMatch(line -> Objects.equals(line.getName(), name));
     }
 }
