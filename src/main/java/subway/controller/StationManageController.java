@@ -26,27 +26,19 @@ public class StationManageController {
             return;
         }
         Runnable nextAction = selectionNavigator.get(stationManageSelection);
-        nextAction.run();
+        Utils.exceptionHandling(nextAction, OutputView::printErrorMessage);
     }
 
     private void registerStation() {
         String registerStation = InputView.requestRegisterStation();
-        try {
-            stationManageService.registerStation(registerStation);
-            OutputView.printRegisterStation();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-        }
+        stationManageService.registerStation(registerStation);
+        OutputView.printRegisterStation();
     }
 
     private void deleteStation() {
         String deleteStation = InputView.requestDeleteStation();
-        try {
-            stationManageService.deleteStation(deleteStation);
-            OutputView.printDeleteStation();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-        }
+        stationManageService.deleteStation(deleteStation);
+        OutputView.printDeleteStation();
     }
 
     private void lookupStation() {

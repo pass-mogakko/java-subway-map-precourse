@@ -25,29 +25,22 @@ public class SectionManageController {
             return;
         }
         Runnable nextAction = selectionNavigator.get(sectionManageSelection);
-        nextAction.run();
+        Utils.exceptionHandling(nextAction, OutputView::printErrorMessage);
     }
 
     private void registerSection() {
         String lineName = InputView.requestLineOfRegisterSection();
         String stationName = InputView.requestStationOfRegisterSection();
         int order = InputView.requestOrderOfRegisterSection();
-        try {
-            sectionManageService.registerSection(lineName, stationName, order);
-            OutputView.printRegisterSection();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-        }
+        sectionManageService.registerSection(lineName, stationName, order);
+        OutputView.printRegisterSection();
+
     }
 
     private void deleteSection() {
         String lineName = InputView.requestLineOfDeleteSection();
         String stationName = InputView.requestStationOfDeleteSection();
-        try {
-            sectionManageService.deleteSection(lineName, stationName);
-            OutputView.printDeleteSection();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-        }
+        sectionManageService.deleteSection(lineName, stationName);
+        OutputView.printDeleteSection();
     }
 }

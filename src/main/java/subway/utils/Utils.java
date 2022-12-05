@@ -13,4 +13,12 @@ public class Utils {
             return requestInput(requestInputFunction, printErrorFunction);
         }
     }
+
+    public static void exceptionHandling(Runnable runnable, Consumer<String> printErrorFunction) {
+        try {
+            runnable.run();
+        } catch (IllegalArgumentException e) {
+            printErrorFunction.accept(e.getMessage());
+        }
+    }
 }

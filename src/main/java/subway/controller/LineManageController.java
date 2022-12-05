@@ -26,29 +26,22 @@ public class LineManageController {
             return;
         }
         Runnable nextAction = selectionNavigator.get(lineManageSelection);
-        nextAction.run();
+        Utils.exceptionHandling(nextAction, OutputView::printErrorMessage);
     }
 
     private void registerLine() {
         String registerLine = InputView.requestRegisterLine();
         String firstStation = InputView.requestRegisterLineFirstStation();
         String lastStation = InputView.requestRegisterLineLastStation();
-        try {
-            lineManageService.registerLine(registerLine, firstStation, lastStation);
-            OutputView.printRegisterLine();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-        }
+        lineManageService.registerLine(registerLine, firstStation, lastStation);
+        OutputView.printRegisterLine();
+
     }
 
     private void deleteLine() {
         String deleteLine = InputView.requestDeleteLine();
-        try {
-            lineManageService.deleteLine(deleteLine);
-            OutputView.printDeleteLine();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-        }
+        lineManageService.deleteLine(deleteLine);
+        OutputView.printDeleteLine();
     }
 
     private void lookupLine() {
