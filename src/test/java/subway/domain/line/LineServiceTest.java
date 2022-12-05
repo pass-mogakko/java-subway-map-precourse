@@ -18,7 +18,7 @@ class LineServiceTest {
         LineRepository.setUp();
     }
 
-    @DisplayName("노선 추가하기")
+    @DisplayName("노선 추가하기 테스트")
     @Test
     void addLineTest() {
         // when
@@ -46,8 +46,13 @@ class LineServiceTest {
                 .hasMessageContaining(STATION_NOT_FOUND.getMessage());
     }
 
+    @DisplayName("노선 조회하기 테스트")
     @Test
-    void showAllLines() {
+    void showAllLinesTest() {
+        assertThat(lineService.showAllLines())
+                .isNotNull()
+                .isInstanceOf(String.class)
+                .contains("[INFO] ", "2호선", "3호선", "신분당선");
     }
 
     @Test
