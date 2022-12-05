@@ -32,7 +32,9 @@ public class LineController {
 
     private void addLine() {
         String lineName = ExceptionHandler.repeatForValidInput(InputView::readLineNameToAdd);
-        lineService.addLine(lineName);
+        String upFinalStation = ExceptionHandler.repeatForValidInput(InputView::readUpFinalStation);
+        String downFinalStation = ExceptionHandler.repeatForValidInput(InputView::readDownFinalStation);
+        lineService.addLine(lineName, upFinalStation, downFinalStation);
         OutputView.print(messageFactory.makeInfoMessage(LINE_ADDITION_COMPLETE));
     }
 }

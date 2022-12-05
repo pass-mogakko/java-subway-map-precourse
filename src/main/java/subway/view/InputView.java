@@ -7,6 +7,8 @@ public class InputView {
     private static final String ADD_STATION_MESSAGE = "## 등록할 역 이름을 입력하세요.";
     private static final String DELETE_STATION_MESSAGE = "## 삭제할 역 이름을 입력하세요.";
     private static final String ADD_LINE_MESSAGE = "## 등록할 노선 이름을 입력하세요.";
+    private static final String ADD_UP_FINAL_STATION_MESSAGE = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
+    private static final String ADD_DOWN_FINAL_STATION_MESSAGE = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
 
     private static final InputValidator inputValidator = new InputValidator();
 
@@ -54,4 +56,23 @@ public class InputView {
         inputValidator.validateLineName(input);
         return input;
     }
+
+    public static String readUpFinalStation() {
+        System.out.println();
+        System.out.println(ADD_UP_FINAL_STATION_MESSAGE);
+
+        String input = Console.readLine();
+        inputValidator.validateStationName(input);
+        return input;
+    }
+
+    public static String readDownFinalStation() {
+        System.out.println();
+        System.out.println(ADD_DOWN_FINAL_STATION_MESSAGE);
+
+        String input = Console.readLine();
+        inputValidator.validateStationName(input);
+        return input;
+    }
+
 }
