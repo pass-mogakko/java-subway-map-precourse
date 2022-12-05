@@ -4,6 +4,7 @@ import java.util.Scanner;
 import subway.constants.menu.Menu;
 import subway.domain.command.MainCommand;
 import subway.domain.command.ManageCommand;
+import subway.view.validator.CommandValidator;
 
 public class InputView {
 
@@ -12,14 +13,14 @@ public class InputView {
     public static MainCommand readMainMenu() {
         System.out.println(Menu.MAIN.getMenu());
         String command = scanner.nextLine();
-        // validate
-        return MainCommand.getMainCommand(command);
+        CommandValidator.validateCommand(command, Menu.MAIN);
+        return MainCommand.getCommand(command);
     }
 
     public static ManageCommand readManageMenu(Menu menu) {
         System.out.println(menu.getMenu());
         String command = scanner.nextLine();
-        // validate
+        CommandValidator.validateCommand(command, menu);
         return ManageCommand.getCommand(command);
     }
 
