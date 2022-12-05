@@ -27,4 +27,9 @@ public enum MainCommand {
                 .orElseThrow(()
                         -> new IllegalArgumentException(Constants.ERROR_PREFIX + "선택할 수 없는 기능입니다."));
     }
+
+    @Override
+    public String toString() {
+        return command + ". " + statement;
+    }
 }
