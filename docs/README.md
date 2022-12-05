@@ -605,6 +605,7 @@ private static final List<Station> stations = new ArrayList<>();
 - [x] `InputView` : 지하철 역 이름 입력 받기
 - [x] 입력값 검증하기
   - [x] `Exception` : 해당 역이 등록되어있지 않으면 예외 처리
+  - [x] `Exception` : 해당 역이 노선에 등록되어 있으면 예외 처리
 - [x] `OutputView` : 지하철 역 삭제 완료 메시지 출력하기
 - [x] 첫 페이지로 돌아가기
 

@@ -1,7 +1,11 @@
 package subway.domain.station;
 
+import subway.domain.section.LineSection;
+import subway.domain.section.LineSectionRepository;
 import subway.domain.util.MessageFactory;
+
 import java.util.List;
+
 import static subway.domain.util.ErrorCode.*;
 
 class StationService {
@@ -43,6 +47,11 @@ class StationService {
         Station station = StationRepository.findByName(name);
         if (station == null) {
             throw new IllegalArgumentException(messageFactory.makeErrorMessage(STATION_NOT_FOUND));
+        }
+
+        LineSection lineSection = LineSectionRepository.findByStation(station);
+        if (lineSection != null) {
+            throw new IllegalArgumentException(messageFactory.makeErrorMessage(STATION_REGISTERED));
         }
     }
 

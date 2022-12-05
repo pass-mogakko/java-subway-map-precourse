@@ -1,6 +1,7 @@
 package subway.domain.section;
 
 import subway.domain.line.Line;
+import subway.domain.station.Station;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,6 +31,13 @@ public class LineSectionRepository {
 
     public static List<LineSection> findAll() {
         return Collections.unmodifiableList(lineSections);
+    }
+
+    public static LineSection findByStation(Station station) {
+        return lineSections.stream()
+                .filter(section -> section.containsStation(station))
+                .findAny()
+                .orElse(null);
     }
 
 }
