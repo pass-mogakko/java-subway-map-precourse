@@ -16,7 +16,7 @@ public enum MainCommand {
         this.command = command;
     }
 
-    public static MainCommand getMainCommand(String command) {
+    public static MainCommand getCommand(String command) {
         return Arrays.stream(values())
                 .filter(mainCommand -> command.equals(mainCommand.command))
                 .findFirst()
