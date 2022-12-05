@@ -583,6 +583,8 @@ private static final List<Station> stations = new ArrayList<>();
   - [ ] `OutputView` : 지하철 노선도 출력하기
 
 
+- 오류 발생시
+  - [x] 오류 메시지를 출력하고 다시 메인 페이지로 돌아가기
 
 
 

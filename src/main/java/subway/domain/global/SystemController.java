@@ -18,9 +18,13 @@ public class SystemController {
 
     public void run() {
         while (systemContinue) {
-            OutputView.printMainPage();
-            String input = ExceptionHandler.repeatForValidInput(InputView::readMainCommand);
-            executeMainCommand(input);
+            try {
+                OutputView.printMainPage();
+                String input = ExceptionHandler.repeatForValidInput(InputView::readMainCommand);
+                executeMainCommand(input);
+            } catch (IllegalArgumentException e) {
+                OutputView.print(e.getMessage());
+            }
         }
     }
 

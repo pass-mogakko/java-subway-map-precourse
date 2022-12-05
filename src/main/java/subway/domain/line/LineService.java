@@ -17,7 +17,7 @@ public class LineService {
 
     private void validateNewName(String name) {
         Line line = LineRepository.findByName(name);
-        if (line == null) {
+        if (line != null) {
             throw new IllegalArgumentException(messageFactory.makeErrorMessage(DUPLICATE_LINE_NAME));
         }
     }
