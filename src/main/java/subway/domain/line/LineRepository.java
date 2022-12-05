@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import static subway.domain.SetupConstant.*;
+import static subway.domain.util.SetupConstant.*;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();

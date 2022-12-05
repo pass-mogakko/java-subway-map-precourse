@@ -547,8 +547,8 @@ private static final List<Station> stations = new ArrayList<>();
 ### 프로그램 시작
 
 - [x] `OutputView` : 메인 화면 출력하기
-- [ ] `InputView` : 원하는 기능 번호 입력받기
-  - [ ] `Exception` : 1, 2, 3, 4, Q가 아닐 경우 예외 처리
+- [x] `InputView` : 원하는 기능 번호 입력받기
+  - [x] `Exception` : 1, 2, 3, 4, Q가 아닐 경우 예외 처리
 
 - 1 선택시
   - [ ] `OutputView` : 역 관리 화면 출력하기

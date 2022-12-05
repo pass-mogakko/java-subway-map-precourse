@@ -2,7 +2,7 @@ package subway.domain.station;
 
 import java.util.*;
 
-import static subway.domain.SetupConstant.*;
+import static subway.domain.util.SetupConstant.*;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();

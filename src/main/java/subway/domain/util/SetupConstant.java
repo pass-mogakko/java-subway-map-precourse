@@ -1,4 +1,4 @@
-package subway.domain;
+package subway.domain.util;
 
 public class SetupConstant {
     public static final String STATION_GYODAE = "교대역";

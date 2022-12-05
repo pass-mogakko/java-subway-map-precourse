@@ -1,9 +1,9 @@
 package subway;
 
-import subway.domain.SubwayManagementSystem;
+import subway.domain.SubwaySystemController;
 
 public class Application {
     public static void main(String[] args) {
-        SubwayManagementSystem.run();
+        SubwaySystemController.run();
     }
 }

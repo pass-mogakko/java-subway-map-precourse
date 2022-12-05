@@ -4,14 +4,15 @@ import subway.domain.section.LineSectionController;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class SubwayManagementSystem {
+public class SubwaySystemController {
 
-    private SubwayManagementSystem() {
+    private SubwaySystemController() {
         LineSectionController.setUp();
     }
 
     public static void run() {
         OutputView.printMain();
         String input = InputView.readMainCommand();
+        SubwaySystemService.executeCommand(input);
     }
 }

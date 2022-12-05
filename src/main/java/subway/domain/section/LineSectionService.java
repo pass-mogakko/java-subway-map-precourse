@@ -6,7 +6,7 @@ import subway.domain.station.Station;
 import subway.domain.station.StationRepository;
 import java.util.LinkedList;
 import java.util.List;
-import static subway.domain.SetupConstant.*;
+import static subway.domain.util.SetupConstant.*;
 
 public class LineSectionService {
 
