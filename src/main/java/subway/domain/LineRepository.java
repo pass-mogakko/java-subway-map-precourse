@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.Constants;
 
 
 
 public class LineRepository {
+    private static final String INVALID_LINE = Constants.ERROR_PREFIX + "존재하지 않는 노선입니다.";
     private static final List<Line> lines = new ArrayList<>();
 
     static {
@@ -24,7 +26,7 @@ public class LineRepository {
         return lines.stream()
                 .filter(line -> name.equals(line.getName()))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 노선"));
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_LINE));
     }
 
     public static void addLine(Line line) {

@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import subway.Constants;
 
 
 
 public class StationRepository {
+    private static final String INVALID_STATION = Constants.ERROR_PREFIX + "존재하지 않는 역입니다.";
+
     private static final List<Station> stations = new ArrayList<>();
 
     static {
@@ -28,7 +31,7 @@ public class StationRepository {
         return stations.stream()
                 .filter(station -> name.equals(station.getName()))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("잘못된 역이름"));
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_STATION));
     }
 
     public static void addStation(Station station) {
