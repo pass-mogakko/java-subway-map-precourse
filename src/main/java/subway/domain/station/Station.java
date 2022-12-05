@@ -17,8 +17,8 @@ public class Station {
     }
 
     private void validateNameLength(String name) {
-        if(name.length() < MINIMUM_NAME_LENGTH ){
-            throw new IllegalArgumentException(ErrorMessage.MINIMUM_NAME_LENGTH);
+        if (name.length() < MINIMUM_NAME_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessage.MINIMUM_STATION_NAME_LENGTH);
         }
     }
 

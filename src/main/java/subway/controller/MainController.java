@@ -8,6 +8,12 @@ import java.util.List;
 
 public class MainController {
     private static final StationController stationController = new StationController();
+    private static final LineController lineController = new LineController();
+    private static final SectionController sectionController = new SectionController();
+    private static final LineMapController mapController = new LineMapController();
+
+    public MainController() {
+    }
 
     public static void viewMain() {
         printMainView();
@@ -19,8 +25,14 @@ public class MainController {
         if (Function.isManageStation(function)) {
             stationController.run();
         }
-        if(Function.isManageLine(function)){
-
+        if (Function.isManageLine(function)) {
+            lineController.run();
+        }
+        if (Function.isManageSection(function)) {
+            sectionController.run();
+        }
+        if (Function.isPrintLineMap(function)) {
+            mapController.viewMap();
         }
     }
 

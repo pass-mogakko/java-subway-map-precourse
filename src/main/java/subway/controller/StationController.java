@@ -1,5 +1,6 @@
 package subway.controller;
 
+import subway.domain.line.LineRepository;
 import subway.domain.station.Station;
 import subway.domain.station.StationManage;
 import subway.domain.station.StationRepository;
@@ -10,10 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StationController {
-    StationRepository stationRepository = new StationRepository(new ArrayList<>());
 
     public void run() {
-        view();
+        viewStationManages();
         final String manage = readManage();
         if (StationManage.isRegister(manage)) {
             registerStation();
@@ -29,29 +29,9 @@ public class StationController {
         }
     }
 
-    private void view() {
+    private void viewStationManages() {
         List<String> manages = StationManage.getStationManages();
         OutputView.printStationManageView(manages);
-    }
-
-    private void registerStation() {
-        try {
-            String name = InputView.inputRegisterStation();
-            stationRepository.addStation(name);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        run();
-    }
-
-    private void deleteStation() {
-        try {
-            String name = InputView.inputDeleteStation();
-            stationRepository.deleteStation(name);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        run();
     }
 
     private String readManage() {
@@ -64,13 +44,46 @@ public class StationController {
         }
     }
 
+    public Station readRegisterStationName() {
+        try {
+            String StationName = InputView.inputRegisterStation();
+            return StationRepository.validateDuplication(StationName);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readRegisterStationName();
+        }
+    }
+
+    private void registerStation() {
+        Station station = readRegisterStationName();
+        StationRepository.addStation(station);
+        OutputView.printRegisterStationMessage();
+        run();
+    }
+
+    private void deleteStation() {
+        try {
+            String name = InputView.inputDeleteStation();
+            LineRepository.validateRegisteredOnLine(name);
+            StationRepository.deleteStation(name);
+            OutputView.printDeleteStationMessage();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        run();
+    }
+
     private void printStationList() {
-        final List<Station> stations = StationRepository.stations();
+        final List<Station> stations = getStations();
         final List<String> stationList = new ArrayList<>();
         for (Station station : stations) {
             stationList.add(station.getName());
         }
         OutputView.printStationList(stationList);
         MainController.viewMain();
+    }
+
+    public static List<Station> getStations() {
+        return StationRepository.stations();
     }
 }
