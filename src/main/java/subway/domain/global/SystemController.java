@@ -1,19 +1,26 @@
 package subway.domain.global;
 
+import subway.domain.line.LineController;
+import subway.domain.section.LineSectionController;
+import subway.domain.station.StationController;
 import subway.domain.util.ExceptionHandler;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-import static subway.domain.global.SystemCommand.QUIT;
-import static subway.domain.global.SystemCommand.convertToCommand;
+import static subway.domain.global.SystemCommand.*;
+import static subway.domain.global.SystemCommand.SHOW_LINE_SECTION_MAP;
 
 public class SystemController {
     private boolean systemContinue = true;
 
-    private final SystemService systemService = new SystemService();
+    private static final StationController stationController = new StationController();
+    private static final LineController lineController = new LineController();
+    private static final LineSectionController lineSectionController = new LineSectionController();
 
     public SystemController() {
-        systemService.setUp();
+        stationController.setUp();
+        lineController.setUp();
+        lineSectionController.setUp();
     }
 
     public void run() {
@@ -29,10 +36,13 @@ public class SystemController {
     }
 
     private void executeMainCommand(String input) {
-        if (convertToCommand(input) == QUIT) {
-            systemContinue = false;
-            return;
-        }
-        systemService.executeCommand(input);
+        SystemCommand command = convertToCommand(input);
+
+        if (command == STATION_MANAGEMENT) stationController.run();
+        if (command == LINE_MANAGEMENT) lineController.run();
+        if (command == SECTION_MANAGEMENT) lineSectionController.run();
+        if (command == SHOW_LINE_SECTION_MAP) lineSectionController.showMap();
+        if (command == QUIT) systemContinue = false;
     }
+
 }

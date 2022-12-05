@@ -15,7 +15,7 @@ import static subway.domain.util.SetupConstant.*;
 public class LineSectionService {
     private final MessageFactory messageFactory = new MessageFactory();
 
-    public void setUp() {
+    void setUp() {
         LineSection lineSection2 = createLineSection(LINE_2, List.of(STATION_GYODAE, STATION_GANGNAM, STATION_YEOKSAM));
         LineSectionRepository.save(lineSection2);
 
@@ -26,7 +26,7 @@ public class LineSectionService {
         LineSectionRepository.save(lineSectionSinbundang);
     }
 
-    private LineSection createLineSection(String lineName, List<String> stationNames) {
+    LineSection createLineSection(String lineName, List<String> stationNames) {
         Line line = LineRepository.findByName(lineName);
 
         LinkedList<Station> stations = new LinkedList<>();
@@ -37,7 +37,7 @@ public class LineSectionService {
         return new LineSection(line, stations);
     }
 
-    public void addSection(String lineName, String stationName, int order) {
+    void addSection(String lineName, String stationName, int order) {
         Line line = findPresentLine(lineName);
         Station station = findPresentStation(stationName);
         LineSection lineSection = LineSectionRepository.findByLine(line);
@@ -46,7 +46,7 @@ public class LineSectionService {
         lineSection.addStation(station, order);
     }
 
-    public void deleteSection(String lineName, String stationName) {
+    void deleteSection(String lineName, String stationName) {
         Line line = findPresentLine(lineName);
         Station station = findPresentStation(stationName);
         LineSection lineSection = LineSectionRepository.findByLine(line);
@@ -55,7 +55,16 @@ public class LineSectionService {
         lineSection.deleteStation(station);
     }
 
-    private Line findPresentLine(String lineName) {
+    String showMap() {
+        List<LineSection> lineSections = LineSectionRepository.findAll();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (LineSection lineSection : lineSections) {
+            stringBuilder.append(lineSection.toString());
+        }
+        return stringBuilder.toString();
+    }
+
+    Line findPresentLine(String lineName) {
         Line line = LineRepository.findByName(lineName);
         if (line == null) {
             throw new IllegalArgumentException(messageFactory.makeErrorMessage(LINE_NOT_FOUND));
@@ -63,7 +72,7 @@ public class LineSectionService {
         return line;
     }
 
-    private Station findPresentStation(String stationName) {
+    Station findPresentStation(String stationName) {
         Station station = StationRepository.findByName(stationName);
         if (station == null) {
             throw new IllegalArgumentException(messageFactory.makeErrorMessage(STATION_NOT_FOUND));
@@ -71,13 +80,13 @@ public class LineSectionService {
         return station;
     }
 
-    private void validateNewSection(LineSection lineSection, Station station) {
+    void validateNewSection(LineSection lineSection, Station station) {
         if (lineSection.containsStation(station)) {
             throw new IllegalArgumentException(messageFactory.makeErrorMessage(DUPLICATE_SECTION));
         }
     }
 
-    private void validatePresentSection(LineSection lineSection, Station station) {
+    void validatePresentSection(LineSection lineSection, Station station) {
         if (!lineSection.containsStation(station)) {
             throw new IllegalArgumentException(messageFactory.makeErrorMessage(SECTION_NOT_FOUND));
         }

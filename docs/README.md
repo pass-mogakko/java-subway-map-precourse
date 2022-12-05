@@ -580,7 +580,8 @@ private static final List<Station> stations = new ArrayList<>();
 
 
 - 4 선택시
-  - [ ] `OutputView` : 지하철 노선도 출력하기
+  - [x] 전체 노선도 생성하기
+  - [x] `OutputView` : 지하철 노선도 출력하기
 
 
 - 오류 발생시
@@ -653,7 +654,7 @@ private static final List<Station> stations = new ArrayList<>();
   - [x] `Exception` : 이미 존재하는 역일 경우 예외 처리
   - [x] `Exception` : 양의 정수가 아닐 경우 예외 처리
 - [x] `OutputView` : 지하철 구간 추가 완료 메시지 출력하기
-- [ ] 메인 화면으로 돌아가기
+- [x] 메인 화면으로 돌아가기
 
 **구간 삭제하기**
 - [x] `InputView` : 지하철 노선 이름 입력 받기

@@ -6,7 +6,8 @@ import subway.view.InputView;
 import subway.view.OutputView;
 
 import static subway.domain.section.LineSectionCommand.*;
-import static subway.domain.util.InfoCode.*;
+import static subway.domain.util.InfoCode.SECTION_ADDITION_COMPLETE;
+import static subway.domain.util.InfoCode.SECTION_DELETION_COMPLETE;
 
 public class LineSectionController {
     private static final LineSectionService lineSectionService = new LineSectionService();
@@ -47,5 +48,7 @@ public class LineSectionController {
     }
 
     public void showMap() {
+        String result = lineSectionService.showMap();
+        OutputView.print(result);
     }
 }

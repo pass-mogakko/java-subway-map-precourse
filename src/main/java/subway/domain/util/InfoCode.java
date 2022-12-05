@@ -11,7 +11,11 @@ public enum InfoCode {
 
     // 구간 관련 안내 메시지
     SECTION_ADDITION_COMPLETE("지하철 구간이 등록되었습니다."),
-    SECTION_DELETION_COMPLETE("지하철 구간이 삭제되었습니다.");
+    SECTION_DELETION_COMPLETE("지하철 구간이 삭제되었습니다."),
+
+    // 기타
+    LINE("---"),
+    BLANK_LINE("\n");
 
     private final String message;
 

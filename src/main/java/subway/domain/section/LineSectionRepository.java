@@ -3,6 +3,7 @@ package subway.domain.section;
 import subway.domain.line.Line;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,6 +26,10 @@ public class LineSectionRepository {
                 .filter(section -> section.lineEquals(line))
                 .findAny()
                 .orElse(null);
+    }
+
+    public static List<LineSection> findAll() {
+        return Collections.unmodifiableList(lineSections);
     }
 
 }
