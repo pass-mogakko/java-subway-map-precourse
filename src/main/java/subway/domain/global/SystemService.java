@@ -3,12 +3,19 @@ package subway.domain.global;
 import subway.domain.line.LineController;
 import subway.domain.section.LineSectionController;
 import subway.domain.station.StationController;
+
 import static subway.domain.global.SystemCommand.*;
 
 public class SystemService {
     private static final StationController stationController = new StationController();
     private static final LineController lineController = new LineController();
     private static final LineSectionController lineSectionController = new LineSectionController();
+
+    public void setUp() {
+        stationController.setUp();
+        lineController.setUp();
+        lineSectionController.setUp();
+    }
 
     public void executeCommand(String input) {
         SystemCommand command = convertToCommand(input);
