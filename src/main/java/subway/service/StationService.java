@@ -10,8 +10,8 @@ public class StationService {
         StationRepository.addStation(new Station(stationName));
     }
 
-    public void delete() {
-
+    public void delete(String staitonName) {
+        StationRepository.deleteStation(staitonName);
     }
 
     public List<String> read() {

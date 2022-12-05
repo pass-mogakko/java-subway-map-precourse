@@ -31,4 +31,11 @@ public class StationRepository {
                 .map(station -> station.getName())
                 .collect(Collectors.toList());
     }
+
+    public static Station findByStationName(String stationName) {
+        return stations.stream()
+                .filter(station -> stationName.equals(station.getName()))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("역이 존재하지 않습니다."));
+    }
 }

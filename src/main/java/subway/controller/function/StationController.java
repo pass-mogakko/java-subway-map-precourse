@@ -40,32 +40,35 @@ public class StationController implements ManagementController {
     }
 
     private void executeByCommand(ManageCommand manageCommand) {
-        if (manageCommand.equals(ManageCommand.INSERT)) {
-            insert();
-        }
-        if (manageCommand.equals(ManageCommand.DELETE)) {
-            delete();
-        }
-        if (manageCommand.equals(ManageCommand.READ)) {
-            read();
-        }
-    }
-
-    public void insert() {
         try {
-            stationService.insert(InputView.readNewStation());
+            insert(manageCommand);
+            delete(manageCommand);
+            read(manageCommand);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
-    }
-
-    public void delete() {
 
     }
 
-    public void read() {
-        stationOutputView.printStations(stationService.read());
+    public void insert(ManageCommand manageCommand) {
+        if (manageCommand.equals(ManageCommand.INSERT)) {
+            stationService.insert(stationInputView.readStationName());
+            stationOutputView.printInsertSuccess();
+        }
+    }
+
+    public void delete(ManageCommand manageCommand) {
+        if (manageCommand.equals(ManageCommand.DELETE)) {
+            stationService.delete(stationInputView.readDeleteStationName());
+            stationOutputView.printDeleteSuccess();
+        }
+    }
+
+    public void read(ManageCommand manageCommand) {
+        if (manageCommand.equals(ManageCommand.READ)) {
+            stationOutputView.printStations(stationService.read());
+        }
     }
 
 }
