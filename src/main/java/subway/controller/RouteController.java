@@ -1,6 +1,6 @@
 package subway.controller;
 
-import jdk.jshell.spi.ExecutionControlProvider;
+import java.util.function.Supplier;
 import subway.command.RouteCommand;
 import subway.domain.RouteRepository;
 import subway.view.InputView;
@@ -39,12 +39,11 @@ public class RouteController {
 
     private void add() {
         final String lineName = getLineName();
-        final String stationName = getStationName();
-        final int location = getLocation();
+        final String stationName = getAddStationName();
+        final int location = getAddLocation();
 
         RouteRepository.addStation(lineName, stationName, location);
     }
-
 
     private String getLineName() {
         while (true) {
@@ -58,7 +57,7 @@ public class RouteController {
         }
     }
 
-    private String getStationName() {
+    private String getAddStationName() {
         while (true) {
             try {
                 final String stationName = InputView.readAddRouteStation();
@@ -70,14 +69,14 @@ public class RouteController {
         }
     }
 
-    private int getLocation() {
+    private int getAddLocation() {
         while (true) {
             try {
                 final int location = InputView.readAddRouteLocation();
 
                 return location;
             } catch (Exception exception) {
-                throw exception;
+                System.out.println(exception.getMessage());
             }
         }
     }

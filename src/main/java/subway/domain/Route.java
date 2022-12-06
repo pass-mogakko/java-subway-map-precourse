@@ -7,7 +7,9 @@ import subway.Constants;
 
 
 public class Route {
-    private final String INVALID_LOCATION = Constants.ERROR_PREFIX + "추가할 수 없는 위치입니다.";
+    private static final String INVALID_LOCATION = Constants.ERROR_PREFIX + "추가할 수 없는 위치입니다.";
+    private static final String EXIST_STATION = Constants.INFO_PREFIX + "이미 경로에 포함되어있는 역입니다.";
+    private static final String INVALID_ACCESS = Constants.ERROR_PREFIX + "삭제할 수 없습니다.";
     private final Line line;
     private final List<Station> stations;
 
@@ -32,6 +34,14 @@ public class Route {
     }
 
     public void addStation(String stationName, int location) {
+        if (containsStation(stationName)) {
+            throw new IllegalArgumentException(EXIST_STATION);
+        }
+
+        if (location < 1 || location > stations.size()) {
+            throw new IllegalArgumentException(INVALID_LOCATION);
+        }
+
         Station station = StationRepository.getStation(stationName);
 
         if (location > 1 || location < stations.size()) {
