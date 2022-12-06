@@ -46,9 +46,9 @@ public class StationController {
     private void add() {
         while(true) {
             try {
-                final String input = InputView.readAddStation();
+                final String stationName = InputView.readAddStation();
 
-                StationRepository.addStation(new Station(input));
+                StationRepository.addStation(stationName);
 
                 OutputView.printStationAddSuccess();
 

@@ -35,16 +35,16 @@ public class StationRepository {
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_STATION));
     }
 
-    public static void addStation(Station station) throws IllegalArgumentException {
-        if (isExistStation(station)) {
+    public static void addStation(String stationName) throws IllegalArgumentException {
+        if (isExistStation(stationName)) {
             throw new IllegalArgumentException(DUPLICATED_STATION);
         }
-        stations.add(station);
+        stations.add(new Station(stationName));
     }
 
-    public static boolean isExistStation(Station inputStation) {
+    public static boolean isExistStation(String stationName) {
         return stations.stream()
-                .anyMatch(station -> Objects.equals(station.getName(), inputStation.getName()));
+                .anyMatch(station -> stationName.equals(station.getName()));
     }
 
 
