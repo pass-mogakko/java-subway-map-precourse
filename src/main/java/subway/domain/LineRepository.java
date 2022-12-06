@@ -30,23 +30,25 @@ public class LineRepository {
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_LINE));
     }
 
-    public static void addLine(Line line) {
-        if (isExistLine(line)) {
+    public static void addLine(String lineName, String upTerminusName, String downTerminusName) {
+        if (isExistLine(lineName)) {
             throw new IllegalArgumentException(DUPLICATED_LINE);
         }
-        lines.add(line);
+        lines.add(new Line(lineName));
+
+        RouteRepository.addRoute(new Route(lineName, List.of(upTerminusName, downTerminusName)));
     }
 
-    private static boolean isExistLine(Line inputLine) {
+    private static boolean isExistLine(String lineName) {
         return lines.stream()
-                .anyMatch(line -> Objects.equals(line.getName(), inputLine.getName()));
+                .anyMatch(line -> lineName.equals(line.getName()));
     }
 
     public static void deleteLineByName(String name) {
-        boolean successRemove = lines.removeIf(
-                line -> Objects.equals(line.getName(), name));
-        if (!successRemove) {
-            throw new IllegalArgumentException(INVALID_LINE);
-        }
+        RouteRepository.removeRouteByLineName(name);
+
+        Line line = getLine(name);
+
+        lines.remove(line);
     }
 }
