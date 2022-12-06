@@ -10,6 +10,7 @@ import subway.Constants;
 public class RouteRepository {
     private static final String INVALID_ROUTE = Constants.INFO_PREFIX + "존재하지 않는 구간입니다.";
     private static final String DUPLICATE_ROUTE = Constants.INFO_PREFIX + "중복된 노선입니다.";
+    private static final String EXIST_STATION = Constants.INFO_PREFIX + "이미 경로에 포함되어있는 역입니다.";
     private static final List<Route> routes = new ArrayList<>();
 
     static {
@@ -49,5 +50,15 @@ public class RouteRepository {
         Route route = getRouteByLineName(lineName);
 
         routes.remove(route);
+    }
+
+    public static void addStation(String lineName, String stationName, int location) {
+        Route route = getRouteByLineName(lineName);
+
+        if (route.containsStation(stationName)) {
+            throw new IllegalArgumentException(EXIST_STATION);
+        }
+
+        route.addStation(stationName, location);
     }
 }
