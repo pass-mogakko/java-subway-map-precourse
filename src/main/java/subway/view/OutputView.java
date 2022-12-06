@@ -58,4 +58,10 @@ public class OutputView {
                 .forEach(System.out::println);
         System.out.println();
     }
+
+    public static void printLines(List<String> lineNames) {
+        lineNames.stream()
+                .forEach(System.out::println);
+        System.out.println();
+    }
 }
