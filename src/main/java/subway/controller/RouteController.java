@@ -20,7 +20,7 @@ public class RouteController {
         }
 
         if (command.equals(RouteCommand.REMOVE)) {
-
+            remove();
         }
     }
 
@@ -38,14 +38,14 @@ public class RouteController {
     }
 
     private void add() {
-        final String lineName = getLineName();
+        final String lineName = getAddLineName();
         final String stationName = getAddStationName();
         final int location = getAddLocation();
 
         RouteRepository.addStation(lineName, stationName, location);
     }
 
-    private String getLineName() {
+    private String getAddLineName() {
         while (true) {
             try {
                 final String lineName = InputView.readAddRouteLine();
@@ -80,4 +80,37 @@ public class RouteController {
             }
         }
     }
+
+    private void remove() {
+        final String lineName = getRemoveLineName();
+        final String stationName = getRemoveStationName();
+
+        RouteRepository.removeStation(lineName, stationName);
+    }
+
+
+    private String getRemoveLineName() {
+        while (true) {
+            try {
+                final String lineName = InputView.readRemoveStation();
+
+                return lineName;
+            } catch (Exception exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    private String getRemoveStationName() {
+        while (true) {
+            try {
+                final String stationName = InputView.readRemoveRouteStation();
+
+                return stationName;
+            } catch (Exception exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
 }

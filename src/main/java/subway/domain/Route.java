@@ -10,6 +10,7 @@ public class Route {
     private static final String INVALID_LOCATION = Constants.ERROR_PREFIX + "추가할 수 없는 위치입니다.";
     private static final String EXIST_STATION = Constants.INFO_PREFIX + "이미 경로에 포함되어있는 역입니다.";
     private static final String INVALID_ACCESS = Constants.ERROR_PREFIX + "삭제할 수 없습니다.";
+    private static final String INVALID_STATION = Constants.ERROR_PREFIX + "존재하지 않는 역입니다.";
     private final Line line;
     private final List<Station> stations;
 
@@ -44,11 +45,21 @@ public class Route {
 
         Station station = StationRepository.getStation(stationName);
 
-        if (location > 1 || location < stations.size()) {
-            throw new IllegalArgumentException(INVALID_LOCATION);
+        stations.add(location - 1, station);
+    }
+
+    public void removeStation(String stationName) {
+        if (stations.size() <= 2) {
+            throw new IllegalArgumentException(INVALID_ACCESS);
         }
 
-        stations.add(location - 1, station);
+        if (!containsStation(stationName)) {
+            throw new IllegalArgumentException(INVALID_STATION);
+        }
+
+        Station station = StationRepository.getStation(stationName);
+
+        stations.remove(station);
     }
 
     @Override

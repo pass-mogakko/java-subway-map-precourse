@@ -54,10 +54,12 @@ public class RouteRepository {
     public static void addStation(String lineName, String stationName, int location) {
         Route route = getRouteByLineName(lineName);
 
-        if (route.containsStation(stationName)) {
-            throw new IllegalArgumentException(EXIST_STATION);
-        }
-
         route.addStation(stationName, location);
+    }
+
+    public static void removeStation(String lineName, String stationName) {
+        Route route = getRouteByLineName(lineName);
+
+        route.removeStation(stationName);
     }
 }
