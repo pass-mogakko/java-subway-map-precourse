@@ -16,6 +16,10 @@ public class RouteRepository {
         routes.add(new Route("신분당선", List.of("강남역", "양재역", "양재시민의숲역")));
     }
 
+    public static void addRoute(Route route) {
+        routes.add(route);
+    }
+
     public static List<Route> routes() {
         return Collections.unmodifiableList(routes);
     }

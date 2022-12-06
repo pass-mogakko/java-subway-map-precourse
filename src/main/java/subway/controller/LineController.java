@@ -44,18 +44,53 @@ public class LineController {
         }
     }
 
-    private Line add() {
+    private void add() {
+        final String lineName = addLine();
+        final String upTerminus = getUpTerminusName();
+        final String downTerminus = getDownTerminusName();
+
+        Route route = new Route(lineName, List.of(upTerminus, downTerminus));
+
+        RouteRepository.addRoute(route);
+    }
+
+    private String addLine() {
         while (true) {
             try {
-                final String input = InputView.readAddLine();
-                final Line line = new Line(input);
+                final String lineName = InputView.readAddLine();
+                LineRepository.addLine(new Line(lineName));
 
-                LineRepository.addLine(line);
+                return lineName;
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
             }
         }
     }
+
+    private String getDownTerminusName() {
+        while (true) {
+            try {
+                final String downTerminusName = InputView.readDownTerminus();
+
+                return downTerminusName;
+            } catch (Exception exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    private String getUpTerminusName() {
+        while (true) {
+            try {
+                final String upTerminusName = InputView.readUpTerminus();
+
+                return upTerminusName;
+            } catch (Exception exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
 
     private void remove() {
         while (true) {
