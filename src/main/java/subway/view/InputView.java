@@ -82,4 +82,35 @@ public class InputView {
 
         return scanner.nextLine();
     }
+
+    public static String readAddRouteLine() {
+        System.out.println("## 추가할 구간의 노선을 입력하세요.");
+
+        return scanner.nextLine();
+    }
+
+    public static String readAddRouteStation() {
+        System.out.println("## 추가할 구간의 노선을 입력하세요.");
+
+        String input = scanner.nextLine();
+        InputValidator.validateAddInput(input);
+
+        return input;
+    }
+
+    public static int readAddRouteLocation() {
+        return scanner.nextInt();
+    }
+
+    public static String readRemoveRouteLine() {
+        System.out.println("## 삭제할 구간의 노선을 입력하세요.");
+
+        return scanner.nextLine();
+    }
+
+    public static String readRemoveRouteStation() {
+        System.out.println("## 삭제할 구간의 역을 입력하세요.");
+
+        return scanner.nextLine();
+    }
 }
