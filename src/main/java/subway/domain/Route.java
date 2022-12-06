@@ -2,6 +2,7 @@ package subway.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import subway.Constants;
 
 
@@ -27,6 +28,12 @@ public class Route {
 
     public String getLineName() {
         return line.getName();
+    }
+
+    public List<String> getStationNames() {
+        return stations.stream()
+                .map(Station::toString)
+                .collect(Collectors.toList());
     }
 
     public boolean containsStation(String stationName) {

@@ -1,6 +1,7 @@
 package subway.view;
 
 import java.util.List;
+import java.util.Map;
 import subway.Constants;
 import subway.command.LineCommand;
 import subway.command.MainCommand;
@@ -12,6 +13,8 @@ import subway.command.StationCommand;
 public class OutputView {
     private static final String SUCCESS_ADD_STATION = Constants.INFO_PREFIX + "지하철 역이 등록되었습니다.";
     private static final String SUCCESS_REMOVE_STATION = Constants.INFO_PREFIX + "지하철 역이 삭제되었습니다.";
+    private static final String INFORMATION = Constants.INFO_PREFIX + "%s" + System.lineSeparator();
+    private static final String SEPARATOR = Constants.INFO_PREFIX + "------";
 
     public static void printMainMenu() {
         System.out.println("## 메인 화면");
@@ -46,10 +49,12 @@ public class OutputView {
     }
 
     public static void printStationAddSuccess() {
+        System.out.println();
         System.out.println(SUCCESS_ADD_STATION);
     }
 
     public static void printStationRemoveSuccess() {
+        System.out.println();
         System.out.println(SUCCESS_REMOVE_STATION);
     }
 
@@ -62,6 +67,15 @@ public class OutputView {
     public static void printLines(List<String> lineNames) {
         lineNames.stream()
                 .forEach(System.out::println);
+        System.out.println();
+    }
+
+    public static void printRoute(String lineName, List<String> stationNames) {
+        System.out.printf(INFORMATION, lineName);
+        System.out.println(SEPARATOR);
+        for (String stationName : stationNames) {
+            System.out.printf(INFORMATION, stationName);
+        }
         System.out.println();
     }
 }

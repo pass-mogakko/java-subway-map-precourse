@@ -1,8 +1,15 @@
 package subway.controller;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import subway.command.MainCommand;
+import subway.domain.Route;
+import subway.domain.RouteRepository;
 import subway.view.InputView;
+import subway.view.OutputView;
 
 
 
@@ -32,7 +39,7 @@ public class MainController {
             }
 
             if (command.equals(MainCommand.SHOW)) {
-
+                processShow();
             }
         }
     }
@@ -60,5 +67,11 @@ public class MainController {
 
     private void processRoute() {
         routeController.process();
+    }
+
+    private void processShow() {
+        for (Route route : RouteRepository.routes()) {
+            OutputView.printRoute(route.getLineName(), route.getStationNames());
+        }
     }
 }
