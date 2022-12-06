@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 import subway.command.LineCommand;
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Route;
+import subway.domain.RouteRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -32,7 +34,7 @@ public class LineController {
     }
 
     private LineCommand selectCommand() {
-        while(true) {
+        while (true) {
             try {
                 final String input = InputView.readLineMenu();
                 final LineCommand command = LineCommand.getCommand(input);

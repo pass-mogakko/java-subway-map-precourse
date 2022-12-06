@@ -1,9 +1,9 @@
 package subway.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import subway.Constants;
 
 
 
@@ -34,7 +34,7 @@ public class RouteRepository {
     }
 
     public static boolean isExistRoute(Route inputRoute) {
-        String lineName = inputRoute.getLineName();;
+        String lineName = inputRoute.getLineName();
 
         return routes.stream()
                 .anyMatch(route -> lineName.equals(route.getLineName()));

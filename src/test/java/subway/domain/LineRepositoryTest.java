@@ -1,10 +1,7 @@
 package subway.domain;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.assertj.core.api.Assert;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
@@ -19,9 +16,7 @@ class LineRepositoryTest {
 
     @Test
     void 예외_중복된_노선() {
-        Line line = new Line("3호선");
-
-        assertThatThrownBy(() -> LineRepository.addLine(line))
+        assertThatThrownBy(() -> LineRepository.addLine("2호선", "삼척역", "동해역"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -29,5 +24,13 @@ class LineRepositoryTest {
     void 예외_존재하지_않는_노선_삭제() {
         assertThatThrownBy(() -> LineRepository.deleteLineByName("aa"))
                 .isInstanceOf((IllegalArgumentException.class));
+    }
+
+    @Test
+    void 삭제_노선() {
+        LineRepository.deleteLineByName("2호선");
+
+        System.out.println(LineRepository.lines());
+        System.out.println(RouteRepository.routes());
     }
 }
