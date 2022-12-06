@@ -10,6 +10,7 @@ import subway.Constants;
 
 public class LineRepository {
     private static final String INVALID_LINE = Constants.ERROR_PREFIX + "존재하지 않는 노선입니다.";
+    private static final String DUPLICATED_LINE = Constants.ERROR_PREFIX + "중복된 노선입니다.";
     private static final List<Line> lines = new ArrayList<>();
 
     static {
@@ -30,10 +31,22 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
+        if (isExistLine(line)) {
+            throw new IllegalArgumentException(DUPLICATED_LINE);
+        }
         lines.add(line);
     }
 
-    public static boolean deleteLineByName(String name) {
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    private static boolean isExistLine(Line inputLine) {
+        return lines.stream()
+                .anyMatch(line -> Objects.equals(line.getName(), inputLine.getName()));
+    }
+
+    public static void deleteLineByName(String name) {
+        boolean successRemove = lines.removeIf(
+                line -> Objects.equals(line.getName(), name));
+        if (!successRemove) {
+            throw new IllegalArgumentException(INVALID_LINE);
+        }
     }
 }
