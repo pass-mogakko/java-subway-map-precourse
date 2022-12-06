@@ -1,7 +1,7 @@
 package subway.view;
 
 import java.util.Scanner;
-import subway.command.MainCommand;
+import subway.validator.InputValidator;
 
 
 
@@ -44,7 +44,10 @@ public class InputView {
     public static String readAddStation() {
         System.out.println("## 등록할 역 이름을 입력하세요.");
 
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+        InputValidator.validateAddInput(input);
+
+        return input;
     }
 
     public static String readRemoveStation() {
@@ -56,7 +59,10 @@ public class InputView {
     public static String readAddLine() {
         System.out.println("## 등록할 노선 이름을 입력하세요.");
 
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+        InputValidator.validateAddInput(input);
+
+        return input;
     }
 
     public static String readRemoveLine() {
