@@ -1,4 +1,4 @@
-package subway.domain;
+package subway.domain.line;
 
 public class Line {
     private String name;
@@ -11,5 +11,7 @@ public class Line {
         return name;
     }
 
-    // 추가 기능 구현
+    public boolean nameEquals(String input) {
+        return name.equals(input);
+    }
 }
