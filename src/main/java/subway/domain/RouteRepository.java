@@ -18,6 +18,13 @@ public class RouteRepository {
         routes.add(new Route("신분당선", List.of("강남역", "양재역", "양재시민의숲역")));
     }
 
+    public static Route getRouteByLineName(String lineName) {
+        return routes.stream()
+                .filter(route -> lineName.equals(route.getLineName()))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_ROUTE));
+    }
+
     public static void addRoute(Route route) {
         if (isExistRoute(route)) {
             throw new IllegalArgumentException(DUPLICATE_ROUTE);
@@ -36,5 +43,11 @@ public class RouteRepository {
 
     public static List<Route> routes() {
         return Collections.unmodifiableList(routes);
+    }
+
+    public static void removeRouteByLineName(String lineName) {
+        Route route = getRouteByLineName(lineName);
+
+        routes.remove(route);
     }
 }
