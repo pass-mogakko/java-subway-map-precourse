@@ -8,6 +8,7 @@ import subway.view.InputView;
 
 public class MainController {
     final private StationController stationController = new StationController();
+    final private LineController lineController = new LineController();
 
     public void run() {
         while(true) {
@@ -22,7 +23,7 @@ public class MainController {
             }
 
             if (command.equals(MainCommand.LINE)) {
-
+                processLine();
             }
 
             if (command.equals(MainCommand.ROUTE)) {
@@ -43,12 +44,16 @@ public class MainController {
 
                 return command;
             } catch (Exception exception) {
-                System.out.println(exception);
+                System.out.println(exception.getMessage());
             }
         }
     }
 
     private void processStation() {
         stationController.process();
+    }
+
+    private void processLine() {
+        lineController.process();
     }
 }
