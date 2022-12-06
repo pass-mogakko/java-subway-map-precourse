@@ -3,7 +3,7 @@ package subway.view.output;
 import java.util.List;
 import subway.constants.menu.View;
 
-public class LineOutputView {
+public class LineOutputView implements OutputView {
 
     private final static String READ_TITLE = "## 노선 목록";
 

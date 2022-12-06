@@ -2,7 +2,7 @@ package subway.controller;
 
 import subway.constants.Mode;
 import subway.domain.command.MainCommand;
-import subway.view.input.InputView;
+import subway.view.input.MainInputView;
 
 public class MainController {
 
@@ -27,7 +27,7 @@ public class MainController {
 
     public MainCommand readCommand() {
         try {
-            MainCommand mainCommand = InputView.readMainMenu();
+            MainCommand mainCommand = MainInputView.readMainMenu();
             return mainCommand;
         } catch (Exception e) {
             System.out.println(e.getMessage());

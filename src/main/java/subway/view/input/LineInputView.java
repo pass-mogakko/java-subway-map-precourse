@@ -2,9 +2,7 @@ package subway.view.input;
 
 import java.util.Scanner;
 
-public class LineInputView {
-
-    static final Scanner scanner = new Scanner(System.in);
+public class LineInputView implements InputView {
 
     private static final String INPUT_LINE_NAME = "## 등록할 노선 이름을 입력하세요.";
 

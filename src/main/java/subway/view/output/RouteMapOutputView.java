@@ -4,7 +4,7 @@ import java.util.List;
 import subway.constants.menu.View;
 import subway.repository.dto.RouteMapDTO;
 
-public class RouteMapOutputView {
+public class RouteMapOutputView implements OutputView {
 
     public void printRouteMaps(List<RouteMapDTO> routeMaps) {
         routeMaps.stream()

@@ -1,10 +1,6 @@
 package subway.view.input;
 
-import java.util.Scanner;
-
-public class SectionInputView {
-
-    static final Scanner scanner = new Scanner(System.in);
+public class SectionInputView implements InputView {
 
     private static final String INPUT_INSERT_SECTION_LINE = "## 노선을 입력하세요.";
     private static final String INPUT_INSERT_SECTION_STATION = "## 역이름을 입력하세요.";

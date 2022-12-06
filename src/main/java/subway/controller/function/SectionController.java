@@ -4,7 +4,7 @@ import subway.constants.menu.Menu;
 import subway.controller.ManagementController;
 import subway.domain.command.ManageCommand;
 import subway.service.SectionService;
-import subway.view.input.InputView;
+import subway.view.input.MainInputView;
 import subway.view.input.SectionInputView;
 
 public class SectionController implements ManagementController {
@@ -28,7 +28,7 @@ public class SectionController implements ManagementController {
 
     public ManageCommand readCommand(Menu menu) {
         try {
-            ManageCommand manageCommand = InputView.readManageMenu(menu);
+            ManageCommand manageCommand = MainInputView.readManageMenu(menu);
             return manageCommand;
         } catch (Exception e) {
             System.out.println(e.getMessage());

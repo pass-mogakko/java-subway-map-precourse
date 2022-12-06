@@ -4,7 +4,7 @@ import subway.constants.menu.Menu;
 import subway.controller.ManagementController;
 import subway.domain.command.ManageCommand;
 import subway.service.StationService;
-import subway.view.input.InputView;
+import subway.view.input.MainInputView;
 import subway.view.input.StationInputView;
 import subway.view.output.StationOutputView;
 
@@ -31,7 +31,7 @@ public class StationController implements ManagementController {
 
     public ManageCommand readCommand(Menu menu) {
         try {
-            ManageCommand manageCommand = InputView.readManageMenu(menu);
+            ManageCommand manageCommand = MainInputView.readManageMenu(menu);
             return manageCommand;
         } catch (Exception e) {
             System.out.println(e.getMessage());
