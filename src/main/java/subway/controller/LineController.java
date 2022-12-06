@@ -58,7 +58,6 @@ public class LineController {
         while (true) {
             try {
                 final String lineName = InputView.readAddLine();
-                LineRepository.addLine(new Line(lineName));
 
                 return lineName;
             } catch (Exception exception) {
@@ -98,6 +97,8 @@ public class LineController {
                 final String input = InputView.readRemoveLine();
 
                 LineRepository.deleteLineByName(input);
+
+                return;
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
             }
