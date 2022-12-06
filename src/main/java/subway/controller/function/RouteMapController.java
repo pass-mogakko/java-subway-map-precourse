@@ -11,7 +11,6 @@ public class RouteMapController implements ManagementController {
 
     @Override
     public void execute() {
-        System.out.println("푸하하");
         routeMapOutputView.printRouteMaps(lineService.readRouteMaps());
     }
 }
