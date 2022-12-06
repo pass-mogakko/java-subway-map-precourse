@@ -47,16 +47,14 @@ public class LineController {
     }
 
     private void add() {
-        final String lineName = addLine();
+        final String lineName = getLineName();
         final String upTerminus = getUpTerminusName();
         final String downTerminus = getDownTerminusName();
 
-        Route route = new Route(lineName, List.of(upTerminus, downTerminus));
-
-        RouteRepository.addRoute(route);
+        LineRepository.addLine(lineName, upTerminus, downTerminus);
     }
 
-    private String addLine() {
+    private String getLineName() {
         while (true) {
             try {
                 final String lineName = InputView.readAddLine();
