@@ -35,25 +35,24 @@ public class StationController {
         while(true) {
             try {
                 final String input = InputView.readStationMenu();
-                final StationCommand command = StationCommand.getCommand(input);
 
-                return command;
+                return StationCommand.getCommand(input);
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
             }
         }
     }
 
-    private Station add() {
+    private void add() {
         while(true) {
             try {
-                String input = InputView.readAddStation();
-                Station station = new Station(input);
+                final String input = InputView.readAddStation();
 
-                StationRepository.addStation(station);
+                StationRepository.addStation(new Station(input));
+
                 OutputView.printStationAddSuccess();
 
-                return station;
+                return;
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
             }
@@ -63,9 +62,10 @@ public class StationController {
     private void remove() {
         while (true) {
             try {
-                String input = InputView.readRemoveStation();
+                final String input = InputView.readRemoveStation();
 
                 StationRepository.deleteStation(input);
+
                 OutputView.printStationRemoveSuccess();
 
                 return;
