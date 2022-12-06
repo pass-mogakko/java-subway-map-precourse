@@ -11,6 +11,7 @@ import subway.Constants;
 public class StationRepository {
     private static final String INVALID_STATION = Constants.ERROR_PREFIX + "존재하지 않는 역입니다.";
     private static final String DUPLICATED_STATION = Constants.ERROR_PREFIX + "중복된 역 이름입니다.";
+    private static final String EXIST_ON_ROUTE = Constants.ERROR_PREFIX + "노선에 존재하는 역은 삭제할 수 없습니다";
 
     private static final List<Station> stations = new ArrayList<>();
 
@@ -49,6 +50,14 @@ public class StationRepository {
 
 
     public static void deleteStation(String name) throws IllegalArgumentException {
+        List<Route> routes = RouteRepository.routes();
+
+        boolean existAtLine = routes.stream()
+                        .anyMatch(route -> route.containsStation(name));
+        if (existAtLine) {
+            throw new IllegalArgumentException(EXIST_ON_ROUTE);
+        }
+
         boolean removeSuccess = stations.removeIf(
                 station -> Objects.equals(station.getName(), name));
 
