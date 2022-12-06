@@ -32,7 +32,7 @@ public class StationController {
     }
 
     private StationCommand selectCommand() {
-        while(true) {
+        while (true) {
             try {
                 final String input = InputView.readStationMenu();
 
@@ -44,7 +44,7 @@ public class StationController {
     }
 
     private void add() {
-        while(true) {
+        while (true) {
             try {
                 final String stationName = InputView.readAddStation();
 

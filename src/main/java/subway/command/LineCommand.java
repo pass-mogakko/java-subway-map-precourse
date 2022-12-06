@@ -14,7 +14,7 @@ public enum LineCommand {
     private final String command;
     private final String statement;
 
-    LineCommand (final String command, final String statement) {
+    LineCommand(final String command, final String statement) {
         this.command = command;
         this.statement = statement;
     }

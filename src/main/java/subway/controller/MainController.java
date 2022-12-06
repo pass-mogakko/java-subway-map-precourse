@@ -2,7 +2,6 @@ package subway.controller;
 
 
 import subway.command.MainCommand;
-import subway.command.RouteCommand;
 import subway.view.InputView;
 
 
@@ -13,7 +12,7 @@ public class MainController {
     final private RouteController routeController = new RouteController();
 
     public void run() {
-        while(true) {
+        while (true) {
             final MainCommand command = selectCommand();
 
             if (command.equals(MainCommand.QUIT)) {
@@ -33,7 +32,7 @@ public class MainController {
             }
 
             if (command.equals(MainCommand.SHOW)) {
-                
+
             }
         }
     }

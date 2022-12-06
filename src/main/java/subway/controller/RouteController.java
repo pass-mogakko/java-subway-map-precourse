@@ -1,6 +1,5 @@
 package subway.controller;
 
-import java.util.function.Supplier;
 import subway.command.RouteCommand;
 import subway.domain.RouteRepository;
 import subway.view.InputView;

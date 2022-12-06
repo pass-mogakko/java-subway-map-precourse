@@ -13,7 +13,7 @@ public enum RouteCommand {
     private final String command;
     private final String statement;
 
-    RouteCommand (final String command, final String statement) {
+    RouteCommand(final String command, final String statement) {
         this.command = command;
         this.statement = statement;
     }

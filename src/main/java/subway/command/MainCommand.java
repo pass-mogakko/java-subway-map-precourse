@@ -11,11 +11,11 @@ public enum MainCommand {
     ROUTE("3", "구간 관리"),
     SHOW("4", "지하철 노선도 출력"),
     QUIT("Q", "종료");
-    
+
     private final String command;
     private final String statement;
 
-    MainCommand (final String command, final String statement) {
+    MainCommand(final String command, final String statement) {
         this.command = command;
         this.statement = statement;
     }

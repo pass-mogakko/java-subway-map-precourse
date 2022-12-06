@@ -14,7 +14,7 @@ public enum StationCommand {
     private final String command;
     private final String statement;
 
-    StationCommand (final String command, final String statement) {
+    StationCommand(final String command, final String statement) {
         this.command = command;
         this.statement = statement;
     }

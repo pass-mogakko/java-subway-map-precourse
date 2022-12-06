@@ -5,8 +5,6 @@ import java.util.stream.Collectors;
 import subway.command.LineCommand;
 import subway.domain.Line;
 import subway.domain.LineRepository;
-import subway.domain.Route;
-import subway.domain.RouteRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
