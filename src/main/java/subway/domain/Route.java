@@ -21,6 +21,10 @@ public class Route {
                 });
     }
 
+    public String getLineName() {
+        return line.getName();
+    }
+
     @Override
     public String toString() {
         return "line=" + line +

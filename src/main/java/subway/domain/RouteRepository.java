@@ -8,6 +8,8 @@ import java.util.List;
 
 
 public class RouteRepository {
+    private static final String INVALID_ROUTE = Constants.INFO_PREFIX + "존재하지 않는 구간입니다.";
+    private static final String DUPLICATE_ROUTE = Constants.INFO_PREFIX + "중복된 노선입니다.";
     private static final List<Route> routes = new ArrayList<>();
 
     static {
@@ -17,8 +19,20 @@ public class RouteRepository {
     }
 
     public static void addRoute(Route route) {
+        if (isExistRoute(route)) {
+            throw new IllegalArgumentException(DUPLICATE_ROUTE);
+        }
+
         routes.add(route);
     }
+
+    public static boolean isExistRoute(Route inputRoute) {
+        String lineName = inputRoute.getLineName();;
+
+        return routes.stream()
+                .anyMatch(route -> lineName.equals(route.getLineName()));
+    }
+
 
     public static List<Route> routes() {
         return Collections.unmodifiableList(routes);
