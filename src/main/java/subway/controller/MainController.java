@@ -1,17 +1,11 @@
 package subway.controller;
 
 
-import java.lang.reflect.Member;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import subway.command.MainCommand;
-import subway.domain.Route;
-import subway.domain.RouteRepository;
 import subway.view.InputView;
-import subway.view.OutputView;
 
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MainController {
@@ -28,15 +22,14 @@ public class MainController {
 
     private MainCommand selectCommand() {
         final String input = Repeater.repeatInput(InputView::readMainMenu);
-        final MainCommand command = MainCommand.getCommand(input);
 
-        return command;
+        return MainCommand.getCommand(input);
     }
 
     public void run() {
         MainCommand command = Repeater.repeatInput(this::selectCommand);
 
-        while (!command.equals(MainCommand.QUIT)){
+        while (!command.equals(MainCommand.QUIT)) {
             Controllable controllable = mainControllers.get(command);
             controllable.process();
 

@@ -1,79 +1,58 @@
 package subway.controller;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import subway.command.StationCommand;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class StationController implements Controllable {
+    private Map<StationCommand, Runnable> stationRunnables;
+
+    public StationController() {
+        stationRunnables = new HashMap<>();
+
+        stationRunnables.put(StationCommand.ADD, this::add);
+        stationRunnables.put(StationCommand.REMOVE, this::remove);
+        stationRunnables.put(StationCommand.SHOW, this::show);
+    }
+
     @Override
     public void process() {
-        final StationCommand command = selectCommand();
+        StationCommand command = Repeater.repeatInput(this::selectCommand);
 
-        if (command.equals(StationCommand.BACK)) {
-            return;
-        }
+        while (!command.equals(StationCommand.BACK)) {
+            Runnable runnable = stationRunnables.get(command);
+            runnable.run();
 
-        if (command.equals(StationCommand.ADD)) {
-            add();
-        }
-
-        if (command.equals(StationCommand.REMOVE)) {
-            remove();
-        }
-
-        if (command.equals(StationCommand.SHOW)) {
-            show();
+            command = Repeater.repeatInput(this::selectCommand);
         }
     }
 
     private StationCommand selectCommand() {
-        while (true) {
-            try {
-                final String input = InputView.readStationMenu();
+        final String input = Repeater.repeatInput(InputView::readStationMenu);
 
-                return StationCommand.getCommand(input);
-            } catch (Exception exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
+        return StationCommand.getCommand(input);
     }
 
     private void add() {
-        while (true) {
-            try {
-                final String stationName = InputView.readAddStation();
+        final String stationName = Repeater.repeatInput(InputView::readAddStation);
+        StationRepository.addStation(stationName);
 
-                StationRepository.addStation(stationName);
-
-                OutputView.printStationAddSuccess();
-
-                return;
-            } catch (Exception exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
+        OutputView.printStationAddSuccess();
     }
 
     private void remove() {
-        while (true) {
-            try {
-                final String input = InputView.readRemoveStation();
+        final String input = Repeater.repeatInput(InputView::readRemoveStation);
+        StationRepository.deleteStation(input);
 
-                StationRepository.deleteStation(input);
-
-                OutputView.printStationRemoveSuccess();
-
-                return;
-            } catch (Exception exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
+        OutputView.printStationRemoveSuccess();
     }
 
     private void show() {

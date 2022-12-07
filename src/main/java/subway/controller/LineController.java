@@ -1,106 +1,58 @@
 package subway.controller;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import subway.command.LineCommand;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class LineController implements Controllable {
+    private final Map<LineCommand, Runnable> lineRunnables;
+
+    public LineController() {
+        lineRunnables = new HashMap<>();
+
+        lineRunnables.put(LineCommand.ADD, this::add);
+        lineRunnables.put(LineCommand.REMOVE, this::remove);
+        lineRunnables.put(LineCommand.SHOW, this::show);
+    }
+
+    @Override
     public void process() {
-        final LineCommand command = selectCommand();
+        LineCommand command = Repeater.repeatInput(this::selectCommand);
 
-        if (command.equals(LineCommand.BACK)) {
-            return;
-        }
+        while (!command.equals(LineCommand.BACK)) {
+            Runnable runnable = lineRunnables.get(command);
+            Repeater.repeatRun(runnable);
 
-        if (command.equals(LineCommand.ADD)) {
-            add();
-        }
-
-        if (command.equals(LineCommand.REMOVE)) {
-            remove();
-        }
-
-        if (command.equals(LineCommand.SHOW)) {
-            show();
+            command = Repeater.repeatInput(this::selectCommand);
         }
     }
 
     private LineCommand selectCommand() {
-        while (true) {
-            try {
-                final String input = InputView.readLineMenu();
-                final LineCommand command = LineCommand.getCommand(input);
+        final String input = Repeater.repeatInput(InputView::readLineMenu);
 
-                return command;
-            } catch (Exception exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
+        return LineCommand.getCommand(input);
     }
 
     private void add() {
-        final String lineName = getLineName();
-        final String upTerminus = getUpTerminusName();
-        final String downTerminus = getDownTerminusName();
+        final String lineName = Repeater.repeatInput(InputView::readAddLine);
+        final String upTerminus = Repeater.repeatInput(InputView::readUpTerminus);
+        final String downTerminus = Repeater.repeatInput(InputView::readDownTerminus);
 
         LineRepository.addLine(lineName, upTerminus, downTerminus);
     }
 
-    private String getLineName() {
-        while (true) {
-            try {
-                final String lineName = InputView.readAddLine();
-
-                return lineName;
-            } catch (Exception exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
-    }
-
-    private String getDownTerminusName() {
-        while (true) {
-            try {
-                final String downTerminusName = InputView.readDownTerminus();
-
-                return downTerminusName;
-            } catch (Exception exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
-    }
-
-    private String getUpTerminusName() {
-        while (true) {
-            try {
-                final String upTerminusName = InputView.readUpTerminus();
-
-                return upTerminusName;
-            } catch (Exception exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
-    }
-
-
     private void remove() {
-        while (true) {
-            try {
-                final String input = InputView.readRemoveLine();
+        final String lineName = Repeater.repeatInput(InputView::readRemoveLine);
 
-                LineRepository.deleteLineByName(input);
-
-                return;
-            } catch (Exception exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
+        LineRepository.deleteLineByName(lineName);
     }
 
     private void show() {
