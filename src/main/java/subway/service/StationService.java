@@ -10,6 +10,11 @@ public class StationService {
         StationRepository.addStation(new Station(stationName));
     }
 
+    public void insertStations(String... stationNames) {
+        Arrays.stream(stationNames)
+                .forEach(stationName -> insertStation(stationName));
+    }
+
     public void delete(String staitonName) {
         StationRepository.deleteStation(staitonName);
     }

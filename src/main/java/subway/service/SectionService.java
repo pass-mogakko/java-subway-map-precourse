@@ -19,4 +19,9 @@ public class SectionService {
         line.deleteStation(station);
     }
 
+    public void insertSections(String lineName, int startIndex, String...stationNames) {
+        IntStream.rangeClosed(startIndex, (stationNames.length - 2))
+                .forEach(index -> insertSection(lineName,index,stationNames[index]));
+    }
+
 }
