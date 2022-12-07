@@ -25,4 +25,13 @@ class Repeater {
             repeatConsume(consumer, input);
         }
     }
+
+    static void repeatRun(Runnable runnable) {
+        try {
+            runnable.run();
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+            repeatRun(runnable);
+        }
+    }
 }
