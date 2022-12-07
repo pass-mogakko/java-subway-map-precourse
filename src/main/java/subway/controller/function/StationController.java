@@ -53,7 +53,7 @@ public class StationController implements ManagementController {
 
     public void insert(ManageCommand manageCommand) {
         if (manageCommand.equals(ManageCommand.INSERT)) {
-            stationService.insert(stationInputView.readStationName());
+            stationService.insertStation(stationInputView.readStationName());
             stationOutputView.printInsertSuccess();
         }
     }

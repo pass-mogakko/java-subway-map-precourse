@@ -50,7 +50,7 @@ public class SectionController implements ManagementController {
             String lineName = sectionInputView.readLineName();
             String stationName = sectionInputView.readStationName();
             int index = sectionInputView.readIndex();
-            sectionService.insert(lineName, stationName, index);
+            sectionService.insertSection(lineName, index, stationName);
         }
     }
 

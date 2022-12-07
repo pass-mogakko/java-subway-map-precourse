@@ -1,12 +1,13 @@
 package subway.service;
 
+import java.util.Arrays;
 import java.util.List;
 import subway.domain.station.Station;
 import subway.repository.StationRepository;
 
 public class StationService {
 
-    public void insert(String stationName) {
+    public void insertStation(String stationName) {
         StationRepository.addStation(new Station(stationName));
     }
 
