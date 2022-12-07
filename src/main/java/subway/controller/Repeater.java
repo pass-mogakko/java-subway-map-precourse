@@ -17,15 +17,6 @@ class Repeater {
         }
     }
 
-    static <T> void repeatConsume(Consumer<T> consumer, T input) {
-        try {
-            consumer.accept(input);
-        } catch (Exception exception) {
-            System.out.println(exception.getMessage());
-            repeatConsume(consumer, input);
-        }
-    }
-
     static void repeatRun(Runnable runnable) {
         try {
             runnable.run();
