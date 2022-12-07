@@ -17,15 +17,6 @@ class Repeater {
         }
     }
 
-    static <T> T repeatFindByInput(Supplier<T> findReader) {
-        try {
-            return findReader.get();
-        } catch (Exception exception) {
-            System.out.println(exception.getMessage());
-            return repeatFindByInput(findReader);
-        }
-    }
-
     static <T> void repeatConsume(Consumer<T> consumer, T input) {
         try {
             consumer.accept(input);

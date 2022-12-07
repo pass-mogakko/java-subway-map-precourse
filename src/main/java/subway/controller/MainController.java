@@ -34,13 +34,13 @@ public class MainController {
     }
 
     public void run() {
-        MainCommand command = Repeater.repeatFindByInput(this::selectCommand);
+        MainCommand command = Repeater.repeatInput(this::selectCommand);
 
         while (!command.equals(MainCommand.QUIT)){
             Controllable controllable = mainControllers.get(command);
             controllable.process();
 
-            command = Repeater.repeatFindByInput(this::selectCommand);
+            command = Repeater.repeatInput(this::selectCommand);
         }
     }
 }
