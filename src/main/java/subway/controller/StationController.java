@@ -29,7 +29,7 @@ public class StationController implements Controllable {
 
         while (!command.equals(StationCommand.BACK)) {
             Runnable runnable = stationRunnables.get(command);
-            runnable.run();
+            Repeater.repeatRun(runnable);
 
             command = Repeater.repeatInput(this::selectCommand);
         }

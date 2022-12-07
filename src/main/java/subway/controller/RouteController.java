@@ -24,7 +24,7 @@ public class RouteController implements Controllable {
 
         while (!command.equals(RouteCommand.BACK)) {
             Runnable runnable = routeRunnables.get(command);
-            runnable.run();
+            Repeater.repeatRun(runnable);
 
             command = Repeater.repeatInput(this::selectCommand);
         }
