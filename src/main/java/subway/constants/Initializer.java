@@ -1,7 +1,5 @@
 package subway.constants;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.IntStream;
 import subway.service.LineService;
 import subway.service.SectionService;
@@ -9,17 +7,17 @@ import subway.service.StationService;
 
 public class Initializer {
 
-    private static final StationService stationService = new StationService();
-    private static final LineService lineService = new LineService();
-    private static final SectionService sectionService = new SectionService();
+    private final StationService stationService = new StationService();
+    private final LineService lineService = new LineService();
+    private final SectionService sectionService = new SectionService();
 
     private final int INIT_START_INDEX = 1;
 
-    private static final String[] initStations = {"교대역","강남역","역삼역","남부터미널역","양재역","양재시민의숲역","매봉역"};
+    private final String[] initStations = {"교대역","강남역","역삼역","남부터미널역","양재역","양재시민의숲역","매봉역"};
 
-    private static final String[] initLines = {"2호선","3호선","신분당선"};
+    private final String[] initLines = {"2호선","3호선","신분당선"};
 
-    private static final String[] initSections = {"교대역,강남역,역삼역","교대역,남부터미널역,양재역,매봉역","강남역,양재역,양재시민의숲역"};
+    private final String[] initSections = {"교대역,강남역,역삼역","교대역,남부터미널역,양재역,매봉역","강남역,양재역,양재시민의숲역"};
 
     public void init() {
         initStations();
@@ -50,7 +48,5 @@ public class Initializer {
         String[] upStop = section.split(",");
         return upStop[upStop.length - 1];
     }
-
-
 
 }
