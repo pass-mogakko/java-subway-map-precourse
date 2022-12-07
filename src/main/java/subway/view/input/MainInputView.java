@@ -10,6 +10,7 @@ public class MainInputView implements InputView {
 
     public static MainCommand readMainMenu() {
         MainOutputView.printMenu(Menu.MAIN);
+        System.out.println(INPUT_FUNCTION);
         String command = scanner.nextLine();
         CommandValidator.validateCommand(command, Menu.MAIN);
         return MainCommand.getCommand(command);
@@ -17,6 +18,7 @@ public class MainInputView implements InputView {
 
     public static ManageCommand readManageMenu(Menu menu) {
         MainOutputView.printMenu(menu);
+        System.out.println(INPUT_FUNCTION);
         String command = scanner.nextLine();
         CommandValidator.validateCommand(command, menu);
         return ManageCommand.getCommand(command);

@@ -17,6 +17,7 @@ public class RouteMapOutputView implements OutputView {
         routeMap.getStationNames()
                 .stream()
                 .forEach(name -> System.out.println(View.INFO + name));
+        System.out.println();
     }
 
 }
