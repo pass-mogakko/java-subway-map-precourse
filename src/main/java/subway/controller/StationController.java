@@ -10,7 +10,8 @@ import subway.view.OutputView;
 
 
 
-public class StationController {
+public class StationController implements Controllable {
+    @Override
     public void process() {
         final StationCommand command = selectCommand();
 

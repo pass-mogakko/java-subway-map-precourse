@@ -10,7 +10,7 @@ import subway.view.OutputView;
 
 
 
-public class LineController {
+public class LineController implements Controllable {
     public void process() {
         final LineCommand command = selectCommand();
 

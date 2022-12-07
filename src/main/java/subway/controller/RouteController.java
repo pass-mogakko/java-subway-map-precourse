@@ -6,7 +6,7 @@ import subway.view.InputView;
 
 
 
-public class RouteController {
+public class RouteController implements Controllable {
     public void process() {
         RouteCommand command = selectCommand();
 

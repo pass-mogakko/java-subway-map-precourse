@@ -1,6 +1,7 @@
 package subway.controller;
 
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,64 +15,32 @@ import subway.view.OutputView;
 
 
 public class MainController {
-    final private StationController stationController = new StationController();
-    final private LineController lineController = new LineController();
-    final private RouteController routeController = new RouteController();
+    private final Map<MainCommand, Controllable> mainControllers;
 
-    public void run() {
-        while (true) {
-            final MainCommand command = selectCommand();
+    public MainController() {
+        mainControllers = new HashMap<>();
 
-            if (command.equals(MainCommand.QUIT)) {
-                return;
-            }
-
-            if (command.equals(MainCommand.STATION)) {
-                processStation();
-            }
-
-            if (command.equals(MainCommand.LINE)) {
-                processLine();
-            }
-
-            if (command.equals(MainCommand.ROUTE)) {
-                processRoute();
-            }
-
-            if (command.equals(MainCommand.SHOW)) {
-                processShow();
-            }
-        }
+        mainControllers.put(MainCommand.STATION, new StationController());
+        mainControllers.put(MainCommand.LINE, new LineController());
+        mainControllers.put(MainCommand.ROUTE, new RouteController());
+        mainControllers.put(MainCommand.SHOW, new ShowController());
     }
 
     private MainCommand selectCommand() {
-        while (true) {
-            try {
-                final String input = InputView.readMainMenu();
-                final MainCommand command = MainCommand.getCommand(input);
+        final String input = Repeater.repeatInput(InputView::readMainMenu);
+        final MainCommand command = MainCommand.getCommand(input);
 
-                return command;
-            } catch (Exception exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
+        return command;
     }
 
-    private void processStation() {
-        stationController.process();
-    }
+    public void run() {
+        MainCommand command = Repeater.repeatFindByInput(this::selectCommand);
 
-    private void processLine() {
-        lineController.process();
-    }
+        while (!command.equals(MainCommand.QUIT)){
+            Controllable controllable = mainControllers.get(command);
+            controllable.process();
 
-    private void processRoute() {
-        routeController.process();
-    }
-
-    private void processShow() {
-        for (Route route : RouteRepository.routes()) {
-            OutputView.printRoute(route.getLineName(), route.getStationNames());
+            command = Repeater.repeatFindByInput(this::selectCommand);
         }
     }
 }
