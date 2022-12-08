@@ -1,5 +1,7 @@
 package subway.view.input;
 
+import subway.view.validator.Validator;
+
 public class SectionInputView implements InputView {
 
     private static final String INPUT_INSERT_SECTION_LINE = "## 노선을 입력하세요.";
@@ -11,12 +13,16 @@ public class SectionInputView implements InputView {
 
     public String readLineName() {
         System.out.println(INPUT_INSERT_SECTION_LINE);
-        return scanner.nextLine();
+        String lineName = scanner.nextLine();
+        Validator.existentLine(lineName);
+        return lineName;
     }
 
     public String readStationName() {
         System.out.println(INPUT_INSERT_SECTION_STATION);
-        return scanner.nextLine();
+        String stationName = scanner.nextLine();
+        Validator.existentStation(stationName);
+        return stationName;
     }
 
     public int readIndex() {
