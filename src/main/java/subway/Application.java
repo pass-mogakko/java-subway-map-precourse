@@ -1,6 +1,6 @@
 package subway;
 
-import subway.constants.Initializer;
+import subway.repository.Initializer;
 import subway.controller.MainController;
 
 public class Application {

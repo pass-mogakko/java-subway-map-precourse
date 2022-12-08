@@ -1,5 +1,6 @@
 package subway.controller.function;
 
+import java.util.function.Supplier;
 import subway.constants.menu.Menu;
 import subway.controller.ManagementController;
 import subway.domain.command.ManageCommand;
@@ -29,6 +30,35 @@ public class LineController implements ManagementController {
         }
     }
 
+    public String read(Supplier<String> readFunction) {
+        try {
+            return readFunction.get();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return read(readFunction);
+        }
+    }
+
+    @Override
+    public void insert() {
+        String name = read(() -> lineInputView.readLineName());
+        String upStopStationName = read(() ->lineInputView.readUpStopStationName());
+        String downStopStationName = read(()->lineInputView.readDownStopStationName());
+        lineService.insert(name, upStopStationName, downStopStationName);
+        lineOutputView.printInsertSuccess();
+    }
+
+    @Override
+    public void delete() {
+        lineService.delete(lineInputView.readDeleteLineName());
+        lineOutputView.printDeleteSuccess();
+    }
+
+    @Override
+    public void read() {
+        lineOutputView.printLines(lineService.read());
+    }
+
     public ManageCommand readCommand(Menu menu) {
         try {
             ManageCommand manageCommand = MainInputView.readManageMenu(menu);
@@ -41,34 +71,12 @@ public class LineController implements ManagementController {
 
     private void executeByCommand(ManageCommand manageCommand) {
         try {
-            insert(manageCommand);
-            delete(manageCommand);
-            read(manageCommand);
+           manageCommand.executeByCommand(this);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private void insert(ManageCommand manageCommand) {
-        if (manageCommand.equals(ManageCommand.INSERT)) {
-            String name = lineInputView.readLineName();
-            String upStopStationName = lineInputView.readUpStopStationName();
-            String downStopStationName = lineInputView.readDownStopStationName();
-            lineService.insert(name, upStopStationName, downStopStationName);
-            lineOutputView.printInsertSuccess();
-        }
-    }
 
-    private void delete(ManageCommand manageCommand) {
-        if (manageCommand.equals(ManageCommand.DELETE)) {
-            lineService.delete(lineInputView.readDeleteLineName());
-            lineOutputView.printDeleteSuccess();
-        }
-    }
 
-    private void read(ManageCommand manageCommand) {
-        if (manageCommand.equals(ManageCommand.READ)) {
-            lineOutputView.printLines(lineService.read());
-        }
-    }
 }

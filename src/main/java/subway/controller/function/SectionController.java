@@ -1,5 +1,6 @@
 package subway.controller.function;
 
+import subway.constants.ExceptionMessage;
 import subway.constants.menu.Menu;
 import subway.controller.ManagementController;
 import subway.domain.command.ManageCommand;
@@ -26,6 +27,26 @@ public class SectionController implements ManagementController {
         }
     }
 
+    @Override
+    public void insert() {
+        String lineName = sectionInputView.readLineName();
+        String stationName = sectionInputView.readStationName();
+        int index = sectionInputView.readIndex();
+        sectionService.insertSection(lineName, index, stationName);
+    }
+
+    @Override
+    public void delete() {
+        String lineName = sectionInputView.readDeleteLineName();
+        String stationName = sectionInputView.readDeleteStationName();
+        sectionService.delete(lineName, stationName);
+    }
+
+    @Override
+    public void read() {
+        throw new IllegalArgumentException(ExceptionMessage.CANT_CHOOSE);
+    }
+
     public ManageCommand readCommand(Menu menu) {
         try {
             ManageCommand manageCommand = MainInputView.readManageMenu(menu);
@@ -38,27 +59,9 @@ public class SectionController implements ManagementController {
 
     private void executeByCommand(ManageCommand manageCommand) {
         try {
-            insert(manageCommand);
-            delete(manageCommand);
+            manageCommand.executeByCommand(this);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
-    }
-
-    public void insert(ManageCommand manageCommand) {
-        if (manageCommand.equals(ManageCommand.INSERT)) {
-            String lineName = sectionInputView.readLineName();
-            String stationName = sectionInputView.readStationName();
-            int index = sectionInputView.readIndex();
-            sectionService.insertSection(lineName, index, stationName);
-        }
-    }
-
-    public void delete(ManageCommand manageCommand) {
-        if (manageCommand.equals(ManageCommand.DELETE)){
-            String lineName = sectionInputView.readDeleteLineName();
-            String stationName = sectionInputView.readDeleteStationName();
-            sectionService.delete(lineName, stationName);
         }
     }
 

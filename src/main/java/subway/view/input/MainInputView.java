@@ -9,7 +9,6 @@ import subway.view.validator.CommandValidator;
 public class MainInputView implements InputView {
 
     public static MainCommand readMainMenu() {
-        MainOutputView.printMenu(Menu.MAIN);
         System.out.println(INPUT_FUNCTION);
         String command = scanner.nextLine();
         CommandValidator.validateCommand(command, Menu.MAIN);

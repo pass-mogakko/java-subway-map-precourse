@@ -16,17 +16,12 @@ public class StationController implements ManagementController {
 
     @Override
     public void execute() {
-        while (true) {
-            ManageCommand manageCommand = readCommand(Menu.STATION);
-            if (manageCommand == null) {
-                continue;
-            }
-            if (manageCommand.equals(ManageCommand.BACK)) {
-                break;
-            }
-            executeByCommand(manageCommand);
-            break;
+        ManageCommand manageCommand = readCommand(Menu.STATION);
+        if (manageCommand.equals(ManageCommand.BACK)) {
+            return;
         }
+        executeByCommand(manageCommand);
+        execute();
     }
 
     public ManageCommand readCommand(Menu menu) {
@@ -35,40 +30,33 @@ public class StationController implements ManagementController {
             return manageCommand;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return null;
+            return readCommand(menu);
         }
     }
 
     private void executeByCommand(ManageCommand manageCommand) {
         try {
-            insert(manageCommand);
-            delete(manageCommand);
-            read(manageCommand);
+            manageCommand.executeByCommand(this);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-
     }
 
-    public void insert(ManageCommand manageCommand) {
-        if (manageCommand.equals(ManageCommand.INSERT)) {
-            stationService.insertStation(stationInputView.readStationName());
-            stationOutputView.printInsertSuccess();
-        }
+    @Override
+    public void insert() {
+        stationService.insertStation(stationInputView.readNewStationName());
+        stationOutputView.printInsertSuccess();
     }
 
-    public void delete(ManageCommand manageCommand) {
-        if (manageCommand.equals(ManageCommand.DELETE)) {
-            stationService.delete(stationInputView.readDeleteStationName());
-            stationOutputView.printDeleteSuccess();
-        }
+    @Override
+    public void delete() {
+        stationService.delete(stationInputView.readDeleteStationName());
+        stationOutputView.printDeleteSuccess();
     }
 
-    public void read(ManageCommand manageCommand) {
-        if (manageCommand.equals(ManageCommand.READ)) {
-            stationOutputView.printStations(stationService.read());
-        }
+    @Override
+    public void read() {
+        stationOutputView.printStations(stationService.read());
     }
 
 }
