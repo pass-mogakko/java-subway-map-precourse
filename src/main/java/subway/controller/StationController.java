@@ -18,13 +18,22 @@ import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.constants.menu.SubCommand;
 
-public class StationController {
+public class StationController implements Controller {
     private static final StationService stationService = StationService.getInstance();
+    private static StationController instance;
 
     private StationController() {
     }
 
-    static void selectMenu() {
+    public static StationController getInstance() {
+        if (instance == null) {
+            instance = new StationController();
+        }
+        return instance;
+    }
+
+    @Override
+    public void execute() {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
             OutputView.printStationMenus();
@@ -33,7 +42,7 @@ public class StationController {
         }
     }
 
-    private static RunStatus runSelectedMenu(SubCommand command) {
+    private RunStatus runSelectedMenu(SubCommand command) {
         if (command == BACK) {
             return STOPPED;
         }
@@ -49,19 +58,19 @@ public class StationController {
         return RUNNING;
     }
 
-    private static void createStation() {
+    private void createStation() {
         String name = InputView.inputName(STATION_CREATE_NAME_HEADER);
         stationService.addStation(new StationDTO(name));
         OutputView.printInfoMessage(STATION_CREATE_INFO);
     }
 
-    private static void deleteStation() {
+    private void deleteStation() {
         String name = InputView.inputName(STATION_DELETE_NAME_HEADER);
         stationService.deleteStation(new StationDTO(name));
         OutputView.printInfoMessage(STATION_DELETE_INFO);
     }
 
-    private static void readStations() {
+    private void readStations() {
         List<StationDTO> stationDTOs = stationService.getAllStations();
         OutputView.printStations(stationDTOs);
     }

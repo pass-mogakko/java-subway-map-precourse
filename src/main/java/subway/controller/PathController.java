@@ -13,20 +13,27 @@ import static subway.view.constants.menu.SubCommand.BACK;
 import static subway.view.constants.menu.SubCommand.CREATE;
 import static subway.view.constants.menu.SubCommand.DELETE;
 
-import java.util.List;
-import subway.dto.PathDTO;
 import subway.service.PathService;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.constants.menu.SubCommand;
 
-public class PathController {
-    private static final PathService pathService = PathService.getInstance();
+public class PathController implements Controller {
+    private static PathController instance;
+    private final PathService pathService = PathService.getInstance();
 
     private PathController() {
     }
 
-    static void selectMenu() {
+    public static PathController getInstance() {
+        if (instance == null) {
+            instance = new PathController();
+        }
+        return instance;
+    }
+
+    @Override
+    public void execute() {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
             OutputView.printPathMenus();
@@ -35,12 +42,7 @@ public class PathController {
         }
     }
 
-    static void showAllSubwayLines() {
-        List<PathDTO> allPathsByLine = pathService.getAllPathsByLine();
-        OutputView.printSubwayLines(allPathsByLine);
-    }
-
-    private static RunStatus runSelectedMenu(SubCommand command) {
+    private RunStatus runSelectedMenu(SubCommand command) {
         if (command == BACK) {
             return STOPPED;
         }
@@ -53,7 +55,7 @@ public class PathController {
         return RUNNING;
     }
 
-    private static void insertStationToPath() {
+    private void insertStationToPath() {
         String lineName = InputView.inputName(PATH_CREATE_LINE_NAME_HEADER);
         String stationName = InputView.inputName(PATH_CREATE_STATION_NAME_HEADER);
         int index = InputView.inputIndex(PATH_CREATE_INDEX_HEADER);
@@ -61,7 +63,7 @@ public class PathController {
         OutputView.printInfoMessage(PATH_CREATE_INFO);
     }
 
-    private static void deleteStationFromPath() {
+    private void deleteStationFromPath() {
         String lineName = InputView.inputName(PATH_DELETE_LINE_NAME_HEADER);
         String stationName = InputView.inputName(PATH_DELETE_STATION_NAME_HEADER);
         pathService.deleteStationFromPath(lineName, stationName);

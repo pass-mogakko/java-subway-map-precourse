@@ -21,13 +21,22 @@ import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.constants.menu.SubCommand;
 
-public class LineController {
-    private static final LineService lineService = LineService.getInstance();
+public class LineController implements Controller {
+    private static LineController instance;
+    private final LineService lineService = LineService.getInstance();
 
     private LineController() {
     }
 
-    static void selectMenu() {
+    public static LineController getInstance() {
+        if (instance == null) {
+            instance = new LineController();
+        }
+        return instance;
+    }
+
+    @Override
+    public void execute() {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
             OutputView.printLineMenus();
@@ -36,7 +45,7 @@ public class LineController {
         }
     }
 
-    private static RunStatus runSelectedMenu(SubCommand command) {
+    private RunStatus runSelectedMenu(SubCommand command) {
         if (command == BACK) {
             return STOPPED;
         }
@@ -52,7 +61,7 @@ public class LineController {
         return RUNNING;
     }
 
-    private static void createLine() {
+    private void createLine() {
         String lineName = InputView.inputName(LINE_CREATE_NAME_HEADER);
         String upFinalStationName = InputView.inputName(LINE_CREATE_UP_FINAL_NAME_HEADER);
         String downFinalStationName = InputView.inputName(LINE_CREATE_DOWN_FINAL_NAME_HEADER);
@@ -60,13 +69,13 @@ public class LineController {
         OutputView.printInfoMessage(LINE_CREATE_INFO);
     }
 
-    private static void deleteLine() {
+    private void deleteLine() {
         String lineName = InputView.inputName(LINE_DELETE_HEADER);
         lineService.deleteLine(new LineDTO(lineName));
         OutputView.printInfoMessage(LINE_DELETE_INFO);
     }
 
-    private static void readLines() {
+    private void readLines() {
         List<LineDTO> lines = lineService.getAllLines();
         OutputView.printLines(lines);
     }

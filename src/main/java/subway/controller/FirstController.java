@@ -11,7 +11,7 @@ import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.constants.menu.MainCommand;
 
-public class FirstController {
+public class FirstController implements Controller {
     private static FirstController instance;
     private RunStatus runStatus = RUNNING;
 
@@ -25,13 +25,14 @@ public class FirstController {
         return instance;
     }
 
-    public void run() {
+    @Override
+    public void execute() {
         try {
             if (runStatus == STOPPED) {
                 return;
             }
             ErrorInterceptor.runUntilGetLegalArguments(this::selectMainMenu);
-            run();
+            execute();
         } catch (Exception exception) {
             OutputView.printErrorMessage(exception.getMessage());
         }
@@ -40,41 +41,40 @@ public class FirstController {
     private void selectMainMenu() {
         OutputView.printMainMenus();
         MainCommand mainCommand = InputView.inputMainCommand();
-        runSelectedController(mainCommand);
+        executeSelectedController(mainCommand);
     }
 
-    private void runSelectedController(MainCommand mainCommand) {
+    private void executeSelectedController(MainCommand mainCommand) {
         if (mainCommand == QUIT) {
             runStatus = STOPPED;
             return;
         }
-        ControllerHandler.run(mainCommand);
+        ControllerHandler.executeController(mainCommand);
     }
 
     private enum ControllerHandler {
-
-        STATION(MainCommand.STATION, StationController::selectMenu),
-        LINE(MainCommand.LINE, LineController::selectMenu),
-        PATH(MainCommand.PATH, PathController::selectMenu),
-        SUBWAY_LINES(MainCommand.SUBWAY_LINES, PathController::showAllSubwayLines),
+        STATION(MainCommand.STATION, StationController.getInstance()),
+        LINE(MainCommand.LINE, LineController.getInstance()),
+        PATH(MainCommand.PATH, PathController.getInstance()),
+        SUBWAY_LINES(MainCommand.SUBWAY_LINES, SubWayLinesController.getInstance()),
         ;
 
-        private static final Map<MainCommand, Runnable> runnableByMainCommand = Arrays.stream(values())
-                .collect(Collectors.toMap(value -> value.mainCommand, value -> value.runnable));
+        private static final Map<MainCommand, Controller> controllerByCommand = Arrays.stream(values())
+                .collect(Collectors.toMap(value -> value.mainCommand, value -> value.controller));
         private final MainCommand mainCommand;
-        private final Runnable runnable;
+        private final Controller controller;
 
-        ControllerHandler(MainCommand mainCommand, Runnable runnable) {
+        ControllerHandler(MainCommand mainCommand, Controller controller) {
             this.mainCommand = mainCommand;
-            this.runnable = runnable;
+            this.controller = controller;
         }
 
-        public static void run(MainCommand command) {
-            Runnable controllerMethod = runnableByMainCommand.get(command);
-            if (controllerMethod == null) {
+        public static void executeController(MainCommand command) {
+            Controller selectedController = controllerByCommand.get(command);
+            if (selectedController == null) {
                 throw new IllegalArgumentException("해당 입력 키워드로 실행할 수 있는 기능이 없습니다.");
             }
-            ErrorInterceptor.runUntilGetLegalArguments(controllerMethod);
+            ErrorInterceptor.runUntilGetLegalArguments(selectedController::execute);
         }
     }
 }
