@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import subway.domain.line.Line;
 import subway.repository.dto.RouteMapDTO;
@@ -23,13 +24,6 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
-    public static Line findByName(String lineName) {
-        return lines.stream()
-                .filter(line -> lineName.equals(line.getName()))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("일치하는 노선이 없습니다."));
-    }
-
     public static List<String> readLineNames() {
         return lines.stream()
                 .map(line -> line.getName())
@@ -41,4 +35,11 @@ public class LineRepository {
                 .map(line -> new RouteMapDTO(line.getName(), line.getSectionNames()))
                 .collect(Collectors.toList());
     }
+
+    public static Optional<Line> findLineByName(String lineName) {
+        return lines.stream()
+                .filter(line -> lineName.equals(line.getName()))
+                .findAny();
+    }
+
 }

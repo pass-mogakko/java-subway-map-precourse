@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import subway.constants.ExceptionMessage;
 import subway.domain.station.Station;
@@ -32,10 +33,9 @@ public class StationRepository {
                 .collect(Collectors.toList());
     }
 
-    public static Station findByStationName(String stationName) {
+    public static Optional<Station> findByStationName(String stationName) {
         return stations.stream()
                 .filter(station -> stationName.equals(station.getName()))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("역이 존재하지 않습니다."));
+                .findAny();
     }
 }
