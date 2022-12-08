@@ -13,26 +13,27 @@ import subway.view.constants.menu.MainCommand;
 
 public class FirstController {
     private static FirstController instance;
-    private RunStatus runStatus = STOPPED;
+    private RunStatus runStatus = RUNNING;
 
     private FirstController() {
-        try {
-            run();
-        } catch (Exception exception) {
-            OutputView.printErrorMessage(exception.getMessage());
-        }
     }
 
-    public static void initializeInstance() {
+    public static FirstController getInstance() {
         if (instance == null) {
             instance = new FirstController();
         }
+        return instance;
     }
 
-    private void run() {
-        runStatus = RUNNING;
-        while (runStatus == RUNNING) {
+    public void run() {
+        try {
+            if (runStatus == STOPPED) {
+                return;
+            }
             ErrorInterceptor.runUntilGetLegalArguments(this::selectMainMenu);
+            run();
+        } catch (Exception exception) {
+            OutputView.printErrorMessage(exception.getMessage());
         }
     }
 
