@@ -5,7 +5,7 @@ import subway.dto.PathDTO;
 import subway.service.PathService;
 import subway.view.OutputView;
 
-public class SubWayLinesController implements Controller {
+public class SubWayLinesController extends Controller {
     private static SubWayLinesController instance;
     private final PathService pathService = PathService.getInstance();
 

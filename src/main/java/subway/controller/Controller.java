@@ -1,6 +1,6 @@
 package subway.controller;
 
-public interface Controller {
+public abstract class Controller {
 
-    void execute();
+    abstract void execute();
 }

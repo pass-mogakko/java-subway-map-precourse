@@ -10,15 +10,13 @@ import static subway.view.constants.InputMessage.PATH_DELETE_STATION_NAME_HEADER
 import static subway.view.constants.OutputMessage.PATH_CREATE_INFO;
 import static subway.view.constants.OutputMessage.PATH_DELETE_INFO;
 import static subway.view.constants.menu.SubCommand.BACK;
-import static subway.view.constants.menu.SubCommand.CREATE;
-import static subway.view.constants.menu.SubCommand.DELETE;
 
 import subway.service.PathService;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.constants.menu.SubCommand;
 
-public class PathController implements Controller {
+public class PathController extends ManageController {
     private static PathController instance;
     private final PathService pathService = PathService.getInstance();
 
@@ -37,7 +35,7 @@ public class PathController implements Controller {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
             OutputView.printPathMenus();
-            SubCommand command = InputView.inputSubCommand();
+            SubCommand command = ErrorInterceptor.repeatUntilGetLegalAnswer(InputView::inputSubCommand);
             runStatus = runSelectedMenu(command);
         }
     }
@@ -46,16 +44,12 @@ public class PathController implements Controller {
         if (command == BACK) {
             return STOPPED;
         }
-        if (command == CREATE) {
-            insertStationToPath();
-        }
-        if (command == DELETE) {
-            deleteStationFromPath();
-        }
+        ManageControllerHandler.executeFunctionByCommand(instance, command);
         return RUNNING;
     }
 
-    private void insertStationToPath() {
+    @Override
+    public void create() {
         String lineName = InputView.inputName(PATH_CREATE_LINE_NAME_HEADER);
         String stationName = InputView.inputName(PATH_CREATE_STATION_NAME_HEADER);
         int index = InputView.inputIndex(PATH_CREATE_INDEX_HEADER);
@@ -63,10 +57,16 @@ public class PathController implements Controller {
         OutputView.printInfoMessage(PATH_CREATE_INFO);
     }
 
-    private void deleteStationFromPath() {
+    @Override
+    public void delete() {
         String lineName = InputView.inputName(PATH_DELETE_LINE_NAME_HEADER);
         String stationName = InputView.inputName(PATH_DELETE_STATION_NAME_HEADER);
         pathService.deleteStationFromPath(lineName, stationName);
         OutputView.printInfoMessage(PATH_DELETE_INFO);
+    }
+
+    @Override
+    void read() {
+        throw new IllegalArgumentException("제공하지 않는 기능을 요청했습니다.");
     }
 }

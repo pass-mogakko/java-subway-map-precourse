@@ -7,9 +7,6 @@ import static subway.view.constants.InputMessage.STATION_DELETE_NAME_HEADER;
 import static subway.view.constants.OutputMessage.STATION_CREATE_INFO;
 import static subway.view.constants.OutputMessage.STATION_DELETE_INFO;
 import static subway.view.constants.menu.SubCommand.BACK;
-import static subway.view.constants.menu.SubCommand.CREATE;
-import static subway.view.constants.menu.SubCommand.DELETE;
-import static subway.view.constants.menu.SubCommand.READ;
 
 import java.util.List;
 import subway.dto.StationDTO;
@@ -18,7 +15,7 @@ import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.constants.menu.SubCommand;
 
-public class StationController implements Controller {
+public class StationController extends ManageController {
     private static final StationService stationService = StationService.getInstance();
     private static StationController instance;
 
@@ -37,7 +34,7 @@ public class StationController implements Controller {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
             OutputView.printStationMenus();
-            SubCommand command = InputView.inputSubCommand();
+            SubCommand command = ErrorInterceptor.repeatUntilGetLegalAnswer(InputView::inputSubCommand);
             runStatus = runSelectedMenu(command);
         }
     }
@@ -46,31 +43,26 @@ public class StationController implements Controller {
         if (command == BACK) {
             return STOPPED;
         }
-        if (command == CREATE) {
-            createStation();
-        }
-        if (command == DELETE) {
-            deleteStation();
-        }
-        if (command == READ) {
-            readStations();
-        }
+        ManageControllerHandler.executeFunctionByCommand(instance, command);
         return RUNNING;
     }
 
-    private void createStation() {
+    @Override
+    void create() {
         String name = InputView.inputName(STATION_CREATE_NAME_HEADER);
         stationService.addStation(new StationDTO(name));
         OutputView.printInfoMessage(STATION_CREATE_INFO);
     }
 
-    private void deleteStation() {
+    @Override
+    void delete() {
         String name = InputView.inputName(STATION_DELETE_NAME_HEADER);
         stationService.deleteStation(new StationDTO(name));
         OutputView.printInfoMessage(STATION_DELETE_INFO);
     }
 
-    private void readStations() {
+    @Override
+    void read() {
         List<StationDTO> stationDTOs = stationService.getAllStations();
         OutputView.printStations(stationDTOs);
     }
