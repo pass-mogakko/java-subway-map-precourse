@@ -35,7 +35,6 @@ public class ConsolePrinter {
     }
 
     private static void printFormattedLine(Format format, Object... content) {
-        // TODO 출력값 검증
         System.out.printf(format.getValue() + System.lineSeparator(), content);
     }
 }
