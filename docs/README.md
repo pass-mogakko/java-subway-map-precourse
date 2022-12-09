@@ -167,55 +167,63 @@
 
 ## 🖋 클래스 설계
 
-- domain
-    - repository
-        - StationRepository
-        - LineRepository
-        - PathRepository
-    - entity
-        - Station
-        - Line
-        - Path
-    - constants
-        - SubwayRule
-        - ErrorMessage
+```
+├── Application.java
+├── controller
+│   ├── Controller.java
+│   ├── ErrorInterceptor.java
+│   ├── FrontController.java
+│   ├── HandlerAdaptor.java
+│   ├── HandlerMapping.java
+│   ├── ManageController.java
+│   └── RunStatus.java
+├── domain
+│   ├── constants
+│   │   ├── ErrorMessage.java
+│   │   └── SubwayRule.java
+│   ├── line
+│   │   ├── Line.java
+│   │   ├── LineController.java
+│   │   ├── LineRepository.java
+│   │   └── LineService.java
+│   ├── path
+│   │   ├── Path.java
+│   │   ├── PathController.java
+│   │   ├── PathRepository.java
+│   │   └── PathService.java
+│   ├── station
+│   │   ├── Station.java
+│   │   ├── StationController.java
+│   │   ├── StationRepository.java
+│   │   └── StationService.java
+│   └── subwaylines
+│       └── SubWayLinesController.java
+├── dto
+│   ├── FinalStationsDTO.java
+│   ├── LineDTO.java
+│   ├── PathDTO.java
+│   └── StationDTO.java
+└── view
+    ├── ConsolePrinter.java
+    ├── ConsoleReader.java
+    ├── InputView.java
+    ├── OutputView.java
+    └── constants
+        ├── ErrorMessage.java
+        ├── Format.java
+        ├── InputMessage.java
+        ├── OutputMessage.java
+        └── menu
+            ├── LineMenu.java
+            ├── MainCommand.java
+            ├── MainMenu.java
+            ├── Menu.java
+            ├── PathMenu.java
+            ├── StationMenu.java
+            └── SubCommand.java
 
-- dto
-    - StationsDTO
-    - LinesDTO
-    - FinalStationsDTO
-    - PathsDTO
 
-- service
-    - StationService
-    - LineService
-    - PathService
-
-- controller
-    - FirstController
-        - (inner) ControllerHandler
-    - StationController
-    - LineController
-    - PathController
-    - ErrorInterceptor
-
-- view
-    - OutputView
-    - InputView
-    - ConsolePrinter
-    - ConsoleReader
-    - constants
-        - menu
-            - MainMenu
-            - StationMenu
-            - LineMenu
-            - PathMenu
-            - MainCommand
-            - SubCommand
-        - InputMessage
-        - OutputMessage
-        - ErrorMessage
-        - Format
+```
 
 ## ♻️ 리팩토링 검토 목록
 
