@@ -34,8 +34,6 @@ public class LineRepository {
             throw new IllegalArgumentException(DUPLICATED_LINE);
         }
         lines.add(new Line(lineName));
-
-        RouteRepository.addRoute(new Route(lineName, List.of(upTerminusName, downTerminusName)));
     }
 
     private static boolean isExistLine(String lineName) {
@@ -44,8 +42,6 @@ public class LineRepository {
     }
 
     public static void deleteLineByName(String name) {
-        RouteRepository.removeRouteByLineName(name);
-
         Line line = getLine(name);
 
         lines.remove(line);

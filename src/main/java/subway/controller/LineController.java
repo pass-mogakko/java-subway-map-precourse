@@ -3,6 +3,8 @@ package subway.controller;
 import subway.command.LineCommand;
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.Route;
+import subway.domain.RouteRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -47,11 +49,13 @@ public class LineController implements Controllable {
         final String downTerminus = Repeater.repeatInput(InputView::readDownTerminus);
 
         LineRepository.addLine(lineName, upTerminus, downTerminus);
+        RouteRepository.addRoute(new Route(lineName, List.of(upTerminus, downTerminus)));
     }
 
     private void remove() {
         final String lineName = Repeater.repeatInput(InputView::readRemoveLine);
 
+        RouteRepository.removeRouteByLineName(lineName);
         LineRepository.deleteLineByName(lineName);
     }
 
