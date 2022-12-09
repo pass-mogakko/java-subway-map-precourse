@@ -27,10 +27,9 @@ public class LineService {
                 .collect(Collectors.toList());
     }
 
-    public void addLine(LineDTO lineDTO) {
-        String lineName = lineDTO.getName();
+    public void addLine(String lineName) {
         validateLineNameToAdd(lineName);
-        LineRepository.addLine(new Line(lineDTO.getName()));
+        LineRepository.addLine(new Line(lineName));
     }
 
     private void validateLineNameToAdd(String name) {
@@ -39,8 +38,7 @@ public class LineService {
         }
     }
 
-    public void deleteLine(LineDTO lineDTO) {
-        String lineName = lineDTO.getName();
+    public void deleteLine(String lineName) {
         validateLineNameToDelete(lineName);
         LineRepository.deleteLineByName(lineName);
     }

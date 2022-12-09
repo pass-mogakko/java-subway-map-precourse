@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import subway.domain.line.LineRepository;
 import subway.domain.station.StationRepository;
-import subway.dto.FinalStationsDTO;
-import subway.dto.LineDTO;
 import subway.dto.PathDTO;
 
 public class PathService {
@@ -34,11 +32,7 @@ public class PathService {
                 .collect(Collectors.toList());
     }
 
-    public void addPath(LineDTO lineDTO, FinalStationsDTO finalStations) {
-        String lineName = lineDTO.getName();
-        String upFinalStationName = finalStations.getUpFinalStationName();
-        String downFinalStationName = finalStations.getDownFinalStationName();
-
+    public void addPath(String lineName, String upFinalStationName, String downFinalStationName) {
         validateLineName(lineName);
         validateStationNamesToAdd(upFinalStationName, downFinalStationName);
         PathRepository.addPath(new Path(lineName, List.of(upFinalStationName, downFinalStationName)));

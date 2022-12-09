@@ -10,6 +10,14 @@ class PathServiceTest {
     private static final PathService pathService = PathService.getInstance();
 
     @Test
+    void 구간생성_존재하지_않는_종점역_이름_예외발생() {
+        assertThatThrownBy(() -> pathService.addPath("테스트노선이름", "역이름", "강남역"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> pathService.addPath("테스트노선이름", "강남역", "역이름"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void 구간추가_존재하지_않는_노선_이름_예외발생() {
         assertThatThrownBy(() -> pathService.insertStationToPath("테스트노선이름", "강남역", 1))
                 .isInstanceOf(IllegalArgumentException.class);
