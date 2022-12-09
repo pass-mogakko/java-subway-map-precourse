@@ -1,8 +1,5 @@
 package subway.domain.line;
 
-import static subway.domain.constants.ErrorMessage.LINE_EXISTING;
-import static subway.domain.constants.ErrorMessage.LINE_NOT_FOUND;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,24 +24,10 @@ public class LineRepository {
     }
 
     public static void addLine(Line line) {
-        validateNameToAdd(line.getName());
         lines.add(line);
     }
 
-    private static void validateNameToAdd(String name) {
-        if (hasLine(name)) {
-            throw new IllegalArgumentException(LINE_EXISTING.getValue());
-        }
-    }
-
     public static void deleteLineByName(String name) {
-        validateNameToDelete(name);
         lines.removeIf(line -> Objects.equals(line.getName(), name));
-    }
-
-    private static void validateNameToDelete(String name) {
-        if (!hasLine(name)) {
-            throw new IllegalArgumentException(LINE_NOT_FOUND.getValue());
-        }
     }
 }

@@ -1,10 +1,10 @@
 package subway.domain.line;
 
+import static subway.domain.constants.ErrorMessage.LINE_EXISTING;
+import static subway.domain.constants.ErrorMessage.LINE_NOT_FOUND;
+
 import java.util.List;
 import java.util.stream.Collectors;
-import subway.domain.path.Path;
-import subway.domain.path.PathRepository;
-import subway.dto.FinalStationsDTO;
 import subway.dto.LineDTO;
 
 public class LineService {
@@ -27,17 +27,27 @@ public class LineService {
                 .collect(Collectors.toList());
     }
 
-    public void addLine(LineDTO lineDTO, FinalStationsDTO finalStations) {
+    public void addLine(LineDTO lineDTO) {
         String lineName = lineDTO.getName();
-        String upFinalStationName = finalStations.getUpFinalStationName();
-        String downFinalStationName = finalStations.getDownFinalStationName();
+        validateLineNameToAdd(lineName);
         LineRepository.addLine(new Line(lineDTO.getName()));
-        PathRepository.addPath(new Path(lineName, List.of(upFinalStationName, downFinalStationName)));
+    }
+
+    private void validateLineNameToAdd(String name) {
+        if (LineRepository.hasLine(name)) {
+            throw new IllegalArgumentException(LINE_EXISTING.getValue());
+        }
     }
 
     public void deleteLine(LineDTO lineDTO) {
-        String name = lineDTO.getName();
-        PathRepository.deletePath(name);
-        LineRepository.deleteLineByName(name);
+        String lineName = lineDTO.getName();
+        validateLineNameToDelete(lineName);
+        LineRepository.deleteLineByName(lineName);
+    }
+
+    private void validateLineNameToDelete(String name) {
+        if (!LineRepository.hasLine(name)) {
+            throw new IllegalArgumentException(LINE_NOT_FOUND.getValue());
+        }
     }
 }

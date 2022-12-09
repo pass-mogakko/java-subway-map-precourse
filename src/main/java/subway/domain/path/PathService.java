@@ -1,7 +1,17 @@
 package subway.domain.path;
 
+import static subway.domain.constants.ErrorMessage.DOWN_FINAL_STATION_NOT_FOUND;
+import static subway.domain.constants.ErrorMessage.LINE_NOT_FOUND;
+import static subway.domain.constants.ErrorMessage.PATH_BY_LINE_NOT_FOUND;
+import static subway.domain.constants.ErrorMessage.STATION_NOT_FOUND;
+import static subway.domain.constants.ErrorMessage.UP_FINAL_STATION_NOT_FOUND;
+
 import java.util.List;
 import java.util.stream.Collectors;
+import subway.domain.line.LineRepository;
+import subway.domain.station.StationRepository;
+import subway.dto.FinalStationsDTO;
+import subway.dto.LineDTO;
 import subway.dto.PathDTO;
 
 public class PathService {
@@ -24,11 +34,59 @@ public class PathService {
                 .collect(Collectors.toList());
     }
 
+    public void addPath(LineDTO lineDTO, FinalStationsDTO finalStations) {
+        String lineName = lineDTO.getName();
+        String upFinalStationName = finalStations.getUpFinalStationName();
+        String downFinalStationName = finalStations.getDownFinalStationName();
+
+        validateLineName(lineName);
+        validateStationNamesToAdd(upFinalStationName, downFinalStationName);
+        PathRepository.addPath(new Path(lineName, List.of(upFinalStationName, downFinalStationName)));
+    }
+
+    private void validateLineName(String lineName) {
+        if (!LineRepository.hasLine(lineName)) {
+            throw new IllegalArgumentException(LINE_NOT_FOUND.getValue());
+        }
+    }
+
+    private void validateStationNamesToAdd(String upFinalStationName, String downFinalStationName) {
+        if (!StationRepository.hasStation(upFinalStationName)) {
+            throw new IllegalArgumentException(UP_FINAL_STATION_NOT_FOUND.getValue());
+        }
+        if (!StationRepository.hasStation(downFinalStationName)) {
+            throw new IllegalArgumentException(DOWN_FINAL_STATION_NOT_FOUND.getValue());
+        }
+    }
+
+    public void deletePath(String lineName) {
+        validateLineName(lineName);
+        PathRepository.deletePath(lineName);
+    }
+
     public void insertStationToPath(String lineName, String stationName, int index) {
-        PathRepository.insertStationToPath(lineName, stationName, index);
+        Path path = PathRepository.findPathOrNullByLineName(lineName);
+        validateFoundPath(path);
+        validateStationName(stationName);
+        path.insertStation(index, stationName);
     }
 
     public void deleteStationFromPath(String lineName, String stationName) {
-        PathRepository.deleteStationFromPath(lineName, stationName);
+        Path path = PathRepository.findPathOrNullByLineName(lineName);
+        validateFoundPath(path);
+        validateStationName(stationName);
+        path.deleteStation(stationName);
+    }
+
+    private void validateStationName(String stationName) {
+        if (!StationRepository.hasStation(stationName)) {
+            throw new IllegalArgumentException(STATION_NOT_FOUND.getValue());
+        }
+    }
+
+    private void validateFoundPath(Path path) {
+        if (path == null) {
+            throw new IllegalArgumentException(PATH_BY_LINE_NOT_FOUND.getValue());
+        }
     }
 }

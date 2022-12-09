@@ -15,6 +15,7 @@ import subway.controller.ErrorInterceptor;
 import subway.controller.HandlerAdaptor;
 import subway.controller.ManageController;
 import subway.controller.RunStatus;
+import subway.domain.path.PathService;
 import subway.dto.FinalStationsDTO;
 import subway.dto.LineDTO;
 import subway.view.InputView;
@@ -24,6 +25,7 @@ import subway.view.constants.menu.SubCommand;
 public class LineController extends ManageController {
     private static LineController instance;
     private final LineService lineService = LineService.getInstance();
+    private final PathService pathService = PathService.getInstance();
 
     private LineController() {
     }
@@ -58,13 +60,15 @@ public class LineController extends ManageController {
         String lineName = InputView.inputName(LINE_CREATE_NAME_HEADER);
         String upFinalStationName = InputView.inputName(LINE_CREATE_UP_FINAL_NAME_HEADER);
         String downFinalStationName = InputView.inputName(LINE_CREATE_DOWN_FINAL_NAME_HEADER);
-        lineService.addLine(new LineDTO(lineName), new FinalStationsDTO(upFinalStationName, downFinalStationName));
+        lineService.addLine(new LineDTO(lineName));
+        pathService.addPath(new LineDTO(lineName), new FinalStationsDTO(upFinalStationName, downFinalStationName));
         OutputView.printInfoMessage(LINE_CREATE_INFO);
     }
 
     @Override
     protected void delete() {
         String lineName = InputView.inputName(LINE_DELETE_HEADER);
+        pathService.deletePath(lineName);
         lineService.deleteLine(new LineDTO(lineName));
         OutputView.printInfoMessage(LINE_DELETE_INFO);
     }
