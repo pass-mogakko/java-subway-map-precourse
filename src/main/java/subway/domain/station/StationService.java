@@ -1,9 +1,7 @@
-package subway.service;
+package subway.domain.station;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import subway.domain.entity.Station;
-import subway.domain.repository.StationRepository;
 import subway.dto.StationDTO;
 
 public class StationService {

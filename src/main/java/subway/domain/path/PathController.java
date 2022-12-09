@@ -1,4 +1,4 @@
-package subway.controller;
+package subway.domain.path;
 
 import static subway.controller.RunStatus.RUNNING;
 import static subway.controller.RunStatus.STOPPED;
@@ -11,7 +11,10 @@ import static subway.view.constants.OutputMessage.PATH_CREATE_INFO;
 import static subway.view.constants.OutputMessage.PATH_DELETE_INFO;
 import static subway.view.constants.menu.SubCommand.BACK;
 
-import subway.service.PathService;
+import subway.controller.ErrorInterceptor;
+import subway.controller.HandlerAdaptor;
+import subway.controller.ManageController;
+import subway.controller.RunStatus;
 import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.constants.menu.SubCommand;
@@ -31,7 +34,7 @@ public class PathController extends ManageController {
     }
 
     @Override
-    public void execute() {
+    protected void execute() {
         RunStatus runStatus = RUNNING;
         while (runStatus == RUNNING) {
             OutputView.printPathMenus();
@@ -49,7 +52,7 @@ public class PathController extends ManageController {
     }
 
     @Override
-    public void create() {
+    protected void create() {
         String lineName = InputView.inputName(PATH_CREATE_LINE_NAME_HEADER);
         String stationName = InputView.inputName(PATH_CREATE_STATION_NAME_HEADER);
         int index = InputView.inputIndex(PATH_CREATE_INDEX_HEADER);
@@ -58,7 +61,7 @@ public class PathController extends ManageController {
     }
 
     @Override
-    public void delete() {
+    protected void delete() {
         String lineName = InputView.inputName(PATH_DELETE_LINE_NAME_HEADER);
         String stationName = InputView.inputName(PATH_DELETE_STATION_NAME_HEADER);
         pathService.deleteStationFromPath(lineName, stationName);
@@ -66,7 +69,7 @@ public class PathController extends ManageController {
     }
 
     @Override
-    void read() {
+    protected void read() {
         throw new IllegalArgumentException("제공하지 않는 기능을 요청했습니다.");
     }
 }

@@ -1,11 +1,9 @@
-package subway.service;
+package subway.domain.line;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import subway.domain.entity.Line;
-import subway.domain.entity.Path;
-import subway.domain.repository.LineRepository;
-import subway.domain.repository.PathRepository;
+import subway.domain.path.Path;
+import subway.domain.path.PathRepository;
 import subway.dto.FinalStationsDTO;
 import subway.dto.LineDTO;
 

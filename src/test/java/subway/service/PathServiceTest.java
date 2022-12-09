@@ -3,6 +3,7 @@ package subway.service;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
+import subway.domain.path.PathService;
 
 class PathServiceTest {
 

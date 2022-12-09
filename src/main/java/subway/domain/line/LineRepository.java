@@ -1,4 +1,4 @@
-package subway.domain.repository;
+package subway.domain.line;
 
 import static subway.domain.constants.ErrorMessage.LINE_EXISTING;
 import static subway.domain.constants.ErrorMessage.LINE_NOT_FOUND;
@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import subway.domain.entity.Line;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();

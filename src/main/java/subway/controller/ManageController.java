@@ -1,9 +1,9 @@
 package subway.controller;
 
 public abstract class ManageController extends Controller {
-    abstract void create();
+    protected abstract void create();
 
-    abstract void delete();
+    protected abstract void delete();
 
-    abstract void read();
+    protected abstract void read();
 }

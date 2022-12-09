@@ -1,4 +1,4 @@
-package subway.domain.entity;
+package subway.domain.path;
 
 import static subway.domain.constants.ErrorMessage.PATH_DUPLICATED_STATION;
 import static subway.domain.constants.ErrorMessage.PATH_INVALID_INDEX;

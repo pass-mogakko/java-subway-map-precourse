@@ -1,8 +1,9 @@
-package subway.controller;
+package subway.domain.subwaylines;
 
 import java.util.List;
+import subway.controller.Controller;
+import subway.domain.path.PathService;
 import subway.dto.PathDTO;
-import subway.service.PathService;
 import subway.view.OutputView;
 
 public class SubWayLinesController extends Controller {
@@ -20,7 +21,7 @@ public class SubWayLinesController extends Controller {
     }
 
     @Override
-    public void execute() {
+    protected void execute() {
         List<PathDTO> allPathsByLine = pathService.getAllPathsByLine();
         OutputView.printSubwayLines(allPathsByLine);
     }

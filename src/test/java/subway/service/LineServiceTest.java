@@ -8,8 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import subway.domain.entity.Line;
-import subway.domain.repository.LineRepository;
+import subway.domain.line.Line;
+import subway.domain.line.LineRepository;
+import subway.domain.line.LineService;
 import subway.dto.FinalStationsDTO;
 import subway.dto.LineDTO;
 

@@ -8,8 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import subway.domain.entity.Station;
-import subway.domain.repository.StationRepository;
+import subway.domain.station.Station;
+import subway.domain.station.StationRepository;
+import subway.domain.station.StationService;
 import subway.dto.StationDTO;
 
 class StationServiceTest {

@@ -1,8 +1,7 @@
-package subway.service;
+package subway.domain.path;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import subway.domain.repository.PathRepository;
 import subway.dto.PathDTO;
 
 public class PathService {

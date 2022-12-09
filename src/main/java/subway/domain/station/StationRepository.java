@@ -1,4 +1,4 @@
-package subway.domain.repository;
+package subway.domain.station;
 
 import static subway.domain.constants.ErrorMessage.STATION_EXISTING;
 import static subway.domain.constants.ErrorMessage.STATION_IN_LINE;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import subway.domain.entity.Station;
+import subway.domain.path.PathRepository;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
