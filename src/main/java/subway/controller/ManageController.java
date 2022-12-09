@@ -9,7 +9,8 @@ import subway.command.MainCommand;
 public enum ManageController {
     STATION(MainCommand.STATION, new StationController()),
     LINE(MainCommand.LINE, new LineController()),
-    ROUTE(MainCommand.ROUTE, new RouteController());
+    ROUTE(MainCommand.ROUTE, new RouteController()),
+    SHOW(MainCommand.SHOW, new ShowController());
 
     private final MainCommand command;
     private final Controllable controllable;
