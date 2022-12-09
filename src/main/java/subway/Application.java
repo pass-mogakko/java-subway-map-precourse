@@ -1,10 +1,10 @@
 package subway;
 
-import subway.controller.FirstController;
+import subway.controller.FrontController;
 
 public class Application {
     public static void main(String[] args) {
-        FirstController firstController = FirstController.getInstance();
-        firstController.execute();
+        FrontController frontController = FrontController.getInstance();
+        frontController.execute();
     }
 }

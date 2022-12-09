@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import subway.view.constants.menu.SubCommand;
 
-public enum ManageControllerHandler {
+public enum HandlerAdaptor {
     CREATE(SubCommand.CREATE, controller -> controller.create()),
     DELETE(SubCommand.DELETE, controller -> controller.delete()),
     READ(SubCommand.READ, controller -> controller.read());
@@ -16,7 +16,7 @@ public enum ManageControllerHandler {
     private final SubCommand subCommand;
     private final Consumer<ManageController> function;
 
-    ManageControllerHandler(SubCommand subCommand, Consumer<ManageController> function) {
+    HandlerAdaptor(SubCommand subCommand, Consumer<ManageController> function) {
         this.subCommand = subCommand;
         this.function = function;
     }

@@ -43,7 +43,7 @@ public class StationController extends ManageController {
         if (command == BACK) {
             return STOPPED;
         }
-        ManageControllerHandler.executeFunctionByCommand(instance, command);
+        HandlerAdaptor.executeFunctionByCommand(instance, command);
         return RUNNING;
     }
 

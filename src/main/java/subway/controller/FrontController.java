@@ -8,16 +8,16 @@ import subway.view.InputView;
 import subway.view.OutputView;
 import subway.view.constants.menu.MainCommand;
 
-public class FirstController extends Controller {
-    private static FirstController instance;
+public class FrontController extends Controller {
+    private static FrontController instance;
     private RunStatus runStatus = RUNNING;
 
-    private FirstController() {
+    private FrontController() {
     }
 
-    public static FirstController getInstance() {
+    public static FrontController getInstance() {
         if (instance == null) {
-            instance = new FirstController();
+            instance = new FrontController();
         }
         return instance;
     }
@@ -36,12 +36,13 @@ public class FirstController extends Controller {
             OutputView.printErrorMessage(exception.getMessage());
         }
     }
-    
+
     private void executeSelectedController(MainCommand mainCommand) {
         if (mainCommand == QUIT) {
             runStatus = STOPPED;
             return;
         }
-        FirstControllerHandler.executeController(mainCommand);
+        Controller selectedController = HandlerMapping.executeController(mainCommand);
+        ErrorInterceptor.repeatUntilNoArgumentException(selectedController, Controller::execute);
     }
 }
